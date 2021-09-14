@@ -613,6 +613,18 @@ PrefabInstance:
       propertyPath: m_Alpha
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7078716487848636394, guid: a8b3b44c7d46e3c4697960139c66f9b1, type: 3}
+      propertyPath: m_Type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7078716487848636394, guid: a8b3b44c7d46e3c4697960139c66f9b1, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7078716487848636394, guid: a8b3b44c7d46e3c4697960139c66f9b1, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7078716489266367720, guid: a8b3b44c7d46e3c4697960139c66f9b1, type: 3}
       propertyPath: m_Name
       value: LevelLoader

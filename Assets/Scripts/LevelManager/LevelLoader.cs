@@ -29,12 +29,42 @@ public class LevelLoader : MonoBehaviour
     {
 
     }
-
+    /**
+      * This function loads the next level 
+      */
     public void LoadNextLevel()
     {
         StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1));
     }
 
+    /**
+      * This function loads the main menu scene
+      */
+    public void LoadMainMenu()
+    {
+        StartCoroutine(LoadLevel(0));
+    }
+
+    /**
+      * This function loads the settings menu scene
+      */
+    public void LoadSettingsMenu()
+    {
+        StartCoroutine(LoadLevel(2));
+    }
+
+    /**
+      * This function quits the game
+      */
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
+
+    /**
+      * This function loads a scene at a specified index
+      * @param[in] leveIndex	represents the scene index.
+      */
     IEnumerator LoadLevel(int leveIndex)
     {
         //Play animation
