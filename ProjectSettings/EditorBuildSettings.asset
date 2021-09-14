@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/cs_TransitionScene.unity
     guid: 78db2a80fb3ffa34a9d4c5602da771dc
   - enabled: 1
+    path: Assets/Scenes/cs_settingsMenu.unity
+    guid: 626b883d765ca2b4c8476c596d823ab2
+  - enabled: 1
     path: Assets/Scenes/cs_missionDemo.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   m_configObjects: {}

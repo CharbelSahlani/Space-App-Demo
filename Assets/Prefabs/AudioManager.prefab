@@ -46,16 +46,6 @@ MonoBehaviour:
   MusicMixer: {fileID: 24100000, guid: 0a2f11502f66ec245856c2aa9f75ec92, type: 2}
   SFXMixer: {fileID: 24100000, guid: be684ae50739f3340a3a1283efd342e3, type: 2}
   sounds:
-  - name: 
-    clip: {fileID: 0}
-    volume: 0
-    volumeVariance: 0
-    pitch: 0
-    pitchVariance: 0
-    loop: 0
-    playOnAwake: 0
-    mixerGroup: {fileID: 0}
-    source: {fileID: 0}
   - name: Main Theme
     clip: {fileID: 8300000, guid: 77e12ddb603912e48b923c0bd1e5b694, type: 3}
     volume: 1
