@@ -1,7 +1,7 @@
 ﻿/**
  *
  * @file		SettingsMenu.cs
- * @brief		
+ * @brief		This script is responsible for controlling the settings menu
  * @details
  * @author		Charbel Al Sahlani (charbel.alsahlani@gmail.com)
  * @date		Sep 14, 2021
