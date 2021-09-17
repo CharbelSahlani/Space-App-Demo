@@ -29,4 +29,5 @@ public class Player : MonoBehaviour
     public Mission mission;
 
     //TODO check if the goal is completed here
+
 }
