@@ -17,6 +17,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -35,9 +36,20 @@ public class PlayerMovement : MonoBehaviour
 
     Vector3 velocity = new Vector3 (0f, 0f, 0f);
     bool isGrounded = true;
+    private CheckpointController CC;
+     void Start()
+    {
+        CC = GameObject.FindGameObjectWithTag("Checkpoint Controller").GetComponent<CheckpointController>();
+        transform.position = CC.lastCheckpointPos;
+    }
     // Update is called once per frame
     void Update()
     {
+        //TODO delete this later
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
         //Check if the player isGrounded
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
