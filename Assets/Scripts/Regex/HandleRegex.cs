@@ -30,14 +30,15 @@ public class HandleRegex : MonoBehaviour
         return rnd.Next() % bag_of_words.Length;
     }
     //create patterns
-    string create_pattern(string options=@"\s|", string [] bag_of_words)
+    string create_pattern(string[] bag_of_words, string options = @"\s|")
     {
         return String.Join(@options, bag_of_words);
     }
     //Replace words by random word from the bag of words 
-    string replace_word(string word, string word_from_bag)
+    string replace_word(string word, string word_from_bag, string pattern="")
     {
-        return "";
+        Regex rg = new Regex(pattern);
+        return rg.Replace(word, word_from_bag, 1);
     }
     void Start()
     {
@@ -55,7 +56,7 @@ public class HandleRegex : MonoBehaviour
         }
         //testing
         System.Random rdi = new System.Random();
-        int g = rdi.Next() % regex_exp["greetings"].Length;
+        int g = random_word(regex_exp["greetings"]);
         Console.WriteLine(g);
         string pattern = @"^hi\s|hello\s|greetings\s";
         string text = "hi hi hello greetings ";
