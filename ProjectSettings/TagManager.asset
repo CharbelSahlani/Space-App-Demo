@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Planet
+  - Checkpoint Controller
   layers:
   - Default
   - TransparentFX
