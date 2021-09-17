@@ -1,3 +1,20 @@
+/**
+ *
+ * @file		HandleRegex.cs
+ * @brief		This module represents Regular expressions
+ * @details
+ * @author		Nour Bou Nasr (bounasrnour@gmail.com)
+ * @date		Sep 17, 2021
+ * @note        it stills uncomplete but it is runnable, also needs refactoring 
+ * @see        
+ * @version 	1.0.0
+ * @warning    
+ * @copyright
+ * 2021 Team Dark Matter
+ * 
+ */
+
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,11 +23,25 @@ using System;
 
 public class HandleRegex : MonoBehaviour
 {
-    // Start is called before the first frame update
-
+    /*This function returns a random number between 0 and the length of the bag of word*/
+    int random_word(string[] bag_of_words)
+    {
+        System.Random rnd = new System.Random();
+        return rnd.Next() % bag_of_words.Length;
+    }
+    //create patterns
+    string create_pattern(string options=@"\s|", string [] bag_of_words)
+    {
+        return String.Join(@options, bag_of_words);
+    }
+    //Replace words by random word from the bag of words 
+    string replace_word(string word, string word_from_bag)
+    {
+        return "";
+    }
     void Start()
     {
-
+        /*Usind dictionaries that hold a bag of words as key value pair */
         IDictionary<string, string[]> regex_exp = new Dictionary<string, string[]>();
         regex_exp.Add("greetings", new string[] { "hello", "hi", "greetings", "hey" });
         regex_exp.Add("assistant", new string[] { "assistant", "guide" });
