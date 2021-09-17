@@ -39,7 +39,7 @@ public class HandleRegex : MonoBehaviour
         return String.Join(@options, bag_of_words);
     }
     //Replace words by random word from the bag of words 
-    string replace_word(string text, string word_from_bag, string pattern="")
+    string replace_word(string text, string word_from_bag, string pattern)
     {
         Regex rg = new Regex(pattern);
         return rg.Replace(text, word_from_bag + " ", 1);
@@ -50,8 +50,9 @@ public class HandleRegex : MonoBehaviour
         /*Usind dictionaries that hold a bag of words as key value pair */
         IDictionary<string, string[]> regex_exp = new Dictionary<string, string[]>();
         regex_exp.Add("greetings", new string[] { "hello", "hi", "greetings", "hey" });
-        regex_exp.Add("assistant", new string[] { "assistant", "guide" });
-        regex_exp.Add("essVerbs", new string[] { "guiding you", "assisting you" });
+        regex_exp.Add("assistant", new string[] { "assistant", "guide" ,"companion" });
+        regex_exp.Add("essVerbs", new string[] { "guiding you", "assisting you"});
+        regex_exp.Add("adventure", new string[] {"adventure", "journey"});
         foreach (KeyValuePair<string, string[]> kvp in regex_exp)
         {
             foreach (string str in kvp.Value)
@@ -60,10 +61,11 @@ public class HandleRegex : MonoBehaviour
             }
         }
         //testing in the UI
-        string lbl_text = "hello I am AJ your AI Assistant";
+        string lbl_text = "hello I am AJ your AI assistant ";
         string ans = replace_word(lbl_text, random_word(regex_exp["greetings"]),@"hi\s|hey\s|hello\s|greetings\s");
         //label_text.text = ans;
-        Debug.Log(ans);
+        ans = replace_word(ans, random_word(regex_exp["assistant"]), create_pattern(regex_exp["assistant"]));
+        Debug.Log(create_pattern(regex_exp["assistant"]));
         textTyper.UpdateText(ans);
 
         //END TEST
