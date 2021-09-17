@@ -1,8 +1,8 @@
 /**
  *
  * @file		MissionGiver.cs
- * @brief		
- * @details
+ * @brief		This script is responsible for organizing and giving missions to the player
+ * @details     This script is attached to the mission giver component
  * @author		Charbel Al Sahlani (charbel.alsahlani@gmail.com)
  * @date		Sep 11, 2021
  * @note        
