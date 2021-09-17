@@ -1,8 +1,9 @@
 /**
  *
  * @file		LevelLoader.cs
- * @brief		
- * @details
+ * @brief		This script is responsible for loading the scenes 
+ *              in the desired manner
+ * @details     This script is attached to the LevelLoader component
  * @author		Charbel Al Sahlani (charbel.alsahlani@gmail.com)
  * @date		Sep 11, 2021
  * @note        
