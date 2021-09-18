@@ -49,9 +49,9 @@ MonoBehaviour:
   - name: Main Theme
     clip: {fileID: 8300000, guid: fa8a52cf560201247bae9d127afad836, type: 3}
     volume: 1
-    volumeVariance: 0.085
-    pitch: 0.28
-    pitchVariance: 0.046
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
     loop: 0
     playOnAwake: 0
     mixerGroup: {fileID: 24300002, guid: 0a2f11502f66ec245856c2aa9f75ec92, type: 2}
@@ -59,9 +59,9 @@ MonoBehaviour:
   - name: Button Press
     clip: {fileID: 8300000, guid: 58839db91a8197549adccce8c19426b5, type: 3}
     volume: 1
-    volumeVariance: 0.085
-    pitch: 0.28
-    pitchVariance: 0.046
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
     loop: 0
     playOnAwake: 0
     mixerGroup: {fileID: 24300002, guid: be684ae50739f3340a3a1283efd342e3, type: 2}
@@ -70,7 +70,7 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: e70460541788b5a4ebe7b6859bc214f9, type: 3}
     volume: 1
     volumeVariance: 0.085
-    pitch: 0.28
+    pitch: 1
     pitchVariance: 0.046
     loop: 0
     playOnAwake: 0
@@ -79,9 +79,9 @@ MonoBehaviour:
   - name: Mission Complete
     clip: {fileID: 8300000, guid: 4f67b6da84fbe8c41bfd377230429788, type: 3}
     volume: 1
-    volumeVariance: 0.085
-    pitch: 0.28
-    pitchVariance: 0.046
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
     loop: 0
     playOnAwake: 0
     mixerGroup: {fileID: 24300002, guid: be684ae50739f3340a3a1283efd342e3, type: 2}
@@ -89,9 +89,9 @@ MonoBehaviour:
   - name: Mission Failed
     clip: {fileID: 8300000, guid: 56dca5a8104fdff4fb7ac2ed80f243f7, type: 3}
     volume: 1
-    volumeVariance: 0.085
-    pitch: 0.28
-    pitchVariance: 0.046
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
     loop: 0
     playOnAwake: 0
     mixerGroup: {fileID: 24300002, guid: be684ae50739f3340a3a1283efd342e3, type: 2}
@@ -99,9 +99,9 @@ MonoBehaviour:
   - name: XP
     clip: {fileID: 8300000, guid: 2bc8ba965e8345a4ab29e1468b953a21, type: 3}
     volume: 1
-    volumeVariance: 0.085
-    pitch: 0.28
-    pitchVariance: 0.046
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
     loop: 0
     playOnAwake: 0
     mixerGroup: {fileID: 24300002, guid: be684ae50739f3340a3a1283efd342e3, type: 2}
