@@ -656,6 +656,7 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 8
+  enableCheckpoint: 0
 --- !u!4 &306753019
 Transform:
   m_ObjectHideFlags: 0

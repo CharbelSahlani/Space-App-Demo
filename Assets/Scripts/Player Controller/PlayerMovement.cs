@@ -34,13 +34,19 @@ public class PlayerMovement : MonoBehaviour
     //To control what objects the sphere should check for
     public LayerMask groundMask;
 
+    //To enable/disable the checkpoint option
+    public bool enableCheckpoint = true;
+
     Vector3 velocity = new Vector3 (0f, 0f, 0f);
     bool isGrounded = true;
     private CheckpointController CC;
      void Start()
     {
-        CC = GameObject.FindGameObjectWithTag("Checkpoint Controller").GetComponent<CheckpointController>();
-        transform.position = CC.lastCheckpointPos;
+        if (enableCheckpoint)
+        {
+            CC = GameObject.FindGameObjectWithTag("Checkpoint Controller").GetComponent<CheckpointController>();
+            transform.position = CC.lastCheckpointPos;
+        }
     }
     // Update is called once per frame
     void Update()

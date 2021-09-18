@@ -77,4 +77,12 @@ public class LevelLoader : MonoBehaviour
         //Load scene
         SceneManager.LoadScene(leveIndex);
     }
+
+    /**
+     * This function plays the sound of a button press
+     */
+    public void PlayButtonSound()
+    {
+        AudioManager.instance.PlaySound("Button Press");
+    }
 }
