@@ -20,7 +20,7 @@ using UnityEngine;
 
 public class PlanetController : MonoBehaviour
 {
-    public float mass;
+    public float mass = 6420;
     public float radius;
     public float atmInfl;
     public float grvInfl;
@@ -32,12 +32,7 @@ public class PlanetController : MonoBehaviour
 
     void Awake()
     {
-        Vector3 temp = transform.localScale;
-        temp *= (2 * radius);
-        transform.localScale = temp;
-
-        grvCoef = surfGravity * radius * radius / mass;
-        drgCoef = surfDrag;
+        
     }
 
     // Update is called once per frame
