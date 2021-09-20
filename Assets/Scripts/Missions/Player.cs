@@ -25,7 +25,7 @@ public class Player : MonoBehaviour
     public int XP = 0;
     //Player gold amount
     public int gold = 0;
-
+    //Mission object to access the mission class
     public Mission mission;
 
     //TODO check if the goal is completed here

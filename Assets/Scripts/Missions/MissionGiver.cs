@@ -17,7 +17,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using TMPro;
 public class MissionGiver : MonoBehaviour
 {
     //Create class objects
@@ -30,7 +30,15 @@ public class MissionGiver : MonoBehaviour
     public Text descriptionText;
     public Text experienceText;
     public Text goldText;
+    public TextMeshProUGUI collectiblesText;
 
+     void Update()
+    {
+        if (mission.isActive && mission.goal.goalType == GoalType.SamplesGathering)
+        {
+            collectiblesText.text = MissionGoal.currentAmount.ToString() + "/" + mission.goal.requiredAmount.ToString();
+        }
+    }
     /**
      * This function opens the missions window and shows the details of the mission.
      */
