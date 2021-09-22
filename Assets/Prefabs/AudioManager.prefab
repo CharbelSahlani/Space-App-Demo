@@ -52,7 +52,7 @@ MonoBehaviour:
     volumeVariance: 0
     pitch: 1
     pitchVariance: 0
-    loop: 0
+    loop: 1
     playOnAwake: 0
     mixerGroup: {fileID: 24300002, guid: 0a2f11502f66ec245856c2aa9f75ec92, type: 2}
     source: {fileID: 0}
@@ -69,7 +69,7 @@ MonoBehaviour:
   - name: Collect
     clip: {fileID: 8300000, guid: e70460541788b5a4ebe7b6859bc214f9, type: 3}
     volume: 1
-    volumeVariance: 0.085
+    volumeVariance: 0
     pitch: 1
     pitchVariance: 0.046
     loop: 0
@@ -98,6 +98,16 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: XP
     clip: {fileID: 8300000, guid: 2bc8ba965e8345a4ab29e1468b953a21, type: 3}
+    volume: 1
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 0
+    playOnAwake: 0
+    mixerGroup: {fileID: 24300002, guid: be684ae50739f3340a3a1283efd342e3, type: 2}
+    source: {fileID: 0}
+  - name: Countdown
+    clip: {fileID: 8300000, guid: d7b6b84289aad554db49df0eedcb225d, type: 3}
     volume: 1
     volumeVariance: 0
     pitch: 1
