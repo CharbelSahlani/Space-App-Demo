@@ -4442,7 +4442,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   countdownIsActive: 1
-  startingTime: 30
+  startingTime: 15
   countdownText: {fileID: 1015093301}
 --- !u!4 &1801885110
 Transform:

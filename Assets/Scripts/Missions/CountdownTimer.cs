@@ -24,12 +24,18 @@ public class CountdownTimer : MonoBehaviour
     public bool countdownIsActive = false;
     public float startingTime = 0f;
     float currentTime = 0f;
+    // Current time but in integer
+    int currentTimeInt = 0;
     [SerializeField]
     private TextMeshProUGUI countdownText;
-
+    // To play the counting sound
+    private bool soundOn = true;
     // Start is called before the first frame update
     void Start()
     {
+        //TODO This shouldn't be here
+        AudioManager.instance.MusicMixer.SetFloat("MusicVolume", 
+                        PlayerPrefs.GetFloat("MusicVolume", 0f)); 
         currentTime = startingTime;
     }
 
@@ -40,14 +46,35 @@ public class CountdownTimer : MonoBehaviour
         if (countdownIsActive)
         {
             currentTime -= 1 * Time.fixedDeltaTime;
-            // We are using "0" in the ToString method to print only the int value
-            countdownText.text = currentTime.ToString("0");
+            currentTimeInt = (int) currentTime;
+            // Start counting sound from 10 seconds
+            if (currentTimeInt < 11 && soundOn)
+            {
+                soundOn = false;
+                countdownText.color = Color.red;
+                StartCoroutine(PlayCountdownSound());
+            }
+            // Print the time on the UI
+            countdownText.text = currentTimeInt.ToString();
             if (currentTime <= 0)
             {
-                currentTime = 0;
                 countdownIsActive = false;
                 //TODO Trigger the GameOver method
+                AudioManager.instance.MusicMixer.SetFloat("MusicVolume", -80f);
+                AudioManager.instance.PlaySound("Mission Failed");
             }
+        }
+    }
+
+    /**
+     * This function plays counting sound every 1 second
+     */
+    IEnumerator PlayCountdownSound()
+    {
+        while (currentTime >= 0)
+        {
+            AudioManager.instance.PlaySound("Countdown");
+            yield return new WaitForSeconds(1f);
         }
     }
 }
