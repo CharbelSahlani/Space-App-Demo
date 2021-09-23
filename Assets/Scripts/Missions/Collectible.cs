@@ -21,13 +21,21 @@ using TMPro;
 public class Collectible : MonoBehaviour
 {
     private TextMeshProUGUI keyPressText;
-
+    public GameObject cornerAsteroidObj;
+    private Image cornerAsteroidImg;
+    public float speed = 1.0f;
+    public bool repeatable = true;
+    public float maxY = 3.0f;
+    private Vector3 a = new Vector3(0.0f, 0.0f, 0.0f);
+    private Vector3 b = new Vector3(0.0f, 2.0f, 0.0f);
+    public static Transform collectibleTransform;
     /**
      * This function gets the text game object automatically on start
      * to be able to modify it later.
      */
     void Start()
     {
+        MissionGoal.currentAmount = 0;
         keyPressText = GameObject.FindGameObjectWithTag("Press Key Text").GetComponent<TextMeshProUGUI>();
     }
     /**
@@ -52,6 +60,11 @@ public class Collectible : MonoBehaviour
                     keyPressText.text = "";
                     player.mission.goal.SampleCollected();
                     AudioManager.instance.PlaySound("Collect");
+                    cornerAsteroidObj.SetActive(true);
+                    cornerAsteroidImg = cornerAsteroidObj.GetComponent<Image>();
+                    cornerAsteroidImg.transform.position = Camera.main.WorldToScreenPoint(transform.position);
+                    collectibleTransform = cornerAsteroidImg.transform;
+                    ImageToCorner.runCoroutine = true;
                     //Destroy the game object to give the illusion that the sample was collected
                     Destroy(this.gameObject);
                 }
