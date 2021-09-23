@@ -2984,6 +2984,7 @@ GameObject:
   - component: {fileID: 1015093300}
   - component: {fileID: 1015093302}
   - component: {fileID: 1015093301}
+  - component: {fileID: 1015093303}
   m_Layer: 5
   m_Name: Countdown Text (TMP)
   m_TagString: Untagged
@@ -3030,7 +3031,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '00
+  m_text: '00:00
 
 '
   m_isRightToLeft: 0
@@ -3109,6 +3110,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1015093299}
   m_CullTransparentMesh: 1
+--- !u!95 &1015093303
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1015093299}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 152852f3ed492864684ca22fdb57faa7, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1091697087
 GameObject:
   m_ObjectHideFlags: 0
@@ -4444,6 +4464,7 @@ MonoBehaviour:
   countdownIsActive: 1
   startingTime: 15
   countdownText: {fileID: 1015093301}
+  criticalTime: {fileID: 1015093303}
 --- !u!4 &1801885110
 Transform:
   m_ObjectHideFlags: 0
