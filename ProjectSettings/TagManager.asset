@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Planet
   - Checkpoint Controller
+  - Enemy
+  - Press Key Text
+  - CornerObj
   layers:
   - Default
   - TransparentFX

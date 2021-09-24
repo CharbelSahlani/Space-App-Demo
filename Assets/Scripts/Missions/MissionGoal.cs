@@ -26,7 +26,7 @@ public class MissionGoal
     //The required amout set by the mission objective
     public int requiredAmount;
     //The current amount
-    public int currentAmount;
+    public static int currentAmount = 0;
 
     /**
      * This function returns true if goal targed is reached and false otherwise
