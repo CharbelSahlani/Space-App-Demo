@@ -4,7 +4,7 @@
  * @brief		This script is responsible for displaying the Pause Menu UI
  * @details     This script is attached to the Game Manager
  * @author		Charbel Al Sahlani (charbel.alsahlani@gmail.com)
- * @date		Sep 25, 2021
+ * @date		Sep 26, 2021
  * @note        
  * @see        
  * @version 	1
