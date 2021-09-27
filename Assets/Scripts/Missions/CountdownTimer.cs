@@ -21,7 +21,10 @@ using TMPro;
 
 public class CountdownTimer : MonoBehaviour
 {
-    public bool countdownIsActive = false;
+    public static CountdownTimer instance;
+    public bool countdownEnable = false;
+    public static bool countdownIsActive = false;
+    private GameOver gameOver;
     public float startingTime = 0f;
     float currentTime = 0f;
     int minutesRemaining = 0;
@@ -34,12 +37,15 @@ public class CountdownTimer : MonoBehaviour
     private bool soundOn = true;
     // Critical time animator
     public Animator criticalTime;
+
+    private void Awake()
+    {
+        instance = this;
+    }
     // Start is called before the first frame update
     void Start()
     {
-        //TODO This shouldn't be here
-        AudioManager.instance.MusicMixer.SetFloat("MusicVolume", 
-                        PlayerPrefs.GetFloat("MusicVolume", 0f)); 
+        countdownIsActive = countdownEnable;
         currentTime = startingTime;
     }
 
@@ -59,7 +65,7 @@ public class CountdownTimer : MonoBehaviour
      */
     IEnumerator PlayCountdownSound()
     {
-        while (currentTime >= 0)
+        while (currentTime >= 0 && countdownIsActive)
         {
             AudioManager.instance.PlaySound("Countdown");
             yield return new WaitForSeconds(1f);
@@ -90,11 +96,10 @@ public class CountdownTimer : MonoBehaviour
         if (currentTime <= 0)
         {
             countdownIsActive = false;
-            //TODO Trigger the GameOver method
+            //Play the game over sequence
+            GameOver.instance.GameOverSequence();
             // Stop animation
             criticalTime.SetTrigger("timeEnded");
-            AudioManager.instance.MusicMixer.SetFloat("MusicVolume", -80f);
-            AudioManager.instance.PlaySound("Mission Failed");
         }
     }
 }
