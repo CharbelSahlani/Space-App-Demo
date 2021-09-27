@@ -29,4 +29,12 @@ public class Player : MonoBehaviour
     public Mission mission;
 
     //TODO check if the goal is completed here
+
+    private void Start()
+    {
+        Time.timeScale = 1f;
+        AudioManager.instance.MusicMixer.SetFloat("MusicVolume",
+                PlayerPrefs.GetFloat("MusicVolume", 0f));
+        XP = PlayerPrefs.GetInt("Total XP", 0);
+    }
 }
