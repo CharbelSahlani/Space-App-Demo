@@ -3228,6 +3228,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1365246398}
   - component: {fileID: 1365246399}
+  - component: {fileID: 1365246400}
   m_Layer: 3
   m_Name: Lab
   m_TagString: Untagged
@@ -3262,8 +3263,20 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 11.35877, y: 9.17868, z: 1}
-  m_Center: {x: 9.020614, y: 4.08934, z: -17}
+  m_Size: {x: 11.35877, y: 9.17868, z: 11.1828575}
+  m_Center: {x: 9.020614, y: 4.08934, z: -18.505087}
+--- !u!114 &1365246400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1365246397}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a38f14aede66cf14b806d6d2f1f3ff1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1378908637
 GameObject:
   m_ObjectHideFlags: 0
@@ -4627,7 +4640,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   countdownEnable: 1
-  startingTime: 20
+  startingTime: 40
   countdownText: {fileID: 1015093301}
   criticalTime: {fileID: 1015093303}
 --- !u!4 &1801885110

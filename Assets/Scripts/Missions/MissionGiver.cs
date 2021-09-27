@@ -37,12 +37,6 @@ public class MissionGiver : MonoBehaviour
         if (mission.isActive && mission.goal.goalType == GoalType.SamplesGathering)
         {
             collectiblesText.text = MissionGoal.currentAmount.ToString() + "/" + mission.goal.requiredAmount.ToString();
-            // TODO change this into something more interesting maybe play it when the player returns to base
-            if (mission.goal.IsReached())
-            {
-                mission.isActive = false;
-                MissionComplete.instance.MissionCompleteSequence();
-            }
         }
     }
     /**
