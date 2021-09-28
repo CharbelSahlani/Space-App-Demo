@@ -1,8 +1,8 @@
 /**
  *
  * @file		ImageToCorner.cs
- * @brief		This script is responsible for collecting samples
- * @details     This script is attached to the collectibles
+ * @brief		This script is responsible for UI effect when collecting samples
+ * @details     This script is attached to the Corner Asteroid
  * @author		Charbel Al Sahlani (charbel.alsahlani@gmail.com)
  * @date		Sep 20, 2021
  * @note        
@@ -39,7 +39,10 @@ public class ImageToCorner : MonoBehaviour
             StartCoroutine(LerpMove(ImageToCornerRect, cornerObj.GetComponent<RectTransform>(), time));
     }
 
-    //this function is not used at the moment but may be useful later
+    /**
+     * This function gets moves the image from the 3D position 
+     * of the collectible unto the 2D position of the corner image
+     */
     public IEnumerator LerpMove(RectTransform a, RectTransform b, float time)
     {
         runCoroutine = false;
