@@ -24,7 +24,7 @@ public class Player : MonoBehaviour
     //Player experience points
     public int XP = 0;
     //Player gold amount
-    public int gold = 0;
+    //public int gold = 0;
     //Mission object to access the mission class
     public Mission mission;
 
@@ -32,7 +32,6 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-        Time.timeScale = 1f;
         AudioManager.instance.MusicMixer.SetFloat("MusicVolume",
                 PlayerPrefs.GetFloat("MusicVolume", 0f));
         XP = PlayerPrefs.GetInt("Total XP", 0);

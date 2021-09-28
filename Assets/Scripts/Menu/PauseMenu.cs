@@ -20,14 +20,24 @@ using UnityEngine;
 public class PauseMenu : MonoBehaviour
 {
     public GameObject pauseMenuPanel;
+    //Reference to the PanelFade animator
+    Animator panelFade;
     private bool togglePause = false;
+
+    // Start is called before the first frame update
+    private void Start()
+    {
+        // Assign panelFade to the corresponding animator
+        panelFade = pauseMenuPanel.GetComponent<Animator>();
+    }
     // Update is called once per frame
     void Update()
     {
         // Pause or unpause game when pressing the escape button
         if (Input.GetKeyDown(KeyCode.Escape) && 
             !MissionComplete.missionIsComplete && 
-            !GameOver.gameIsOver)
+            !GameOver.gameIsOver &&
+            !MissionGiver.missionWindowIsOpen)
         {
             togglePause = !togglePause;
             if (togglePause)
@@ -52,11 +62,21 @@ public class PauseMenu : MonoBehaviour
     }
 
     /**
-     * This function pauses the game
+     * This function calls the ResumeGameRoutine
      */
     public void ResumeGame()
     {
+        StartCoroutine(ResumeGameRoutine());
+    }
+
+    /**
+     * This function resumes the game
+     */
+    public IEnumerator ResumeGameRoutine()
+    {
         togglePause = false;
+        panelFade.SetTrigger("PanelFadeOut");
+        yield return new WaitForSecondsRealtime(1f);
         Time.timeScale = 1f;
         Cursor.lockState = CursorLockMode.Locked;
         pauseMenuPanel.SetActive(false);
