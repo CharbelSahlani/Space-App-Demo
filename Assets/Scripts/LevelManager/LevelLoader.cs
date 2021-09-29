@@ -39,6 +39,14 @@ public class LevelLoader : MonoBehaviour
     }
 
     /**
+      * This function loads the next level 
+      */
+    public void LoadSameLevel()
+    {
+        StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex));
+    }
+
+    /**
       * This function loads the main menu scene
       */
     public void LoadMainMenu()
@@ -68,6 +76,9 @@ public class LevelLoader : MonoBehaviour
       */
     IEnumerator LoadLevel(int leveIndex)
     {
+        Time.timeScale = 1f;
+        AudioManager.instance.MusicMixer.SetFloat("MusicVolume",
+                PlayerPrefs.GetFloat("MusicVolume", 0f));
         //Play animation
         transition.SetTrigger("Start");
 
