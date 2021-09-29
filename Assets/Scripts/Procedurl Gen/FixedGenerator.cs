@@ -34,8 +34,8 @@ public class FixedGenerator : MonoBehaviour
     //method to generate perlin noise 
     private float generate_noise(int x, int z, float detail_scale)
     {
-        float x_noise = (x * this.transform.position.x) / detail_scale;
-        float z_noise = (z * this.transform.position.y) / detail_scale;
+        float x_noise = (x + this.transform.position.x) / detail_scale;
+        float z_noise = (z + this.transform.position.y) / detail_scale;
         return Mathf.PerlinNoise(x_noise, z_noise);
     }
 
