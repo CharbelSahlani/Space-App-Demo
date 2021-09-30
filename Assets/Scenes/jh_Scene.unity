@@ -1154,25 +1154,5 @@ PrefabInstance:
       propertyPath: planet
       value: 
       objectReference: {fileID: 1420880866}
-    - target: {fileID: 2253211233476675437, guid: 01e4642a4a7aede48b4fe56806e8576d, type: 3}
-      propertyPath: scenes.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2253211233476675437, guid: 01e4642a4a7aede48b4fe56806e8576d, type: 3}
-      propertyPath: textures.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2253211233476675437, guid: 01e4642a4a7aede48b4fe56806e8576d, type: 3}
-      propertyPath: sceneNames.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2253211233476675437, guid: 01e4642a4a7aede48b4fe56806e8576d, type: 3}
-      propertyPath: sceneNames.Array.data[0]
-      value: jh_Scene
-      objectReference: {fileID: 0}
-    - target: {fileID: 2253211233476675437, guid: 01e4642a4a7aede48b4fe56806e8576d, type: 3}
-      propertyPath: sceneNames.Array.data[1]
-      value: jh_landingScene
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 01e4642a4a7aede48b4fe56806e8576d, type: 3}

@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 2253211233476675438}
   - component: {fileID: 2253211233476675439}
   - component: {fileID: 2253211233476675436}
-  - component: {fileID: 2253211233476675434}
+  - component: {fileID: 4178378370143308665}
   - component: {fileID: 2253211233476675410}
   - component: {fileID: 3471052674777045834}
   - component: {fileID: 2253211233476675411}
@@ -202,19 +202,30 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &2253211233476675434
+--- !u!114 &4178378370143308665
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2253211233476675432}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99309385223dbec47b3668d086de3266, type: 3}
+  m_Script: {fileID: 11500000, guid: 51428326f44251f4d82a7f7d238525a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2.648
+  h_p: 1.25
+  orbitalPeriod: 180
+  initSpeed: 0
+  speedAtPeriapsis: 0
+  speedForCapture: 0
+  mu: 0
+  semMajAxis: 0
+  planetRad: 0
+  periRad: 0
+  apoRad: 0
+  ecc: 0
+  aimRad: 0
 --- !u!114 &2253211233476675410
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -277,6 +288,7 @@ MonoBehaviour:
   sceneNames:
   - jh_Scene
   - jh_landingScene
+  initSpeed: 2.648
   renderSpeed: 20
   planet: {fileID: 0}
   enableGravity: 1
@@ -286,8 +298,12 @@ MonoBehaviour:
   G: 6.67
   d1: 0.02
   d2: 1
+  d3: 0
+  parachuteDrag: 0
   dist: 82.51363
   radius: 34
+  parachuteDeployed: 0
+  parachuteActive: 0
   gravity: {x: 0.052317344, y: -0, z: 0.034907803}
   drag: {x: -0, y: -0, z: 0}
   velChange: {x: 0, y: 0, z: 0}

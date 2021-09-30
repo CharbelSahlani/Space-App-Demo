@@ -9,6 +9,7 @@ public class PhysicsController : MonoBehaviour
     [Tooltip("Element 0: Orbit / Element 1: Landing")]
     public string[] sceneNames = new string[2];
 
+    public float initSpeed;
     public float renderSpeed;
     public Transform planet;
     private Rigidbody rb;
@@ -50,6 +51,8 @@ public class PhysicsController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        Vector3 dir = Vector3.forward * initSpeed;
+        rb.velocity = dir;
     }
 
     void FixedUpdate()
