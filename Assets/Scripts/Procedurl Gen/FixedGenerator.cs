@@ -1,3 +1,12 @@
+/*
+ Grid Generator
+ Author : Nour Bou Nasr
+ Desc : This is a fixed terrain generator, will generate a terrain depending on a fixed number of 
+        features, fixed size x and z given in the inspector
+ Objective : create a procedural generator landscape
+ Hints : I will be using Perlin Noise to offset y axis and create Noise 
+ */
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -23,7 +32,7 @@ public class FixedGenerator : MonoBehaviour
             {
                 //getting pos and assigning it to x and z * offset then add it to the parent gameobject
                 Vector3 pos = new Vector3(x * grid_offset, generate_noise(x, z, 8f) * noise_height, z * grid_offset);
-                GameObject block = Instantiate(block_tile, pos, Quaternion.identity);
+                GameObject block = Instantiate(block_tile, pos, Quaternion.identity) as GameObject;
                 block_positions.Add(block.transform.position); //add the block position to the list
                 block.transform.SetParent(this.transform);
             }
@@ -34,8 +43,8 @@ public class FixedGenerator : MonoBehaviour
     //method to generate perlin noise 
     private float generate_noise(int x, int z, float detail_scale)
     {
-        float x_noise = (x * this.transform.position.x) / detail_scale;
-        float z_noise = (z * this.transform.position.y) / detail_scale;
+        float x_noise = (x + this.transform.position.x) / detail_scale;
+        float z_noise = (z + this.transform.position.y) / detail_scale;
         return Mathf.PerlinNoise(x_noise, z_noise);
     }
 

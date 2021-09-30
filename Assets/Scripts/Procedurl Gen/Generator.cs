@@ -1,7 +1,8 @@
 /*
  Grid Generator
  Author : Nour Bou Nasr
- Desc : this is a basic grid generator
+ Desc : This will generate endless landscape depending on the player movements
+        when the players moves a new block will be spawned, this will run endlessly
  Objective : create a procedural generator landscape
  Hints : I will be using Perlin Noise to offset y axis and create Noise 
  */
@@ -34,7 +35,8 @@ public class Generator : MonoBehaviour
             {
                 //getting pos and assigning it to x and z * offset then add it to the parent gameobject
                 Vector3 pos = new Vector3(x * 1 + start_pos.x, generate_noise(x, z, 8f) * noise_height, z * 1 + start_pos.z);
-                GameObject block = Instantiate(block_tile, pos, Quaternion.identity);
+                GameObject block = Instantiate(block_tile, pos, Quaternion.identity) as GameObject;
+                block_container.Add(pos, block); //add the pos and the block to the hashtable
                 block_positions.Add(block.transform.position); //add the block position to the list
                 block.transform.SetParent(this.transform);
             }
@@ -42,11 +44,38 @@ public class Generator : MonoBehaviour
        
     }
 
+    private void Update()
+    {
+        //check it player has went to the end of the block size 
+        /*Basically check if player have moved spawn a new terrain in his way
+         for infinite landscape generation*/
+        if (Mathf.Abs(player_move_x) >=1 || Mathf.Abs(player_move_z) >= 1)
+        {
+            for (int x = -worldsize_x; x <= worldsize_x; x++)
+            {
+                for (int z = -worldsize_z; z <= worldsize_z; z++)
+                {
+                    //getting pos and assigning it to x and z * offset then add it to the parent gameobject
+                    Vector3 pos = new Vector3(x * 1 + player_location_x, generate_noise(x + player_location_x, z+player_location_z, 8f) * noise_height, z * 1 + player_location_z);
+                    //check if hashtable already contain the block we want to spawn
+                    //if contains then skip and don't spawn else spawn
+                    if (!block_container.ContainsKey(pos))
+                    {
+                        GameObject block = Instantiate(block_tile, pos, Quaternion.identity) as GameObject;
+                        block_container.Add(pos, block); //add the pos and the block to the hashtable
+                        block_positions.Add(block.transform.position); //add the block position to the list
+                        block.transform.SetParent(this.transform);
+                    }
+                   
+                }
+            }
+        }
+    }
     //method to generate perlin noise 
     private float generate_noise(int x , int z, float detail_scale)
     {
-        float x_noise = (x * this.transform.position.x) / detail_scale;
-        float z_noise = (z * this.transform.position.y) / detail_scale;
+        float x_noise = (x + this.transform.position.x) / detail_scale;
+        float z_noise = (z + this.transform.position.y) / detail_scale;
         return Mathf.PerlinNoise(x_noise, z_noise);
     }
 
