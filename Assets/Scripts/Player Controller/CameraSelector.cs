@@ -10,20 +10,29 @@ public class CameraSelector : MonoBehaviour
     private int index;
     private int arrayLength;
 
+    private Transform planet;
+
     // Start is called before the first frame update
     void Start()
     {
-        index = 0;
-        arrayLength = cams.Length;
-        CycleCameras();
+        if (GetComponent<PhysicsController>().planet != null)
+        {
+            index = 0;
+            arrayLength = cams.Length;
+            CycleCameras();
+        }
+        else
+        {
+            this.enabled = false;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.C))
+        if (Input.GetKeyDown(KeyCode.C))
         {
-            index = (index == arrayLength-1) ? 0 : index + 1;
+            index = (index == arrayLength - 1) ? 0 : index + 1;
             CycleCameras();
         }
     }
@@ -31,8 +40,12 @@ public class CameraSelector : MonoBehaviour
     void CycleCameras()
     {
         foreach (Camera c in cams)
+        {
+            if (c == null)
+                continue;
             c.enabled = false;
-
-        cams[index].enabled = true;
+        }
+        if (cams[index] != null)
+            cams[index].enabled = true;
     }
 }

@@ -4,20 +4,33 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    private GameObject planet;
+    private Transform planet;
+    private Camera cam;
 
     // Start is called before the first frame update
     void Start()
     {
-        planet = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>().planet;
+        cam = GetComponentInChildren<Camera>();
+
+        if (GetComponent<PhysicsController>().planet != null)
+        {
+            planet = GetComponent<PhysicsController>().planet;
+        }
+        else
+        {
+            cam.gameObject.SetActive(false);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.LookAt(planet.transform);
-        Vector3 dir = transform.parent.transform.position - planet.transform.position;
-        dir = Vector3.Normalize(dir);
-        transform.position = transform.parent.transform.position + dir * 5f + Vector3.up * 2f;
+        if (planet != null)
+        {
+            cam.transform.LookAt(planet);
+            Vector3 dir = transform.transform.position - planet.transform.position;
+            dir = Vector3.Normalize(dir);
+            cam.transform.position = transform.transform.position + dir * 5f + Vector3.up * 2f;
+        }
     }
 }

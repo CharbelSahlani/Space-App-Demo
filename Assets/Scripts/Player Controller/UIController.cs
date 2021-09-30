@@ -48,17 +48,25 @@ public class UIController : MonoBehaviour
         gravity = phy.gravity.magnitude;
         drag = phy.drag.magnitude;
 
-        distText.text = "Dist: " + dist.ToString();
-        minDistText.text = "Min: " + minDist.ToString();
-        maxDistText.text = "Max: " + maxDist.ToString();
-        speedText.text = "V: " + speed.ToString();
-        gravText.text = "g:" + gravity.ToString();
-        dragText.text = "d: " + drag.ToString();
+        UpdateText(distText, "Dist: ", dist.ToString());
+        UpdateText(minDistText, "Min: ", minDist.ToString());
+        UpdateText(maxDistText, "Max: ", maxDist.ToString());
+        UpdateText(speedText, "V: ", speed.ToString());
+        UpdateText(gravText, "g:" , gravity.ToString());
+        UpdateText(dragText, "d: " , drag.ToString());
     }
 
     void ResetUI()
     {
         maxDist = 0;
         minDist = 1000;
+    }
+
+    void UpdateText(Text textBox, string description, string data)
+    {
+        if(textBox!=null)
+        {
+            textBox.text = description + data;
+        }
     }
 }
