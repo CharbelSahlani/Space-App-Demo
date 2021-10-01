@@ -31,7 +31,7 @@ public class MissionGiver : MonoBehaviour
     public TextMeshProUGUI experienceText;
     //public TextMeshProUGUI goldText;
     public TextMeshProUGUI collectiblesText;
-
+    GameObject orion;
     //Reference to the PanelFade animator
     Animator panelFade;
 
@@ -40,6 +40,11 @@ public class MissionGiver : MonoBehaviour
     private void Awake()
     {
         instance = this;
+        orion = GameObject.FindGameObjectWithTag("Orion");
+        if (orion != null)
+        {
+            orion.GetComponent<PhysicsController>().enabled = false;
+        }
     }
     // Start is called on the first frame
     private void Start()
@@ -87,9 +92,15 @@ public class MissionGiver : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         panelFade.SetTrigger("PanelFadeOut");
         yield return new WaitForSecondsRealtime(1f);
+        Time.timeScale = 1f;
+        if (orion != null)
+        {
+            orion.GetComponent<PhysicsController>().enabled = true;
+            //orion.GetComponent<UIController>().ResetUI();
+        }
         missionWindow.SetActive(false);
         missionWindowIsOpen = false;
-        Time.timeScale = 1f;
+
     }
 
 }

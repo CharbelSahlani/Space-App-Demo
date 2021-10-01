@@ -101,9 +101,10 @@ GameObject:
   - component: {fileID: 3471052674777045834}
   - component: {fileID: 2253211233476675411}
   - component: {fileID: 2253211233476675437}
+  - component: {fileID: 2635974002284300590}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Player
+  m_TagString: Orion
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -288,8 +289,9 @@ MonoBehaviour:
   sceneNames:
   - jh_Scene
   - jh_landingScene
+  renderSpeeds: 
   initSpeed: 2.648
-  renderSpeed: 20
+  renderSpeedIndex: 0
   planet: {fileID: 0}
   enableGravity: 1
   enableDrag: 1
@@ -298,7 +300,8 @@ MonoBehaviour:
   G: 6.67
   d1: 0.02
   d2: 1
-  d3: 0
+  g: 0
+  d: 0
   parachuteDrag: 0
   dist: 82.51363
   radius: 34
@@ -308,6 +311,29 @@ MonoBehaviour:
   drag: {x: -0, y: -0, z: 0}
   velChange: {x: 0, y: 0, z: 0}
   thrust: 1
+--- !u!114 &2635974002284300590
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2253211233476675432}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f0e375325dc0ca4aa470bc5643c6257, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 5
+  XP: 0
+  mission:
+    isActive: 1
+    title: Land on Mars
+    description: Follow the AI assistant instructions to land safely on the red planet
+    xpReward: 2000
+    goldReward: 10
+    goal:
+      goalType: 2
+      requiredAmount: 1
 --- !u!1 &2253211233779489995
 GameObject:
   m_ObjectHideFlags: 0
