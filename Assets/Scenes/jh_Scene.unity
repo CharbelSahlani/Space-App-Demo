@@ -1154,5 +1154,21 @@ PrefabInstance:
       propertyPath: planet
       value: 
       objectReference: {fileID: 1420880866}
+    - target: {fileID: 2253211233476675437, guid: 01e4642a4a7aede48b4fe56806e8576d, type: 3}
+      propertyPath: renderSpeeds.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2253211233476675437, guid: 01e4642a4a7aede48b4fe56806e8576d, type: 3}
+      propertyPath: renderSpeeds.Array.data[0]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2253211233476675437, guid: 01e4642a4a7aede48b4fe56806e8576d, type: 3}
+      propertyPath: renderSpeeds.Array.data[1]
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2253211233476675437, guid: 01e4642a4a7aede48b4fe56806e8576d, type: 3}
+      propertyPath: renderSpeeds.Array.data[2]
+      value: 25
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 01e4642a4a7aede48b4fe56806e8576d, type: 3}
