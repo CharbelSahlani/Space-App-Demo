@@ -20,6 +20,7 @@ public class PhysicsController : MonoBehaviour
     private bool parachuteKeyPressed = false;
     private Vector3 centerOfMass;
     private bool timeScaleLocked = false;
+    private Transform orbitalModel;
 
 
     //Planet parameters
@@ -56,8 +57,15 @@ public class PhysicsController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        Vector3 dir = Vector3.forward * initSpeed;
-        rb.velocity = dir;
+
+        foreach(Transform t in transform)
+        {
+            if (t.CompareTag("Model"))
+                orbitalModel = t;
+        }
+
+        Vector3 initDir = Vector3.forward * initSpeed;
+        rb.velocity = initDir;
         if (GetComponent<BoxCollider>() != null)
             centerOfMass = GetComponent<BoxCollider>().center;
         renderSpeedIndex = 1;
@@ -80,6 +88,8 @@ public class PhysicsController : MonoBehaviour
                     renderSpeedIndex = (renderSpeedIndex >= renderSpeeds.Length - 1) ? renderSpeedIndex : renderSpeedIndex + 1;
                 }
             }
+
+            orbitalModel.LookAt(planet);
         }
 
         //if player is landing
