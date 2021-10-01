@@ -30,7 +30,7 @@ public class PlayerMovement : MonoBehaviour
     public float jumpHeight = 3f;
     public Transform groundCheck;
     //This is the radius of the sphere that we are using for ground check
-    public float groundDistance = 0.4f;
+    public float groundDistance = 0.0002f; /* Sensible default */
     //To control what objects the sphere should check for
     public LayerMask groundMask;
 
@@ -51,11 +51,6 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //TODO delete this later
-        if (Input.GetKeyDown(KeyCode.M))
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        }
         //Check if the player isGrounded
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 

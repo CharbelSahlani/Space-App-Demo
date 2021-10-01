@@ -89,13 +89,17 @@ public class MMSEVEngine : MonoBehaviour {
     {
         if (isBraking)
         {
-            wheel3Left.brakeTorque = maxBrakeTorque; //braking torque set to max
-            wheel3Right.brakeTorque = maxBrakeTorque;//braking torque set to max
+            wheel2Left.brakeTorque = maxBrakeTorque; //braking torque set to max
+            wheel2Right.brakeTorque = maxBrakeTorque;//braking torque set to max
+            wheel1Left.brakeTorque = maxBrakeTorque; //braking torque set to max
+            wheel1Right.brakeTorque = maxBrakeTorque;//braking torque set to max
         }
         else
         {
-            wheel3Left.brakeTorque = 0; //braking torque set to 0
-            wheel3Right.brakeTorque = 0;//braking torque set to 0
+            wheel2Left.brakeTorque = 0; //braking torque set to 0
+            wheel2Right.brakeTorque = 0;//braking torque set to 0
+            wheel1Left.brakeTorque = 0; //braking torque set to 0
+            wheel1Right.brakeTorque = 0;//braking torque set to 0
         }
     }
 
