@@ -8,10 +8,10 @@ public class PhysicsController : MonoBehaviour
     //Scenes to check which physics law to apply on the player
     [Tooltip("Element 0: Orbit / Element 1: Landing")]
     public string[] sceneNames = new string[2];
-    public int[] renderSpeeds;
+    public float[] renderSpeeds;
+    [SerializeField] private int renderSpeedIndex;
 
     public float initSpeed;
-    [SerializeField] private int renderSpeedIndex = 0;
     public Transform planet;
     private Rigidbody rb;
     public bool enableGravity;
@@ -19,6 +19,7 @@ public class PhysicsController : MonoBehaviour
     public bool sudChange;
     private bool parachuteKeyPressed = false;
     private Vector3 centerOfMass;
+    private bool timeScaleLocked = false;
 
 
     //Planet parameters
@@ -29,7 +30,7 @@ public class PhysicsController : MonoBehaviour
     public float g;
     public float d;
     public float parachuteDrag;
-    public float dist;
+    public float dist = 1000;
     public float radius;
 
 
@@ -59,6 +60,7 @@ public class PhysicsController : MonoBehaviour
         rb.velocity = dir;
         if (GetComponent<BoxCollider>() != null)
             centerOfMass = GetComponent<BoxCollider>().center;
+        renderSpeedIndex = 1;
     }
 
     void Update()
@@ -66,13 +68,20 @@ public class PhysicsController : MonoBehaviour
         //if player is orbiting mars
         if (SceneManager.GetActiveScene().name == sceneNames[0])
         {
-            /*
-            LanderKinematicsOrbit();
-            GravityOrbit();
-            DragOrbit();
-            DecelerateOrbit();
-            */
+            if (!timeScaleLocked)
+            {
+                if (Input.GetKeyDown(KeyCode.Minus))
+                {
+                    renderSpeedIndex = (renderSpeedIndex == 0) ? 0 : renderSpeedIndex - 1;
+                }
+
+                if (Input.GetKeyDown(KeyCode.Equals))
+                {
+                    renderSpeedIndex = (renderSpeedIndex >= renderSpeeds.Length - 1) ? renderSpeedIndex : renderSpeedIndex + 1;
+                }
+            }
         }
+
         //if player is landing
         else if (SceneManager.GetActiveScene().name == sceneNames[1])
         {
@@ -80,16 +89,6 @@ public class PhysicsController : MonoBehaviour
             {
                 parachuteKeyPressed = true;
             }
-        }
-
-        if(Input.GetKeyDown(KeyCode.Minus))
-        {
-            renderSpeedIndex = (renderSpeedIndex == 0) ? 0 : renderSpeedIndex - 1;
-        }
-
-        if(Input.GetKeyDown(KeyCode.Equals))
-        { 
-            renderSpeedIndex = (renderSpeedIndex >= renderSpeeds.Length - 1) ? renderSpeedIndex : renderSpeedIndex + 1;
         }
 
         Time.timeScale = renderSpeeds[renderSpeedIndex];
@@ -229,5 +228,17 @@ public class PhysicsController : MonoBehaviour
         //rb.AddRelativeTorque();
     }
 
+
+    public void LockTimeScale()
+    {
+        timeScaleLocked = true;
+        renderSpeedIndex = 0;
+    }
+
+    public void UnlockTimeScale()
+    {
+        timeScaleLocked = false;
+        renderSpeedIndex = 1;
+    }
 
 }

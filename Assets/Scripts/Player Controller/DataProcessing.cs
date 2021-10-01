@@ -21,7 +21,7 @@ public class DataProcessing : MonoBehaviour
     [HideInInspector] public float ecc;
     [HideInInspector] public float aimRad;
 
-    void Awake()
+    void Start()
     {
         phy = GetComponent<PhysicsController>();
         mu = phy.G * phy.planetMass;
