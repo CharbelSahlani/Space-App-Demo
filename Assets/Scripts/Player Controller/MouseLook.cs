@@ -68,6 +68,7 @@ public class MouseLook : MonoBehaviour
             //Debug.Log(objectHit + "name " + objectHit.name);
 
             //check the planets
+            
             foreach (KeyValuePair<string, string[]> kvp in regex_arr)
             {
                  
