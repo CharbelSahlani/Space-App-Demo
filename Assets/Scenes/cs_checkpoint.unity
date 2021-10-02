@@ -272,11 +272,12 @@ MonoBehaviour:
   gravity: -3.721
   jumpHeight: 3
   groundCheck: {fileID: 1091697088}
-  groundDistance: 0.4
+  groundDistance: 0.0002
   groundMask:
     serializedVersion: 2
     m_Bits: 8
   enableCheckpoint: 1
+  isGrounded: 1
 --- !u!4 &306753019
 Transform:
   m_ObjectHideFlags: 0
@@ -307,7 +308,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 5
   XP: 0
-  gold: 0
   mission:
     isActive: 0
     title: 
@@ -317,7 +317,6 @@ MonoBehaviour:
     goal:
       goalType: 0
       requiredAmount: 0
-      currentAmount: 0
 --- !u!1 &359820576
 GameObject:
   m_ObjectHideFlags: 0
@@ -1153,7 +1152,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1091697087}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.8, z: 0}
+  m_LocalPosition: {x: 0, y: -1.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 306753019}
@@ -1197,13 +1196,12 @@ MonoBehaviour:
     goal:
       goalType: 0
       requiredAmount: 0
-      currentAmount: 0
   player: {fileID: 306753020}
   missionWindow: {fileID: 0}
   titleText: {fileID: 0}
   descriptionText: {fileID: 0}
   experienceText: {fileID: 0}
-  goldText: {fileID: 0}
+  collectiblesText: {fileID: 0}
 --- !u!4 &1102296561
 Transform:
   m_ObjectHideFlags: 0

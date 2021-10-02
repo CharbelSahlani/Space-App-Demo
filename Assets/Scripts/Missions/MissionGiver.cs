@@ -26,13 +26,30 @@ public class MissionGiver : MonoBehaviour
     //Mission Window 
     public GameObject missionWindow;
 
-    public Text titleText;
-    public Text descriptionText;
-    public Text experienceText;
-    public Text goldText;
+    public TextMeshProUGUI titleText;
+    public TextMeshProUGUI descriptionText;
+    public TextMeshProUGUI experienceText;
+    //public TextMeshProUGUI goldText;
     public TextMeshProUGUI collectiblesText;
 
-     void Update()
+    //Reference to the PanelFade animator
+    Animator panelFade;
+
+    public static MissionGiver instance;
+    public static bool missionWindowIsOpen = false;
+    private void Awake()
+    {
+        instance = this;
+    }
+    // Start is called on the first frame
+    private void Start()
+    {
+        // Assign panelFade to the corresponding animator
+        panelFade = missionWindow.GetComponent<Animator>();
+        Time.timeScale = 0f;
+        OpenMissionWindow();
+    }
+    void Update()
     {
         if (mission.isActive && mission.goal.goalType == GoalType.SamplesGathering)
         {
@@ -45,10 +62,11 @@ public class MissionGiver : MonoBehaviour
     public void OpenMissionWindow()
     {
         missionWindow.SetActive(true);
+        missionWindowIsOpen = true;
         titleText.text = mission.title;
-        descriptionText.text = mission.description;
-        experienceText.text = mission.xpReward.ToString();
-        goldText.text = mission.goldReward.ToString();
+        descriptionText.text = "DESCRIPTION: " + mission.description;
+        experienceText.text = "XP REWARD: " + mission.xpReward.ToString();
+        //goldText.text = mission.goldReward.ToString();
     }
 
     /**
@@ -56,9 +74,22 @@ public class MissionGiver : MonoBehaviour
      */
     public void AcceptMission()
     {
-        missionWindow.SetActive(false);
+        StartCoroutine(AcceptMissionRoutine());
+    }
+
+    /**
+     * This function is called by the accept mission function
+     */
+    public IEnumerator AcceptMissionRoutine()
+    {
         mission.isActive = true;
         player.mission = mission;
+        Cursor.lockState = CursorLockMode.Locked;
+        panelFade.SetTrigger("PanelFadeOut");
+        yield return new WaitForSecondsRealtime(1f);
+        missionWindow.SetActive(false);
+        missionWindowIsOpen = false;
+        Time.timeScale = 1f;
     }
 
 }
