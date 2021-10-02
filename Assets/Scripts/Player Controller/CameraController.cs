@@ -4,21 +4,22 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
+    public Vector3 orbitOffset;
+    public Vector3 landingOffset;
+    public Transform orion;
     private Transform planet;
     private Camera cam;
 
     // Start is called before the first frame update
     void Start()
     {
-        cam = GetComponentInChildren<Camera>();
+        cam = GameObject.FindGameObjectWithTag("FollowerCamera").GetComponent<Camera>();
+        cam.GetComponent<AudioListener>().enabled = false;
+        orion = GameObject.FindGameObjectWithTag("Orion").transform;
 
         if (GetComponent<PhysicsController>().planet != null)
         {
             planet = GetComponent<PhysicsController>().planet;
-        }
-        else
-        {
-            cam.gameObject.SetActive(false);
         }
     }
 
@@ -28,9 +29,14 @@ public class CameraController : MonoBehaviour
         if (planet != null)
         {
             cam.transform.LookAt(planet);
-            Vector3 dir = transform.transform.position - planet.transform.position;
+            Vector3 dir = orion.position - planet.transform.position;
             dir = Vector3.Normalize(dir);
-            cam.transform.position = transform.transform.position + dir * 5f + Vector3.up * 2f;
+            cam.transform.position = orion.position + dir * 5f + orbitOffset;
+        }
+        else
+        {
+            cam.transform.position = orion.position + landingOffset;
+            cam.transform.LookAt(orion.position);
         }
     }
 }

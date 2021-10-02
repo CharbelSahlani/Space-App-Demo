@@ -44,11 +44,13 @@ public class HandleRegex : MonoBehaviour
         Regex rg = new Regex(pattern);
         return rg.Replace(text, word_from_bag + " ", 1);
     }
+
+    //Dictionary 
+    IDictionary<string, string[]> regex_exp = new Dictionary<string, string[]>();
     void Start()
     {
         textTyper = FindObjectOfType<TextTyper>();
         /*Usind dictionaries that hold a bag of words as key value pair */
-        IDictionary<string, string[]> regex_exp = new Dictionary<string, string[]>();
         regex_exp.Add("greetings", new string[] { "hello", "hi", "greetings", "hey" });
         regex_exp.Add("assistant", new string[] { "assistant", "guide" ,"companion" });
         regex_exp.Add("essVerbs", new string[] { "guiding you", "assisting you"});
@@ -164,5 +166,10 @@ public class HandleRegex : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public IDictionary<string, string[]>  get_regex_array()
+    {
+        return regex_exp;
     }
 }
