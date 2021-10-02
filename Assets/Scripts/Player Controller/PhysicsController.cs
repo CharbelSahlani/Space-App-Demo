@@ -8,14 +8,19 @@ public class PhysicsController : MonoBehaviour
     //Scenes to check which physics law to apply on the player
     [Tooltip("Element 0: Orbit / Element 1: Landing")]
     public string[] sceneNames = new string[2];
+    public float[] renderSpeeds;
+    [SerializeField] private int renderSpeedIndex;
 
     public float initSpeed;
-    public float renderSpeed;
     public Transform planet;
     private Rigidbody rb;
     public bool enableGravity;
     public bool enableDrag;
     public bool sudChange;
+    private bool parachuteKeyPressed = false;
+    private Vector3 centerOfMass;
+    private bool timeScaleLocked = false;
+    private Transform orbitalModel;
 
 
     //Planet parameters
@@ -23,9 +28,10 @@ public class PhysicsController : MonoBehaviour
     public float G;
     public float d1;
     public float d2;
-    public float d3;
+    public float g;
+    public float d;
     public float parachuteDrag;
-    public float dist;
+    public float dist = 1000;
     public float radius;
 
 
@@ -51,13 +57,55 @@ public class PhysicsController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        Vector3 dir = Vector3.forward * initSpeed;
-        rb.velocity = dir;
+
+        foreach(Transform t in transform)
+        {
+            if (t.CompareTag("Model"))
+                orbitalModel = t;
+        }
+
+        Vector3 initDir = Vector3.forward * initSpeed;
+        rb.velocity = initDir;
+        if (GetComponent<BoxCollider>() != null)
+            centerOfMass = GetComponent<BoxCollider>().center;
+        renderSpeedIndex = 1;
+    }
+
+    void Update()
+    {
+        //if player is orbiting mars
+        if (SceneManager.GetActiveScene().name == sceneNames[0])
+        {
+            if (!timeScaleLocked)
+            {
+                if (Input.GetKeyDown(KeyCode.Minus))
+                {
+                    renderSpeedIndex = (renderSpeedIndex == 0) ? 0 : renderSpeedIndex - 1;
+                }
+
+                if (Input.GetKeyDown(KeyCode.Equals))
+                {
+                    renderSpeedIndex = (renderSpeedIndex >= renderSpeeds.Length - 1) ? renderSpeedIndex : renderSpeedIndex + 1;
+                }
+            }
+
+            orbitalModel.LookAt(planet);
+        }
+
+        //if player is landing
+        else if (SceneManager.GetActiveScene().name == sceneNames[1])
+        {
+            if(Input.GetKeyDown(KeyCode.P))
+            {
+                parachuteKeyPressed = true;
+            }
+        }
+
+        Time.timeScale = renderSpeeds[renderSpeedIndex];
     }
 
     void FixedUpdate()
     {
-        Time.timeScale = renderSpeed;
 
         //if player is orbiting mars
         if (SceneManager.GetActiveScene().name == sceneNames[0])
@@ -67,13 +115,16 @@ public class PhysicsController : MonoBehaviour
             DragOrbit();
             DecelerateOrbit();
         }
+        //if player is landing
         else if (SceneManager.GetActiveScene().name == sceneNames[1])
         {
+            Debug.Log("v=" + rb.velocity.sqrMagnitude.ToString());
             LanderKinematicsLanding();
             GravityLanding();
             DragLanding();
             ParachuteLanding();
             DecelerateLanding();
+            ApplyStabilizingTorque();
         }
     }
 
@@ -113,20 +164,18 @@ public class PhysicsController : MonoBehaviour
 
 
     /*
-    * Physics in orbit
+    * Physics near surface
     */
     void LanderKinematicsLanding()
     {
-        if (planet != null)
-            pos = transform.position - planet.transform.position;
-        dist = pos.y;
+        dist = transform.position.y;
         dir = Vector3.up;
         velDir = rb.velocity.normalized;
     }
 
     void GravityLanding()
     {
-        gravity = -G * dir * Time.fixedDeltaTime;
+        gravity = -g * dir;// * Time.fixedDeltaTime;
 
         if (enableGravity)
             rb.AddForce(gravity, ForceMode.Acceleration);
@@ -135,7 +184,7 @@ public class PhysicsController : MonoBehaviour
     void DragLanding()
     {
         height = dist;
-        dragCoef = d3 / Mathf.Abs(height);
+        dragCoef = d / Mathf.Sqrt(height);
         dragCoef = Mathf.Clamp(dragCoef, 0, 1);
 
         if (enableDrag)
@@ -144,8 +193,9 @@ public class PhysicsController : MonoBehaviour
 
     void ParachuteLanding()
     {
-        if (Input.GetKeyDown(KeyCode.P))
+        if (parachuteKeyPressed)
         {
+            parachuteKeyPressed = false;
             if (!parachuteDeployed)
             {
                 DeployParachute();
@@ -180,6 +230,25 @@ public class PhysicsController : MonoBehaviour
     void ReleaseParachute()
     {
         parachuteActive = false;
-
     }
+
+
+    void ApplyStabilizingTorque()
+    {
+        //rb.AddRelativeTorque();
+    }
+
+
+    public void LockTimeScale()
+    {
+        timeScaleLocked = true;
+        renderSpeedIndex = 0;
+    }
+
+    public void UnlockTimeScale()
+    {
+        timeScaleLocked = false;
+        renderSpeedIndex = 1;
+    }
+
 }

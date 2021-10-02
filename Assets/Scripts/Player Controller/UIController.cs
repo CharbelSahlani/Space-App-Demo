@@ -18,7 +18,7 @@ public class UIController : MonoBehaviour
     public bool resetting;
 
     private float dist;
-    private float minDist = float.MaxValue;
+    private float minDist = 1000;//float.MaxValue;
     private float maxDist = 0;
     private float drag;
     private float gravity;
@@ -29,6 +29,7 @@ public class UIController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         phy = GetComponent<PhysicsController>();
+        ResetUI();
     }
 
     // Update is called once per frame
@@ -56,7 +57,7 @@ public class UIController : MonoBehaviour
         UpdateText(dragText, "d: " , drag.ToString());
     }
 
-    void ResetUI()
+   public void ResetUI()
     {
         maxDist = 0;
         minDist = 1000;
