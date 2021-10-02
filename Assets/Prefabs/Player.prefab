@@ -232,6 +232,7 @@ MonoBehaviour:
   enableGravity: 1
   enableDrag: 1
   sudChange: 0
+  orbitalModel: {fileID: 0}
   planetMass: 64.2
   G: 6.67
   d1: 0.03
@@ -246,6 +247,8 @@ MonoBehaviour:
   thrustOrbiting: 1
   thrustLanding: 1
   torque: 5
+  totalFuel: 100
+  fuelUsage: 60
   parachuteKeyPressed: 0
   parachuteReady: 0
   parachuteDeployed: 0

@@ -96,6 +96,9 @@ public class PhysicsController : MonoBehaviour
             }
 
             orbitalModel.LookAt(planet);
+            GameplayUI.instance.SetMaxFuelVolume(totalFuel);
+            GameplayUI.instance.SetMaxAltitude(150f);
+            GameplayUI.instance.SetMaxVelocity(6f);
         }
 
         //if player is landing
@@ -197,6 +200,8 @@ public class PhysicsController : MonoBehaviour
         dist = pos.magnitude;
         dir = pos.normalized;
         velDir = rb.velocity.normalized;
+
+        GameplayUI.instance.SetVelocity(rb.velocity.magnitude);
     }
 
     void GravityOrbit()
@@ -210,6 +215,8 @@ public class PhysicsController : MonoBehaviour
     void DragOrbit()
     {
         height = dist - radius;
+        GameplayUI.instance.SetAltitude(height);
+
         drag = -d1 * Mathf.Exp(-d2 * height * height) * velDir * rb.velocity.sqrMagnitude;
         if (enableDrag)
             rb.AddForce(drag, ForceMode.Acceleration);
@@ -221,6 +228,7 @@ public class PhysicsController : MonoBehaviour
         {
             rb.AddForce(-thrustOrbiting * Time.fixedDeltaTime * rb.velocity.normalized, ForceMode.VelocityChange);
             totalFuel -= fuelUsage * Time.fixedDeltaTime;
+            GameplayUI.instance.SetFuelVolume(totalFuel);
         }
     }
 

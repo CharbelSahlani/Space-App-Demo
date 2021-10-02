@@ -13,10 +13,21 @@ public class TimeScaleLock : MonoBehaviour
         if (orion != null)
         {
             if (lockScale)
-                orion.GetComponent<PhysicsController>().LockTimeScale();
+                LockScale();
             else
-                orion.GetComponent<PhysicsController>().UnlockTimeScale();
+                UnlockScale();
         }
         Destroy(gameObject);
+    }
+
+    void LockScale()
+    {
+        orion.GetComponent<PhysicsController>().LockTimeScale();
+        Debug.Log("Now time has slowed and locked so you can focus on the fuel burn\nTry to slow down to 15400 km/h when the altitude reaches 200 km");
+    }
+    void UnlockScale()
+    {
+        orion.GetComponent<PhysicsController>().UnlockTimeScale();
+        Debug.Log("Time control is back on\nSpeed up the simulation to see orbiting");
     }
 }
