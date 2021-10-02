@@ -19,7 +19,7 @@ public class TerrainGenerator : MonoBehaviour
     private int plane_offset = 305; //amount of squares a plane takes 
     private Vector3 start_pos = Vector3.zero;
     private Hashtable tile_table = new Hashtable(); //if we have a plane or not   
-    [SerializeField] int noise_height = 3; //the noise strenght
+    [SerializeField] float noise_height = 3f; //the noise strenght
 
 
     // Update is called once per frame

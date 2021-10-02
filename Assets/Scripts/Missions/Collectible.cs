@@ -29,6 +29,9 @@ public class Collectible : MonoBehaviour
     private Vector3 a = new Vector3(0.0f, 0.0f, 0.0f);
     private Vector3 b = new Vector3(0.0f, 2.0f, 0.0f);
     public static Transform collectibleTransform;
+    bool isGrounded = false;
+    public float groundDistance;
+    public LayerMask groundMask;
     /**
      * This function gets the text game object automatically on start
      * to be able to modify it later.
@@ -37,6 +40,16 @@ public class Collectible : MonoBehaviour
     {
         MissionGoal.currentAmount = 0;
         keyPressText = GameObject.FindGameObjectWithTag("Press Key Text").GetComponent<TextMeshProUGUI>();
+    }
+
+    private void Update()
+    {
+        isGrounded = Physics.CheckSphere(gameObject.transform.position, groundDistance, groundMask);
+        //Reset the velocity when grounded
+        if (isGrounded)
+        {
+            Destroy(gameObject.GetComponent<Rigidbody>());
+        }
     }
     /**
      * This function enables the player to collect samples
