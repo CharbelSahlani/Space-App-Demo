@@ -40,6 +40,7 @@ public class MouseLook : MonoBehaviour
     {
        regex_script = FindObjectOfType<HandleRegex>();
         regex_arr = regex_script.get_regex_array();
+        
     }
 
     // Update is called once per frame
@@ -56,7 +57,7 @@ public class MouseLook : MonoBehaviour
         //Rotate the entire player body left and right
         playerBody.Rotate(Vector3.up * mouseX);
 
-
+        
         //raycast 
         // Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
@@ -100,6 +101,7 @@ public class MouseLook : MonoBehaviour
 
      
     }
+       
 }
 
 
