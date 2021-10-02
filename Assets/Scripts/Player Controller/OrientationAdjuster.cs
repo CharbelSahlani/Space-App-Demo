@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class OrientationAdjuster : MonoBehaviour
 {
+    private Rigidbody rb;
+
     // Start is called before the first frame update
     void Start()
     {
