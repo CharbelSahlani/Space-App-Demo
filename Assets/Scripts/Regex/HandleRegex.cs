@@ -53,6 +53,63 @@ public class HandleRegex : MonoBehaviour
         regex_exp.Add("assistant", new string[] { "assistant", "guide" ,"companion" });
         regex_exp.Add("essVerbs", new string[] { "guiding you", "assisting you"});
         regex_exp.Add("adventure", new string[] {"adventure", "journey"});
+        //planets
+        //sun
+        regex_exp.Add("sun", new string[] { "The Sun is a yellow dwarf star, a hot ball of glowing gases at the heart of our solar system. Its gravity holds everything from the biggest planets to tiny debris in its orbit.",
+                                            "Electric currents in the Sun generate a magnetic field that is carried out through the solar system by the solar wind. A stream of electrically charged gas blowing outward from the Sun in all directions.",
+                                            "The Sun is the largest object in our solar system, comprising 99.8% of the system’s mass. Though it seems huge to us, the Sun isn't as large as other types of stars.",
+                                            "Earth orbits the Sun from a distance of about 93 million miles. The connection and interactions between the Sun and Earth drive our planet's seasons, ocean currents, weather, climate, radiation belts, and aurorae. Though it is special to us, there are billions of stars like our Sun scattered across the Milky Way galaxy."                                
+        
+        });
+        //mercury
+        regex_exp.Add("mercury", new string[] {"The smallest planet in our solar system and closest to the Sun. Itis only slightly larger than Earth's Moon. Mercury is the fastest planet, zipping around the Sun every 88 Earth days.",
+                                                "From the surface of Mercury, the Sun would appear more than three times as large as it does when viewed from Earth, and the sunlight would be as much as seven times brighter.",
+                                                "Despite its proximity to the Sun, Mercury is not the hottest planet in our solar system – that title belongs to nearby Venus, thanks to its dense atmosphere.",
+                                                "Because of Mercury's elliptical egg-shaped orbit, and sluggish rotation, the Sun appears to rise briefly, set, and rise again from some parts of the planet's surface. The same thing happens in reverse at sunset."});
+
+        //venus
+        regex_exp.Add("venus", new string[] { "Venus spins slowly in the opposite direction from most planets. A thick atmosphere traps heat in a runaway greenhouse effect, making it the hottest planet in our solar system.",
+                                               "Venus is the second planet from the Sun and is Earth’s closest planetary neighbor. It’s one of the four inner, terrestrial (or rocky) planets, and it’s often called Earth’s twin because it’s similar in size and density. These are not identical twins, however – there are radical differences between the two worlds.",
+                                                "Venus has a thick, toxic atmosphere filled with carbon dioxide and it’s perpetually shrouded in thick, yellowish clouds of sulfuric acid that trap heat, causing a runaway greenhouse effect.",
+                                                "Venus has crushing air pressure at its surface – more than 90 times that of Earth – similar to the pressure you'd encounter a mile below the ocean on Earth."});
+
+        //earth
+        regex_exp.Add("earth", new string[] { "Our home planet is the only place we know of so far that’s inhabited by living things. It's also the only planet in our solar system with liquid water on the surface.",
+                                                "While Earth is only the fifth largest planet in the solar system, it is the only world in our solar system with liquid water on the surface. Just slightly larger than nearby Venus, Earth is the biggest of the four planets closest to the Sun, all of which are made of rock and metal.",
+                                                "The name Earth is at least 1,000 years old. All of the planets, except for Earth, were named after Greek and Roman gods and goddesses. However, the name Earth is a Germanic word, which simply means \"the ground.\""});
+
+        //mars
+        regex_exp.Add("mars", new string[] { "Mars is a dusty, cold, desert world with a very thin atmosphere. There is strong evidence Mars was billions of years ago wetter and warmer, with a thicker atmosphere.",
+                                                "Mars is also a dynamic planet with seasons, polar ice caps, canyons, extinct volcanoes, and evidence that it was even more active in the past.",
+                                                "Mars is one of the most explored bodies in our solar system, and it's the only planet where we've sent rovers to roam the alien landscape.",
+                                                "NASA currently has two rovers (Curiosity and Perseverance), one lander (InSight), and one helicopter (Ingenuity) exploring the surface of Mars."});
+
+        //Jupiter
+        regex_exp.Add("jupiter", new string[] { "Jupiter is more than twice as massive than the other planets of our solar system combined. The giant planet's Great Red spot is a centuries-old storm bigger than Earth.",
+                                                "Fifth in line from the Sun, Jupiter is, by far, the largest planet in the solar system – more than twice as massive as all the other planets combined.",
+                                                "Jupiter's familiar stripes and swirls are actually cold, windy clouds of ammonia and water, floating in an atmosphere of hydrogen and helium.",
+                                                "Jupiter’s iconic Great Red Spot is a giant storm bigger than Earth that has raged for hundreds of years."});
+
+
+        //saturn
+        regex_exp.Add("saturn", new string[] { "Adorned with a dazzling, complex system of icy rings, Saturn is unique in our solar system. The other giant planets have rings, but none are as spectacular as Saturn's.",
+                                         "Saturn is the sixth planet from the Sun and the second-largest planet in our solar system.",
+                                          "Like fellow gas giant Jupiter, Saturn is a massive ball made mostly of hydrogen and helium."});
+
+        //uranus
+        regex_exp.Add("uranus", new string[] { "The seventh planet from the Sun rotates at a nearly 90-degree angle from the plane of its orbit. This unique tilt makes Uranus appear to spin on its side.",
+                                                "It was the first planet found with the aid of a telescope, Uranus was discovered in 1781 by astronomer William Herschel, although he originally thought it was either a comet or a star.",
+                                                "It was two years later that the object was universally accepted as a new planet, in part because of observations by astronomer Johann Elert Bode."});
+
+        //nepturne
+        regex_exp.Add("nepturne", new string[] { "The eighth and most distant major planet orbiting our Sun, it is dark, cold and whipped by supersonic winds. It was the first planet located through mathematical calculations, rather than by telescope.",
+                                                 "More than 30 times as far from the Sun as Earth, Neptune is the only planet in our solar system not visible to the naked eye and the first predicted by mathematics before its discovery."});
+
+        //pluto
+        regex_exp.Add("pluto", new string[] { "Pluto is a complex world of ice mountains and frozen plains. Once considered the ninth planet, Pluto is the largest member of the Kuiper Belt and the best known of a new class of worlds called dwarf planets.",
+                                               "Pluto, which is smaller than Earth’s Moon, has a heart-shaped glacier that’s the size of Texas and Oklahoma. This fascinating world has blue skies, spinning moons, mountains as high as the Rockies, and it snows, but the snow is red.",
+                                                "On July 14, 2015, NASA’s New Horizons spacecraft made its historic flight through the Pluto system – providing the first close-up images of Pluto and its moons and collecting other data that has transformed our understanding of these mysterious worlds on the solar system’s outer frontier."});
+
         foreach (KeyValuePair<string, string[]> kvp in regex_exp)
         {
             foreach (string str in kvp.Value)
