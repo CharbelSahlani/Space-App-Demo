@@ -33,13 +33,13 @@ public class TerrainGenerator : MonoBehaviour
                     //check if position already exists in hastable, if yes skip
                     if (!tile_table.Contains(pos))
                     {
-                        gameObject _plane = Instantiate(plane, pos, Quaternion.identity);
+                        GameObject _plane = Instantiate(plane, pos, Quaternion.identity);
                         tile_table.Add(pos, _plane);
                     }
                 }
             }
         }
-        if (has_player_moved)
+        if (has_player_moved())
         {
             for (int x = -radius; x < radius; x++)
             {
@@ -49,7 +49,7 @@ public class TerrainGenerator : MonoBehaviour
                     //check if position already exists in hastable, if yes skip
                     if (!tile_table.Contains(pos))
                     {
-                        gameObject _plane = Instantiate(plane, pos, Quaternion.identity);
+                        GameObject _plane = Instantiate(plane, pos, Quaternion.identity);
                         tile_table.Add(pos, _plane);
                     }
                 }
