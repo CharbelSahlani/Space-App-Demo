@@ -9,6 +9,8 @@ TagManager:
   - Enemy
   - Press Key Text
   - CornerObj
+  - Orion
+  - Model
   layers:
   - Default
   - TransparentFX
