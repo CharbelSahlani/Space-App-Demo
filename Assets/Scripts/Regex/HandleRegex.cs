@@ -110,6 +110,12 @@ public class HandleRegex : MonoBehaviour
                                                "Pluto, which is smaller than Earth’s Moon, has a heart-shaped glacier that’s the size of Texas and Oklahoma. This fascinating world has blue skies, spinning moons, mountains as high as the Rockies, and it snows, but the snow is red.",
                                                 "On July 14, 2015, NASA’s New Horizons spacecraft made its historic flight through the Pluto system – providing the first close-up images of Pluto and its moons and collecting other data that has transformed our understanding of these mysterious worlds on the solar system’s outer frontier."});
 
+        //general info
+        regex_exp.Add("general_info", new string[] { "There are many planetary systems like ours in the universe, with planets orbiting a host star. Our planetary system is named the \"solar system\" because our Sun is named Sol, after the Latin word for Sun, \"solis,\" and anything related to the Sun we call \"solar.\"",
+                                                    "Our solar system consists of our star, the Sun, and everything bound to it by gravity – the planets Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, and Neptune; dwarf planets such as Pluto; dozens of moons; and millions of asteroids, comets, and meteoroids. Beyond our own solar system, we have discovered thousands of planetary systems orbiting other stars in the Milky Way.",
+                                                    "Our solar system extends much farther than the eight planets that orbit the Sun. The solar system also includes the Kuiper Belt that lies past Neptune's orbit. This is a sparsely occupied ring of icy bodies, almost all smaller than the most popular Kuiper Belt Object – dwarf planet Pluto.",
+                                                    "The order and arrangement of the planets and other bodies in our solar system is due to the way the solar system formed. Nearest to the Sun, only rocky material could withstand the heat when the solar system was young. For this reason, the first four planets – Mercury, Venus, Earth, and Mars – are terrestrial planets. They are all small with solid, rocky surfaces."});
+
         foreach (KeyValuePair<string, string[]> kvp in regex_exp)
         {
             foreach (string str in kvp.Value)
