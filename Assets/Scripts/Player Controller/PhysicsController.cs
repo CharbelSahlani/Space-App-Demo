@@ -19,7 +19,7 @@ public class PhysicsController : MonoBehaviour
     public bool sudChange;
     private Vector3 centerOfMass;
     private bool timeScaleLocked = false;
-    private Transform orbitalModel;
+    [SerializeField] private Transform orbitalModel;
 
 
     //Planet parameters
@@ -40,6 +40,10 @@ public class PhysicsController : MonoBehaviour
     public float thrustOrbiting;
     public float thrustLanding;
     public float torque;
+
+    //HUD parameters
+    public float totalFuel;
+    public float fuelUsage;
 
 
     private Vector3 pos;
@@ -103,11 +107,12 @@ public class PhysicsController : MonoBehaviour
             GetComponentInChildren<TrailRenderer>().enabled = false;
             GetComponent<UIController>().enabled = false;
             GetComponent<CameraSelector>().enabled = false;
-        }
 
-        foreach (Transform child in orbitalModel.GetChild(0))
-        {
-            child.GetComponent<MeshRenderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
+            foreach (Transform child in orbitalModel.GetChild(0))
+            {
+                Debug.Log(child.name);
+                child.GetComponent<MeshRenderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
+            }
         }
 
         if (GetComponent<BoxCollider>() != null)
@@ -213,7 +218,10 @@ public class PhysicsController : MonoBehaviour
     void DecelerateOrbit()
     {
         if (Input.GetKey(KeyCode.Space))
+        {
             rb.AddForce(-thrustOrbiting * Time.fixedDeltaTime * rb.velocity.normalized, ForceMode.VelocityChange);
+            totalFuel -= fuelUsage * Time.fixedDeltaTime;
+        }
     }
 
 
