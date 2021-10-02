@@ -342,7 +342,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 503290410}
-  plane: {fileID: 6532482463074239292, guid: f7d303a43f6a1b143a6ff021a7109526, type: 3}
+  plane: {fileID: 919132149155446097, guid: 28c48493332a30a4fbe9c21a9c9d2669, type: 3}
+  noise_height: 3
 --- !u!4 &1413286559
 Transform:
   m_ObjectHideFlags: 0

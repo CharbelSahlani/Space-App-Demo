@@ -15,10 +15,12 @@ public class TerrainGenerator : MonoBehaviour
 {
     [SerializeField] GameObject player;
     [SerializeField] GameObject plane;
-    private int radius = 5; // how many planes to spawn around player
-    private int plane_offset = 10; //amount of squares a plane takes 
+    private int radius = 3; // how many planes to spawn around player inital amout was 5 
+    private int plane_offset = 305; //amount of squares a plane takes 
     private Vector3 start_pos = Vector3.zero;
     private Hashtable tile_table = new Hashtable(); //if we have a plane or not   
+    [SerializeField] int noise_height = 3; //the noise strenght
+
 
     // Update is called once per frame
     void Update()
@@ -45,7 +47,7 @@ public class TerrainGenerator : MonoBehaviour
             {
                 for (int z = -radius; z < radius; z++)
                 {
-                    Vector3 pos = new Vector3(x * plane_offset + player_location_x, 0, z * plane_offset + player_location_z);
+                    Vector3 pos = new Vector3(x * plane_offset + player_location_x, generate_noise(x,z,8f) * noise_height, z * plane_offset + player_location_z);
                     //check if position already exists in hastable, if yes skip
                     if (!tile_table.Contains(pos))
                     {
@@ -99,4 +101,14 @@ public class TerrainGenerator : MonoBehaviour
         }
         return false;
     }
+
+    //method to generate perlin noise 
+    //this is newley added to check if we can crete valleys and mountains 
+    private float generate_noise(int x, int z, float detail_scale)
+    {
+        float x_noise = (x + this.transform.position.x) / detail_scale;
+        float z_noise = (z + this.transform.position.y) / detail_scale;
+        return Mathf.PerlinNoise(x_noise, z_noise);
+    }
+
 }
