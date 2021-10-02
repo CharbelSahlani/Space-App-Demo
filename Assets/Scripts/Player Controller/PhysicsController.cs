@@ -19,6 +19,7 @@ public class PhysicsController : MonoBehaviour
     public bool sudChange;
     private Vector3 centerOfMass;
     private bool timeScaleLocked = false;
+    private bool fuelDisabled = true;
     [SerializeField] private Transform orbitalModel;
 
 
@@ -64,7 +65,7 @@ public class PhysicsController : MonoBehaviour
 
 
     //Forces
-    [HideInInspector] public Vector3 gravity;
+    /*[HideInInspector]*/ public Vector3 gravity;
     [HideInInspector] public Vector3 drag;
     [HideInInspector] public Vector3 velChange;
 
@@ -87,7 +88,6 @@ public class PhysicsController : MonoBehaviour
             Vector3 initDir = transform.forward * initSpeedOrbiting;
             rb.velocity = initDir;
             GetComponentInChildren<TrailRenderer>().enabled = true;
-            GetComponent<UIController>().enabled = true;
             GetComponent<CameraSelector>().enabled = true;
 
             foreach (Transform child in orbitalModel.GetChild(0))
@@ -108,7 +108,6 @@ public class PhysicsController : MonoBehaviour
             rb.velocity = initDir;
 
             GetComponentInChildren<TrailRenderer>().enabled = false;
-            GetComponent<UIController>().enabled = false;
             GetComponent<CameraSelector>().enabled = false;
 
             foreach (Transform child in orbitalModel.GetChild(0))
@@ -226,9 +225,12 @@ public class PhysicsController : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Space))
         {
-            rb.AddForce(-thrustOrbiting * Time.fixedDeltaTime * rb.velocity.normalized, ForceMode.VelocityChange);
-            totalFuel -= fuelUsage * Time.fixedDeltaTime;
-            GameplayUI.instance.SetFuelVolume(totalFuel);
+            if (!fuelDisabled)
+            {
+                rb.AddForce(-thrustOrbiting * Time.fixedDeltaTime * rb.velocity.normalized, ForceMode.VelocityChange);
+                totalFuel -= fuelUsage * Time.fixedDeltaTime;
+                GameplayUI.instance.SetFuelVolume(totalFuel);
+            }
         }
     }
 
@@ -344,12 +346,14 @@ public class PhysicsController : MonoBehaviour
     public void LockTimeScale()
     {
         timeScaleLocked = true;
+        fuelDisabled = false;
         renderSpeedIndex = 0;
     }
 
     public void UnlockTimeScale()
     {
         timeScaleLocked = false;
+        fuelDisabled = true;
         renderSpeedIndex = 1;
     }
 
