@@ -60,7 +60,7 @@ public class FixedGenerator : MonoBehaviour
     private Vector3 object_spawn_location()
     {
         int rand_index = Random.Range(0, block_positions.Count);
-        Vector3 new_pos = new Vector3(block_positions[rand_index].x, block_positions[rand_index].y + .5f, block_positions[rand_index].z);
+        Vector3 new_pos = new Vector3(block_positions[rand_index].x *10 + 70, block_positions[rand_index].y*10 + 25, block_positions[rand_index].z*10 + 10);
         block_positions.RemoveAt(rand_index); //to prevent overlaping objects
         return new_pos;
     }
