@@ -11,13 +11,12 @@ public class PhysicsController : MonoBehaviour
     public float[] renderSpeeds;
     [SerializeField] private int renderSpeedIndex;
 
-    public float initSpeed;
     public Transform planet;
     private Rigidbody rb;
+    private TrailRenderer trail;
     public bool enableGravity;
     public bool enableDrag;
     public bool sudChange;
-    private bool parachuteKeyPressed = false;
     private Vector3 centerOfMass;
     private bool timeScaleLocked = false;
     private Transform orbitalModel;
@@ -28,21 +27,35 @@ public class PhysicsController : MonoBehaviour
     public float G;
     public float d1;
     public float d2;
-    public float g;
-    public float d;
+    public float gSurf;
+    public float dSurf;
     public float parachuteDrag;
     public float dist = 1000;
     public float radius;
 
 
     //Kinematic parameters
+    public float initSpeedOrbiting;
+    public float initSpeedLanding;
+    public float thrustOrbiting;
+    public float thrustLanding;
+    public float torque;
+
+
     private Vector3 pos;
     private Vector3 dir;
     private Vector3 velDir;
     private float height;
     private float speed2;
+
+    [SerializeField] private bool parachuteKeyPressed = false;
+    [SerializeField] private bool parachuteReady = false;
     [SerializeField] private bool parachuteDeployed = false;
     [SerializeField] private bool parachuteActive = false;
+    [SerializeField] private bool thrusterActive = false;
+    [SerializeField] private bool torqueActive = false;
+    [SerializeField] private bool spinActive = false;
+
     private float dragCoef;
 
 
@@ -50,22 +63,53 @@ public class PhysicsController : MonoBehaviour
     [HideInInspector] public Vector3 gravity;
     [HideInInspector] public Vector3 drag;
     [HideInInspector] public Vector3 velChange;
-    public float thrust;
 
     private string currentSceneName;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        trail = GetComponentInChildren<TrailRenderer>();
 
-        foreach(Transform t in transform)
+        foreach (Transform t in transform)
         {
             if (t.CompareTag("Model"))
                 orbitalModel = t;
         }
 
-        Vector3 initDir = Vector3.forward * initSpeed;
-        rb.velocity = initDir;
+        //if player is orbiting mars
+        if (SceneManager.GetActiveScene().name == sceneNames[0])
+        {
+            Vector3 initDir = transform.forward * initSpeedOrbiting;
+            rb.velocity = initDir;
+            GetComponentInChildren<TrailRenderer>().enabled = true;
+            GetComponent<UIController>().enabled = true;
+            GetComponent<CameraSelector>().enabled = true;
+
+            foreach (Transform child in orbitalModel.GetChild(0))
+            {
+                child.GetComponent<MeshRenderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+            }
+
+            orbitalModel.LookAt(planet);
+        }
+
+        //if player is landing
+        else if (SceneManager.GetActiveScene().name == sceneNames[1])
+        {
+            Vector3 initDir = transform.forward * initSpeedLanding;
+            rb.velocity = initDir;
+
+            GetComponentInChildren<TrailRenderer>().enabled = false;
+            GetComponent<UIController>().enabled = false;
+            GetComponent<CameraSelector>().enabled = false;
+        }
+
+        foreach (Transform child in orbitalModel.GetChild(0))
+        {
+            child.GetComponent<MeshRenderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
+        }
+
         if (GetComponent<BoxCollider>() != null)
             centerOfMass = GetComponent<BoxCollider>().center;
         renderSpeedIndex = 1;
@@ -95,10 +139,18 @@ public class PhysicsController : MonoBehaviour
         //if player is landing
         else if (SceneManager.GetActiveScene().name == sceneNames[1])
         {
-            if(Input.GetKeyDown(KeyCode.P))
+            if (Input.GetKeyDown(KeyCode.P))
             {
-                parachuteKeyPressed = true;
+                if (parachuteReady || parachuteDeployed)
+                    parachuteKeyPressed = true;
             }
+            if (Input.GetKeyDown(KeyCode.Backspace))
+            {
+                spinActive = true;
+            }
+
+            if (rb.velocity.z < 5)
+                torqueActive = true;
         }
 
         Time.timeScale = renderSpeeds[renderSpeedIndex];
@@ -118,12 +170,14 @@ public class PhysicsController : MonoBehaviour
         //if player is landing
         else if (SceneManager.GetActiveScene().name == sceneNames[1])
         {
-            Debug.Log("v=" + rb.velocity.sqrMagnitude.ToString());
+            Debug.Log("v=" + rb.velocity.magnitude.ToString());
+            Debug.Log("vz=" + rb.velocity.z.ToString());
             LanderKinematicsLanding();
             GravityLanding();
             DragLanding();
             ParachuteLanding();
             DecelerateLanding();
+            StopSpinning();
             ApplyStabilizingTorque();
         }
     }
@@ -159,7 +213,7 @@ public class PhysicsController : MonoBehaviour
     void DecelerateOrbit()
     {
         if (Input.GetKey(KeyCode.Space))
-            rb.AddForce(-thrust * Time.fixedDeltaTime * rb.velocity.normalized, ForceMode.VelocityChange);
+            rb.AddForce(-thrustOrbiting * Time.fixedDeltaTime * rb.velocity.normalized, ForceMode.VelocityChange);
     }
 
 
@@ -175,7 +229,7 @@ public class PhysicsController : MonoBehaviour
 
     void GravityLanding()
     {
-        gravity = -g * dir;// * Time.fixedDeltaTime;
+        gravity = -gSurf * dir;// * Time.fixedDeltaTime;
 
         if (enableGravity)
             rb.AddForce(gravity, ForceMode.Acceleration);
@@ -184,7 +238,7 @@ public class PhysicsController : MonoBehaviour
     void DragLanding()
     {
         height = dist;
-        dragCoef = d / Mathf.Sqrt(height);
+        dragCoef = dSurf / Mathf.Sqrt(height);
         dragCoef = Mathf.Clamp(dragCoef, 0, 1);
 
         if (enableDrag)
@@ -196,7 +250,7 @@ public class PhysicsController : MonoBehaviour
         if (parachuteKeyPressed)
         {
             parachuteKeyPressed = false;
-            if (!parachuteDeployed)
+            if (!parachuteDeployed && parachuteReady)
             {
                 DeployParachute();
             }
@@ -217,27 +271,59 @@ public class PhysicsController : MonoBehaviour
     void DecelerateLanding()
     {
         if (Input.GetKey(KeyCode.Space))
-            rb.AddForce(-thrust * Time.fixedDeltaTime * rb.velocity.normalized, ForceMode.VelocityChange);
+        {
+            if (thrusterActive)
+                rb.AddForce(-thrustLanding * Time.fixedDeltaTime * rb.velocity.normalized, ForceMode.VelocityChange);
+        }
     }
 
     void DeployParachute()
     {
         parachuteDeployed = true;
         parachuteActive = true;
+        parachuteReady = false;
 
     }
 
     void ReleaseParachute()
     {
         parachuteActive = false;
+        thrusterActive = true;
     }
 
+    void StopSpinning()
+    {
+        float spd = orbitalModel.GetComponentInChildren<Spin>().speed;
+
+        if (spinActive)
+        {
+            if (spd > 0)
+                spd -= 2f * Time.fixedDeltaTime;
+            else
+            {
+                spd = 0;
+                spinActive = false;
+                parachuteReady = true;
+            }
+
+            orbitalModel.GetComponentInChildren<Spin>().speed = spd;
+        }
+    }
 
     void ApplyStabilizingTorque()
     {
-        //rb.AddRelativeTorque();
+        if (torqueActive)
+        {
+            if (Input.GetKey(KeyCode.S))
+            {
+                rb.AddRelativeTorque(torque * transform.right, ForceMode.Acceleration);
+            }
+            else if (Input.GetKey(KeyCode.W))
+            {
+                rb.AddRelativeTorque(-torque * transform.right, ForceMode.Acceleration);
+            }
+        }
     }
-
 
     public void LockTimeScale()
     {

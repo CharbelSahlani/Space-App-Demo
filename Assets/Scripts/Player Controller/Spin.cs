@@ -9,7 +9,7 @@ public class Spin : MonoBehaviour
 	[Tooltip("Speed: No or Length of day: Yes")]
 	public float rotationSpeed;
 
-	private float speed;
+	public float speed;
 	private float direction = 1f;
 
     void Start()
