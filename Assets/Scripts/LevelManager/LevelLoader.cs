@@ -18,6 +18,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Video;
+using TMPro;
 
 public class LevelLoader : MonoBehaviour
 {
@@ -25,10 +27,32 @@ public class LevelLoader : MonoBehaviour
     public Animator transition;
     //Time to wait while the animation is playing
     public float transitionTime = 1f;
-    // Update is called once per frame
-    void Update()
-    {
+    [SerializeField] VideoPlayer video_player;
+    private int savedLevelIndex = 0;
 
+    private void Awake()
+    {
+        Application.targetFrameRate = 60;
+    }
+    private void Start()
+    {
+        savedLevelIndex = PlayerPrefs.GetInt("SavedLevel", 0);
+        if (savedLevelIndex == 0)
+        {
+            savedLevelIndex = 1;
+        }
+    }
+    // Update is called once per frame
+    private void Update()
+    {
+        if (video_player)
+        {
+            if (!video_player.isPlaying)
+            {
+                LoadNextLevel();
+                AudioManager.instance.MusicMixer.SetFloat("MusicVolume", -80f);
+            }
+        }
     }
     /**
       * This function loads the next level 
@@ -59,9 +83,16 @@ public class LevelLoader : MonoBehaviour
       */
     public void LoadSettingsMenu()
     {
-        StartCoroutine(LoadLevel(2));
+        StartCoroutine(LoadLevel(6));
     }
 
+    /**
+      * This function loads the free navigation scene
+      */
+    public void LoadFreeNavigationScene()
+    {
+        StartCoroutine(LoadLevel(5));
+    }
     /**
       * This function quits the game
       */
@@ -95,5 +126,10 @@ public class LevelLoader : MonoBehaviour
     public void PlayButtonSound()
     {
         AudioManager.instance.PlaySound("Button Press");
+    }
+
+    public void LoadSavedLevel()
+    {
+        StartCoroutine(LoadLevel(savedLevelIndex));
     }
 }

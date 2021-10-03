@@ -25,6 +25,7 @@ public class MouseLook : MonoBehaviour
     public Transform playerBody;
     //The rotation of the up and down direction
     float xRotation = 0f;
+    public bool freeNavigation = false; 
     // Start is called before the first frame update
     //get the table of regex
     //IDictionary<string, string[]> regex_array = new Dictionary<string, string[]>();
@@ -38,8 +39,13 @@ public class MouseLook : MonoBehaviour
 
     void Start()
     {
-        regex_script = FindObjectOfType<HandleRegex>();
-        regex_arr = regex_script.get_regex_array();
+        /* check if we're in the free navigation scene and setup regex */
+        if (freeNavigation)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            regex_script = FindObjectOfType<HandleRegex>();
+            regex_arr = regex_script.get_regex_array();
+        }
     }
 
     // Update is called once per frame
@@ -56,46 +62,48 @@ public class MouseLook : MonoBehaviour
         //Rotate the entire player body left and right
         playerBody.Rotate(Vector3.up * mouseX);
 
-
-        //raycast 
-        // Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-        if (Physics.Raycast(ray, out hit))
+        if (freeNavigation)
         {
-            Transform objectHit = hit.transform;
-            //Debug.Log(objectHit + "name " + objectHit.name);
+            //raycast 
+            // Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-            //check the planets
-
-            foreach (KeyValuePair<string, string[]> kvp in regex_arr)
+            if (Physics.Raycast(ray, out hit))
             {
+                Transform objectHit = hit.transform;
+                //Debug.Log(objectHit + "name " + objectHit.name);
 
-                //Debug.Log(kvp.Key + str);
-                if (objectHit.name == kvp.Key && last_planet_name != kvp.Key)
+                //check the planets
+
+                foreach (KeyValuePair<string, string[]> kvp in regex_arr)
                 {
-                    ai_panel.SetActive(true);
-                    last_planet_name = kvp.Key;
-                    System.Random rnd = new System.Random();
-                    rdx = rnd.Next() % regex_arr[kvp.Key].Length;
-                    while (rdx == last_random)
+
+                    //Debug.Log(kvp.Key + str);
+                    if (objectHit.name == kvp.Key && last_planet_name != kvp.Key)
                     {
+                        ai_panel.SetActive(true);
+                        last_planet_name = kvp.Key;
+                        System.Random rnd = new System.Random();
                         rdx = rnd.Next() % regex_arr[kvp.Key].Length;
+                        while (rdx == last_random)
+                        {
+                            rdx = rnd.Next() % regex_arr[kvp.Key].Length;
+                        }
+                        Debug.Log(kvp.Value[rdx]);
+                        ai_text.text = kvp.Value[rdx];
                     }
-                    Debug.Log(kvp.Value[rdx]);
-                    ai_text.text = kvp.Value[rdx];
+
                 }
 
             }
-
-        }
-        else
-        {
-            last_planet_name = "";
-            ai_text.text = "";
-            ai_panel.SetActive(false);
-            last_random = rdx;
+            else
+            {
+                last_planet_name = "";
+                ai_text.text = "";
+                ai_panel.SetActive(false);
+                last_random = rdx;
+            }
         }
     }
 
