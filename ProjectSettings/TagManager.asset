@@ -9,6 +9,9 @@ TagManager:
   - Enemy
   - Press Key Text
   - CornerObj
+  - Orion
+  - Model
+  - FollowerCamera
   layers:
   - Default
   - TransparentFX

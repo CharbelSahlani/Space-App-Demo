@@ -18,6 +18,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Video;
+using TMPro;
 
 public class LevelLoader : MonoBehaviour
 {
@@ -25,10 +27,19 @@ public class LevelLoader : MonoBehaviour
     public Animator transition;
     //Time to wait while the animation is playing
     public float transitionTime = 1f;
-    // Update is called once per frame
-    void Update()
-    {
+    [SerializeField] VideoPlayer video_player;
 
+    // Update is called once per frame
+    private void Update()
+    {
+        if (video_player)
+        {
+            if (!video_player.isPlaying)
+            {
+                LoadNextLevel();
+                AudioManager.instance.MusicMixer.SetFloat("MusicVolume", -80f);
+            }
+        }
     }
     /**
       * This function loads the next level 
@@ -62,6 +73,13 @@ public class LevelLoader : MonoBehaviour
         StartCoroutine(LoadLevel(2));
     }
 
+    /**
+      * This function loads the free navigation scene
+      */
+    public void LoadFreeNavigationScene()
+    {
+        StartCoroutine(LoadLevel(3));
+    }
     /**
       * This function quits the game
       */

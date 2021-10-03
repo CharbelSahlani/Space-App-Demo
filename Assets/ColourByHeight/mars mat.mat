@@ -81,7 +81,7 @@ Material:
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _FifthC: {r: 0.6981132, g: 0.45726416, b: 0, a: 1}
     - _FirstC: {r: 1, g: 0.7345494, b: 0, a: 1}
-    - _FourthC: {r: 1, g: 0.59912676, b: 0, a: 1}
+    - _FourthC: {r: 1, g: 0.47788578, b: 0, a: 1}
     - _SecondC: {r: 0.8113208, g: 0.5365707, b: 0, a: 1}
     - _ThirdC: {r: 0.754717, g: 0.4319252, b: 0, a: 1}
   m_BuildTextureStacks: []

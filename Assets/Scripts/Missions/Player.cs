@@ -32,8 +32,11 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-        AudioManager.instance.MusicMixer.SetFloat("MusicVolume",
-                PlayerPrefs.GetFloat("MusicVolume", 0f));
-        XP = PlayerPrefs.GetInt("Total XP", 0);
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.MusicMixer.SetFloat("MusicVolume",
+                    PlayerPrefs.GetFloat("MusicVolume", 0f));
+            XP = PlayerPrefs.GetInt("Total XP", 0);
+        }
     }
 }
