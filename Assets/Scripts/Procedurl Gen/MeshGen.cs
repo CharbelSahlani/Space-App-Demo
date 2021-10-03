@@ -19,6 +19,7 @@ public class MeshGen : MonoBehaviour
     //defining the required variables to create a mesh
     private int[] triangles;
     private Vector3[] vertices;
+    [SerializeField] float noise_height = 3f;
     void Start()
     {
         mesh = new Mesh();
@@ -41,7 +42,7 @@ public class MeshGen : MonoBehaviour
         {
             for(int x = 0; x<=world_x; x++)
             {
-                vertices[i] = new Vector3(x, 0, z);
+                vertices[i] = new Vector3(x, generate_noise(x,z,8f) * noise_height, z);
                 i++;
             }
         }
@@ -77,4 +78,12 @@ public class MeshGen : MonoBehaviour
         mesh.triangles = triangles;
         mesh.RecalculateNormals();
     }
+    //method to generate perlin noise 
+    private float generate_noise(int x, int z, float detail_scale)
+    {
+        float x_noise = (x + this.transform.position.x) / detail_scale;
+        float z_noise = (z + this.transform.position.y) / detail_scale;
+        return Mathf.PerlinNoise(x_noise, z_noise);
+    }
+
 }

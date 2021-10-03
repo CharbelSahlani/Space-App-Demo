@@ -362,9 +362,10 @@ MonoBehaviour:
   worldsize_z: 20
   grid_offset: 1.1
   block_tile: {fileID: 6532482463074239292, guid: f7d303a43f6a1b143a6ff021a7109526, type: 3}
-  noise_height: 3
+  noise_height: 5
   object_to_spawn: {fileID: 6381750268838506837, guid: f6b17302ffeee114faef98bad4c83f61, type: 3}
   num_of_obj_to_spawn: 20
+  detail_scale: 8
 --- !u!4 &2136745583
 Transform:
   m_ObjectHideFlags: 0
