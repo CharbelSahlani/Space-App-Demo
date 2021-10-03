@@ -28,6 +28,7 @@ public class MeshGen : MonoBehaviour
     [SerializeField] GameObject colZ; //collision on + z 
     [Header("Collision + - Z")]
     [SerializeField] GameObject col_Z; //collision on - z 
+    private float collider_offset = 10f;
     void Start()
     {
         mesh = new Mesh();
@@ -35,10 +36,10 @@ public class MeshGen : MonoBehaviour
         generate_mesh();
         update_mesh();
 
-        colX.transform.position = new Vector3(world_x, colX.transform.position.y, world_z/2);
-        col_X.transform.position = new Vector3(0f, col_X.transform.position.y, world_z/2);
-        colZ.transform.position = new Vector3(world_x/2, colZ.transform.position.y, world_z);
-        col_Z.transform.position = new Vector3(world_z/2, col_Z.transform.position.y, 0f);
+        colX.transform.position = new Vector3(world_x - collider_offset, colX.transform.position.y, world_z/2);
+        col_X.transform.position = new Vector3(collider_offset, col_X.transform.position.y, world_z/2);
+        colZ.transform.position = new Vector3(world_x/2, colZ.transform.position.y, world_z - collider_offset);
+        col_Z.transform.position = new Vector3(world_z/2, col_Z.transform.position.y, collider_offset);
         col_Z.GetComponent<BoxCollider>().size = new Vector3(world_z, 100, 0.5f);
         colZ.GetComponent<BoxCollider>().size = new Vector3(world_z, 100, 0.5f);
         colX.GetComponent<BoxCollider>().size = new Vector3(world_x, 100, 0.5f);
