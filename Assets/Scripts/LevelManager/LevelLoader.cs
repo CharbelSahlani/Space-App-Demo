@@ -19,6 +19,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Video;
+using TMPro;
 
 public class LevelLoader : MonoBehaviour
 {
@@ -27,6 +28,7 @@ public class LevelLoader : MonoBehaviour
     //Time to wait while the animation is playing
     public float transitionTime = 1f;
     [SerializeField] VideoPlayer video_player;
+
     // Update is called once per frame
     private void Update()
     {
@@ -35,6 +37,7 @@ public class LevelLoader : MonoBehaviour
             if (!video_player.isPlaying)
             {
                 LoadNextLevel();
+                AudioManager.instance.MusicMixer.SetFloat("MusicVolume", -80f);
             }
         }
     }

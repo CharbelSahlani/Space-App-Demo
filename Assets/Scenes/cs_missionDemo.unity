@@ -491,8 +491,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ea76373b759be6488013a1a16e39d2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  world_x: 200
-  world_z: 200
+  world_x: 400
+  world_z: 400
   noise_height: 3
   colX: {fileID: 1309791395}
   col_X: {fileID: 313690599}
@@ -4092,7 +4092,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1133848672}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -6753,7 +6753,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1910676021}
-  - component: {fileID: 1910676022}
   m_Layer: 3
   m_Name: Environment
   m_TagString: Untagged
@@ -6777,26 +6776,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1910676022
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1910676020}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2355474bf7a5d72428431c27b2e623c6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  worldsize_x: 50
-  worldsize_z: 50
-  grid_offset: 145
-  block_tile: {fileID: 1815949444400702496, guid: 150db47cfbb7d9045a069bf7fb73d8f9, type: 3}
-  noise_height: 5
-  object_to_spawn: {fileID: 1535173239381153080, guid: 96637aa712c9d4d4db81728cb4453000, type: 3}
-  num_of_obj_to_spawn: 20
-  detail_scale: 20
 --- !u!1 &1950887231
 GameObject:
   m_ObjectHideFlags: 0
@@ -7865,7 +7844,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 919132148238129832}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 2, z: 0}
+  m_LocalPosition: {x: 10, y: 10, z: 30}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2136381547365950538}
