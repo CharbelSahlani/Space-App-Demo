@@ -481,8 +481,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ea76373b759be6488013a1a16e39d2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  world_x: 40
-  world_z: 40
+  world_x: 200
+  world_z: 200
   noise_height: 3
   colX: {fileID: 1398968105}
   col_X: {fileID: 199836455}
