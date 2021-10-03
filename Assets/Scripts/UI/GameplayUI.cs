@@ -22,6 +22,11 @@ public class GameplayUI : MonoBehaviour
 {
     public static GameplayUI instance;
 
+    public Text spinText;
+    public Text heatShieldText;
+    public Text parachuteText;
+    public Text cushionText;
+
     public Slider fuelSlider;
     public Image fuelFill;
     public Gradient fuelGradient;
@@ -36,6 +41,11 @@ public class GameplayUI : MonoBehaviour
     public Gradient velocityGradient;
     public Text velocityText;
 
+    public Slider velocityZSlider;
+    public Image velocityZFill;
+    public Gradient velocityZGradient;
+    public Text velocityZText;
+
     void Awake()
     {
         instance = this;
@@ -45,13 +55,13 @@ public class GameplayUI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     /**
@@ -80,7 +90,7 @@ public class GameplayUI : MonoBehaviour
      * This function updates the altitude 
      * param[in] altitude  represents the updated altitude
      */
-    public void SetAltitude(float altitude)
+    public void SetAltitude(float altitude, float multiplier)
     {
         altitudeSlider.value = altitude;
         altitudeFill.color = altitudeGradient.Evaluate(altitudeSlider.normalizedValue);
@@ -88,7 +98,7 @@ public class GameplayUI : MonoBehaviour
             altitudeText.text = "MAX";
         else
         {
-            float temp = altitude * 100;
+            float temp = altitude * multiplier;
             altitudeText.text = temp.ToString("0") + "\nkm";
         }
     }
@@ -109,12 +119,12 @@ public class GameplayUI : MonoBehaviour
      * This function updates the velocity 
      * param[in] velocity  represents the updated velocity
      */
-    public void SetVelocity(float velocity)
+    public void SetVelocity(float velocity, float multiplier)
     {
         velocitySlider.value = velocity;
         velocityFill.color = velocityGradient.Evaluate(velocitySlider.normalizedValue);
 
-        float temp = velocity * 3600;
+        float temp = velocity * multiplier;
         velocityText.text = temp.ToString("0") + "\nkm/h";
     }
 
@@ -128,5 +138,76 @@ public class GameplayUI : MonoBehaviour
         velocitySlider.value = maxVelocity;
         // We set the value t 1 to indicate that the bar is full
         velocityFill.color = velocityGradient.Evaluate(1f);
+    }
+
+    /**
+     * This function updates the z-velocity 
+     * param[in] velocity  represents the updated z-velocity
+     */
+    public void SetVelocityZ(float velocityZ, float multiplier)
+    {
+        velocityZSlider.value = velocityZ;
+        velocityZFill.color = velocityZGradient.Evaluate(velocityZSlider.normalizedValue);
+
+        float temp = velocityZ * multiplier;
+        velocityZText.text = temp.ToString("0") + "\nkm/h";
+    }
+
+    /**
+     * This function sets the maximum z-velocity
+     * param[in] maxVelocityZ represents the max z-velocity
+     */
+    public void SetMaxVelocityZ(float maxVelocityZ)
+    {
+        velocityZSlider.maxValue = maxVelocityZ;
+        velocityZSlider.value = maxVelocityZ;
+        // We set the value t 1 to indicate that the bar is full
+        velocityZFill.color = velocityZGradient.Evaluate(1f);
+    }
+
+    public void UpdateSpinAndShieldText(bool status)
+    {
+        spinText.text = "Spin: OFF";
+        spinText.color = Color.green;
+
+        if (!status)
+        {
+            heatShieldText.text = "Heat Shield: READY";
+            heatShieldText.color = Color.yellow;
+        }
+        else
+        {
+            heatShieldText.text = "Heat Shield: DEPLOYED";
+            heatShieldText.color = Color.green;
+        }
+    }
+
+    public void UpdateParachuteText(bool status)
+    {
+        if (!status)
+        {
+            parachuteText.text = "Parachute: READY";
+            parachuteText.color = Color.yellow;
+        }
+        else
+        {
+            parachuteText.text = "Parachute: DEPLOYED";
+            parachuteText.color = Color.green;
+        }
+    }
+
+    public void UpdateCushionText(bool status)
+    {
+        if (!status)
+        {
+            cushionText.text = "Cushion: READY";
+            cushionText.color = Color.yellow;
+        }
+        else
+        {
+            cushionText.text = "Cushion: DEPLOYS";
+            cushionText.color = Color.green;
+        }
+
     }
 }

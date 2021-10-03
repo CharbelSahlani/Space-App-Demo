@@ -138,17 +138,17 @@ MonoBehaviour:
   G: 6.67
   d1: 0.03
   d2: 1
-  gSurf: 3.72
-  dSurf: 0.5
+  gSurf: 1
+  dSurf: 0.2
   shieldDrag: 5
-  parachuteDrag: 2
+  parachuteDrag: 5
   dist: 1000
   radius: 34
   initSpeedOrbiting: 2.648
-  initSpeedLanding: 50
+  initSpeedLanding: 80
   thrustOrbiting: 1
   thrustLanding: 1
-  torque: 5
+  torque: 3.5
   totalFuel: 100
   fuelUsage: 60
   shieldKeyPressed: 0

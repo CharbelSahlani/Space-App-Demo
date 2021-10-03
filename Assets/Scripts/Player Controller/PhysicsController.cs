@@ -32,6 +32,7 @@ public class PhysicsController : MonoBehaviour
     public float d1;
     public float d2;
     public float gSurf;
+    public float maxDrag;
     public float dSurf;
     public float shieldDrag;
     public float parachuteDrag;
@@ -118,6 +119,10 @@ public class PhysicsController : MonoBehaviour
 
             EnableShadows();
             anim = orion.GetComponent<Animator>();
+
+            GameplayUI.instance.SetMaxAltitude(1000f);
+            GameplayUI.instance.SetMaxVelocity(80f);
+            GameplayUI.instance.SetMaxVelocityZ(80f);
         }
 
         if (GetComponent<BoxCollider>() != null)
@@ -156,7 +161,8 @@ public class PhysicsController : MonoBehaviour
             }
             if (Input.GetKeyDown(KeyCode.Backspace))
             {
-                spinActive = true;
+                if (!(shieldReady || shieldDeployed))
+                    spinActive = true;
             }
 
             if (Input.GetKeyDown(KeyCode.C))
@@ -165,6 +171,7 @@ public class PhysicsController : MonoBehaviour
                 {
                     cushionActive = true;
                     anim.SetTrigger("CushionDeploy");
+                    GameplayUI.instance.UpdateCushionText(true);
                 }
             }
             if (Input.GetKeyDown(KeyCode.H))
@@ -173,15 +180,18 @@ public class PhysicsController : MonoBehaviour
                     shieldKeyPressed = true;
             }
 
-            if (Mathf.Abs(rb.velocity.magnitude) < 20f && shieldDeployed)
+            if (Mathf.Abs(rb.velocity.magnitude) < 20f && height < 50f && shieldDeployed && !parachuteDeployed)
             {
+                Debug.LogWarning("Parachute ready");
                 parachuteReady = true;
+                GameplayUI.instance.UpdateParachuteText(false);
             }
 
-            if (Mathf.Abs(rb.velocity.y) < 15f && parachuteDeployed && Vector3.Angle(Vector3.up, orion.transform.up) < 1f)
+            if (height < 20f && parachuteDeployed && Vector3.Angle(Vector3.up, orion.transform.up) < 1f && !cushionActive)
             {
                 cushionReady = true;
                 torqueActive = false;
+                GameplayUI.instance.UpdateCushionText(false);
             }
 
             CameraUpdate();
@@ -204,7 +214,7 @@ public class PhysicsController : MonoBehaviour
         //if player is landing
         else if (SceneManager.GetActiveScene().name == sceneNames[1])
         {
-            Debug.Log("v=" + rb.velocity + "\tp=" + transform.position.y);
+            //Debug.Log("v=" + rb.velocity + "\tp=" + transform.position.y);
             LanderKinematicsLanding();
             GravityLanding();
             DragLanding();
@@ -227,7 +237,7 @@ public class PhysicsController : MonoBehaviour
         dir = pos.normalized;
         velDir = rb.velocity.normalized;
 
-        GameplayUI.instance.SetVelocity(rb.velocity.magnitude);
+        GameplayUI.instance.SetVelocity(rb.velocity.magnitude, 3600);
     }
 
     void GravityOrbit()
@@ -241,7 +251,7 @@ public class PhysicsController : MonoBehaviour
     void DragOrbit()
     {
         height = dist - radius;
-        GameplayUI.instance.SetAltitude(height);
+        GameplayUI.instance.SetAltitude(height, 100);
 
         drag = -d1 * Mathf.Exp(-d2 * height * height) * velDir * rb.velocity.sqrMagnitude;
         if (enableDrag)
@@ -270,6 +280,8 @@ public class PhysicsController : MonoBehaviour
         dist = transform.position.y;
         dir = Vector3.up;
         velDir = rb.velocity.normalized;
+        GameplayUI.instance.SetVelocity(rb.velocity.magnitude, 150.0f);
+        GameplayUI.instance.SetVelocityZ(rb.velocity.z, 150.0f);
     }
 
     void GravityLanding()
@@ -283,8 +295,10 @@ public class PhysicsController : MonoBehaviour
     void DragLanding()
     {
         height = dist;
+        GameplayUI.instance.SetAltitude(height, 0.2f);
+
         dragCoef = dSurf / Mathf.Sqrt(height);
-        dragCoef = Mathf.Clamp(dragCoef, 0, 1);
+        dragCoef = Mathf.Clamp(dragCoef, 0, maxDrag);
 
         if (enableDrag)
             rb.drag = dragCoef;
@@ -304,7 +318,7 @@ public class PhysicsController : MonoBehaviour
         if (shieldActive)
         {
             dragCoef *= shieldDrag;
-            dragCoef = Mathf.Clamp(dragCoef, 0, 1);
+            dragCoef = Mathf.Clamp(dragCoef, 0, maxDrag);
             rb.drag = dragCoef;
         }
     }
@@ -324,7 +338,7 @@ public class PhysicsController : MonoBehaviour
         if (parachuteActive)
         {
             dragCoef *= parachuteDrag;
-            dragCoef = Mathf.Clamp(dragCoef, 0, 1);
+            dragCoef = Mathf.Clamp(dragCoef, 0, maxDrag);
             rb.drag = dragCoef;
         }
     }
@@ -335,6 +349,8 @@ public class PhysicsController : MonoBehaviour
         parachuteActive = true;
         parachuteReady = false;
         anim.SetTrigger("ParachuteDeploy");
+        GameplayUI.instance.UpdateParachuteText(true);
+        torqueActive = true;
     }
 
     void DeployShield()
@@ -343,6 +359,7 @@ public class PhysicsController : MonoBehaviour
         shieldActive = true;
         shieldReady = false;
         anim.SetTrigger("ShieldDeploy");
+        GameplayUI.instance.UpdateSpinAndShieldText(true);
     }
 
     void StopSpinning()
@@ -357,8 +374,8 @@ public class PhysicsController : MonoBehaviour
             {
                 spd = 0;
                 spinActive = false;
-                torqueActive = true;
                 shieldReady = true;
+                GameplayUI.instance.UpdateSpinAndShieldText(false);
             }
 
             orbitalModel.GetComponentInChildren<Spin>().speed = spd;
@@ -369,19 +386,13 @@ public class PhysicsController : MonoBehaviour
     {
         if (torqueActive)
         {
-            if (Input.GetKey(KeyCode.S))
+            if (transform.eulerAngles.x < 74.9f)
+                rb.AddRelativeTorque(torque * transform.right, ForceMode.Acceleration);
+            else
             {
-                if (transform.eulerAngles.x < 74.9f)
-                    rb.AddRelativeTorque(torque * transform.right, ForceMode.Acceleration);
-                else
-                    transform.eulerAngles = new Vector3(75f, transform.eulerAngles.y, transform.eulerAngles.z);
-            }
-            else if (Input.GetKey(KeyCode.W))
-            {
-                if (transform.eulerAngles.x > 10.1f)
-                    rb.AddRelativeTorque(-torque * transform.right, ForceMode.Acceleration);
-                else
-                    transform.eulerAngles = new Vector3(10f, transform.eulerAngles.y, transform.eulerAngles.z);
+                rb.angularDrag = 100;
+                transform.eulerAngles = new Vector3(75f, transform.eulerAngles.y, transform.eulerAngles.z);
+                torqueActive = false;
             }
         }
     }
