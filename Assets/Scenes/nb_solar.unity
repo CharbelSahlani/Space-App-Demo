@@ -855,6 +855,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: earth
       objectReference: {fileID: 0}
+    - target: {fileID: 7613344399128197115, guid: 34f160c3c55837647bafab49a3a6a026, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 34f160c3c55837647bafab49a3a6a026, type: 3}
 --- !u!1 &233780781
@@ -3522,7 +3526,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1015093300
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6093,6 +6097,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: jupiter
       objectReference: {fileID: 0}
+    - target: {fileID: 952255901853207681, guid: 0db1c3809d4669f4da6a1fb6d83de595, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4354898308072948106, guid: 0db1c3809d4669f4da6a1fb6d83de595, type: 3}
       propertyPath: m_RootOrder
       value: 12
@@ -6808,7 +6816,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1801885109
 MonoBehaviour:
   m_ObjectHideFlags: 0

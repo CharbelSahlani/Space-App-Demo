@@ -996,6 +996,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: prop_asteroid_01 (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 1535173239381153080, guid: 96637aa712c9d4d4db81728cb4453000, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1841811979110639722, guid: 96637aa712c9d4d4db81728cb4453000, type: 3}
       propertyPath: cornerAsteroidObj
       value: 
@@ -1189,7 +1193,7 @@ MonoBehaviour:
     goldReward: 10
     goal:
       goalType: 1
-      requiredAmount: 20
+      requiredAmount: 1
 --- !u!1001 &335264794
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1200,6 +1204,10 @@ PrefabInstance:
     - target: {fileID: 1535173239381153080, guid: 96637aa712c9d4d4db81728cb4453000, type: 3}
       propertyPath: m_Name
       value: prop_asteroid_01 (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1535173239381153080, guid: 96637aa712c9d4d4db81728cb4453000, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1841811979110639722, guid: 96637aa712c9d4d4db81728cb4453000, type: 3}
       propertyPath: cornerAsteroidObj
@@ -1269,7 +1277,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!65 &359820577
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2263,6 +2271,10 @@ PrefabInstance:
     - target: {fileID: 1535173239381153080, guid: 96637aa712c9d4d4db81728cb4453000, type: 3}
       propertyPath: m_Name
       value: prop_asteroid_01 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1535173239381153080, guid: 96637aa712c9d4d4db81728cb4453000, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1841811979110639722, guid: 96637aa712c9d4d4db81728cb4453000, type: 3}
       propertyPath: cornerAsteroidObj
@@ -3833,6 +3845,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: prop_asteroid_01 (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 1535173239381153080, guid: 96637aa712c9d4d4db81728cb4453000, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1841811979110639722, guid: 96637aa712c9d4d4db81728cb4453000, type: 3}
       propertyPath: cornerAsteroidObj
       value: 
@@ -3921,7 +3937,7 @@ MonoBehaviour:
     goldReward: 10
     goal:
       goalType: 1
-      requiredAmount: 20
+      requiredAmount: 1
   player: {fileID: 306753020}
   missionWindow: {fileID: 429012382}
   titleText: {fileID: 1426552264}
@@ -4206,6 +4222,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: prop_asteroid_01 (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 1535173239381153080, guid: 96637aa712c9d4d4db81728cb4453000, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1841811979110639722, guid: 96637aa712c9d4d4db81728cb4453000, type: 3}
       propertyPath: cornerAsteroidObj
       value: 
@@ -4341,6 +4361,10 @@ PrefabInstance:
     - target: {fileID: 1535173239381153080, guid: 96637aa712c9d4d4db81728cb4453000, type: 3}
       propertyPath: m_Name
       value: prop_asteroid_01 (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1535173239381153080, guid: 96637aa712c9d4d4db81728cb4453000, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1841811979110639722, guid: 96637aa712c9d4d4db81728cb4453000, type: 3}
       propertyPath: cornerAsteroidObj
@@ -5528,7 +5552,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1815949444400702496, guid: 150db47cfbb7d9045a069bf7fb73d8f9, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 150db47cfbb7d9045a069bf7fb73d8f9, type: 3}
@@ -6062,7 +6086,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1695682108
 Transform:
   m_ObjectHideFlags: 0
@@ -7716,6 +7740,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: prop_asteroid_01 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 1535173239381153080, guid: 96637aa712c9d4d4db81728cb4453000, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1841811979110639722, guid: 96637aa712c9d4d4db81728cb4453000, type: 3}
       propertyPath: cornerAsteroidObj
       value: 
@@ -7776,6 +7804,10 @@ PrefabInstance:
     - target: {fileID: 1535173239381153080, guid: 96637aa712c9d4d4db81728cb4453000, type: 3}
       propertyPath: m_Name
       value: prop_asteroid_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 1535173239381153080, guid: 96637aa712c9d4d4db81728cb4453000, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1841811979110639722, guid: 96637aa712c9d4d4db81728cb4453000, type: 3}
       propertyPath: cornerAsteroidObj
