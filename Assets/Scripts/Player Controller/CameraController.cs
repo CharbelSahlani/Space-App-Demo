@@ -35,7 +35,7 @@ public class CameraController : MonoBehaviour
         }
         else
         {
-            cam.transform.position = orion.position + landingOffset;
+            cam.transform.position = orion.position + landingOffset * (1 + 5.0f * orion.position.y / 1000.0f);
             cam.transform.LookAt(orion.position);
         }
     }

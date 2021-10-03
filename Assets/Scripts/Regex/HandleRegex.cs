@@ -52,16 +52,17 @@ public class HandleRegex : MonoBehaviour
         textTyper = FindObjectOfType<TextTyper>();
         /*Usind dictionaries that hold a bag of words as key value pair */
         regex_exp.Add("greetings", new string[] { "hello", "hi", "greetings", "hey" });
-        regex_exp.Add("assistant", new string[] { "assistant", "guide" ,"companion" });
-        regex_exp.Add("essVerbs", new string[] { "guiding you", "assisting you"});
-        regex_exp.Add("adventure", new string[] {"adventure", "journey"});
+        regex_exp.Add("assistant", new string[] { "assistant", "guide", "companion" });
+        regex_exp.Add("essVerbs", new string[] { "guiding you", "assisting you" });
+        regex_exp.Add("adventure", new string[] { "adventure", "journey" });
+
         //planets
         //sun
         regex_exp.Add("sun", new string[] { "The Sun is a yellow dwarf star, a hot ball of glowing gases at the heart of our solar system. Its gravity holds everything from the biggest planets to tiny debris in its orbit.",
                                             "Electric currents in the Sun generate a magnetic field that is carried out through the solar system by the solar wind. A stream of electrically charged gas blowing outward from the Sun in all directions.",
                                             "The Sun is the largest object in our solar system, comprising 99.8% of the system’s mass. Though it seems huge to us, the Sun isn't as large as other types of stars.",
-                                            "Earth orbits the Sun from a distance of about 93 million miles. The connection and interactions between the Sun and Earth drive our planet's seasons, ocean currents, weather, climate, radiation belts, and aurorae. Though it is special to us, there are billions of stars like our Sun scattered across the Milky Way galaxy."                                
-        
+                                            "Earth orbits the Sun from a distance of about 93 million miles. The connection and interactions between the Sun and Earth drive our planet's seasons, ocean currents, weather, climate, radiation belts, and aurorae. Though it is special to us, there are billions of stars like our Sun scattered across the Milky Way galaxy."
+
         });
         //mercury
         regex_exp.Add("mercury", new string[] {"The smallest planet in our solar system and closest to the Sun. Itis only slightly larger than Earth's Moon. Mercury is the fastest planet, zipping around the Sun every 88 Earth days.",
@@ -118,14 +119,41 @@ public class HandleRegex : MonoBehaviour
                                                     "Our solar system extends much farther than the eight planets that orbit the Sun. The solar system also includes the Kuiper Belt that lies past Neptune's orbit. This is a sparsely occupied ring of icy bodies, almost all smaller than the most popular Kuiper Belt Object – dwarf planet Pluto.",
                                                     "The order and arrangement of the planets and other bodies in our solar system is due to the way the solar system formed. Nearest to the Sun, only rocky material could withstand the heat when the solar system was young. For this reason, the first four planets – Mercury, Venus, Earth, and Mars – are terrestrial planets. They are all small with solid, rocky surfaces."});
 
-        //slow down
-        regex_exp.Add("lock", new string[] { "Time has slowed down for you to focus.\nWhen the altitude reaches 210 km, slow down to 15400 km/h."});
+        //welcome
+        regex_exp.Add("welcome", new string[] {"Welcome to Journey To Mars."});
 
-        //watch orbiting
-        regex_exp.Add("unlock", new string[] { "Time control is back on.\nSpeed up to see the orbit." });
+        //introduce the Ai
+        regex_exp.Add("intro", new string[] { "Welcome to Journey To Mars." });
+
+
+
+        //time control
+        regex_exp.Add("time_lock", new string[] {
+            "Time has slowed down for you to focus.\nWhen the altitude reaches 210 km, slow down until the velocity is in the green.",
+            "Time control is back on.\nSpeed up to see the orbit."});
 
         //orbit verifier
-        regex_exp.Add("orbit_verifier", new string[] { "Well done! You achieved the correct trajectory", "You slowed down more than you need.\nYou will crash.","You did not slow down enough.\nYou will miss the planet." });
+        regex_exp.Add("orbit_verifier", new string[] { "Well done! You achieved the correct trajectory", "You slowed down more than you need.\nYou will crash.", "You did not slow down enough.\nYou will miss the planet." });
+
+        /*
+         * tutorial
+         */
+        regex_exp.Add("tutorial", new string[] { "Press and hold \"Space\" for fuel burn." });
+
+
+
+
+        //button mapping
+        regex_exp.Add("button_mapping", new string[] {
+            "I will teach you about the buttons you will use.",
+            "Press and hold \"Space\" for fuel burn." ,
+            "Press \"V\" to switch between top view and third person cameras.",
+            "Press \"-\" to slow down time.\nPress \"=\" to speed up time."});
+
+
+
+
+
 
         foreach (KeyValuePair<string, string[]> kvp in regex_exp)
         {
@@ -136,7 +164,7 @@ public class HandleRegex : MonoBehaviour
         }
         //testing in the UI
         string lbl_text = "hello I am AJ your AI assistant ";
-        string ans = replace_word(lbl_text, random_word(regex_exp["greetings"]),@"hi\s|hey\s|hello\s|greetings\s");
+        string ans = replace_word(lbl_text, random_word(regex_exp["greetings"]), @"hi\s|hey\s|hello\s|greetings\s");
         //label_text.text = ans;
         ans = replace_word(ans, random_word(regex_exp["assistant"]), create_pattern(regex_exp["assistant"]));
         Debug.Log(create_pattern(regex_exp["assistant"]));
@@ -174,10 +202,10 @@ public class HandleRegex : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
-    public IDictionary<string, string[]>  get_regex_array()
+    public IDictionary<string, string[]> get_regex_array()
     {
         return regex_exp;
     }

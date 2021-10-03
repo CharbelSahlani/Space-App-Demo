@@ -12,16 +12,19 @@ public class PhysicsController : MonoBehaviour
     [SerializeField] private int renderSpeedIndex;
 
     public Transform planet;
+    public Transform orbitalModel;
+    public GameObject orion;
+
     private Rigidbody rb;
     private TrailRenderer trail;
+    private Animator anim;
+
     public bool enableGravity;
     public bool enableDrag;
     public bool sudChange;
     private Vector3 centerOfMass;
     private bool timeScaleLocked = false;
     private bool fuelDisabled = true;
-    [SerializeField] private Transform orbitalModel;
-
 
     //Planet parameters
     public float planetMass;
@@ -57,7 +60,8 @@ public class PhysicsController : MonoBehaviour
     [SerializeField] private bool parachuteReady = false;
     [SerializeField] private bool parachuteDeployed = false;
     [SerializeField] private bool parachuteActive = false;
-    [SerializeField] private bool thrusterActive = false;
+    [SerializeField] private bool cushionActive = false;
+    [SerializeField] private bool cushionReady = false;
     [SerializeField] private bool torqueActive = false;
     [SerializeField] private bool spinActive = false;
 
@@ -65,7 +69,8 @@ public class PhysicsController : MonoBehaviour
 
 
     //Forces
-    /*[HideInInspector]*/ public Vector3 gravity;
+    /*[HideInInspector]*/
+    public Vector3 gravity;
     [HideInInspector] public Vector3 drag;
     [HideInInspector] public Vector3 velChange;
 
@@ -76,12 +81,6 @@ public class PhysicsController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         trail = GetComponentInChildren<TrailRenderer>();
 
-        foreach (Transform t in transform)
-        {
-            if (t.CompareTag("Model"))
-                orbitalModel = t;
-        }
-
         //if player is orbiting mars
         if (SceneManager.GetActiveScene().name == sceneNames[0])
         {
@@ -90,12 +89,9 @@ public class PhysicsController : MonoBehaviour
             GetComponentInChildren<TrailRenderer>().enabled = true;
             GetComponent<CameraSelector>().enabled = true;
 
-            foreach (Transform child in orbitalModel.GetChild(0))
-            {
-                child.GetComponent<MeshRenderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
-            }
-
+            DisableShadows();
             orbitalModel.LookAt(planet);
+
             GameplayUI.instance.SetMaxFuelVolume(totalFuel);
             GameplayUI.instance.SetMaxAltitude(150f);
             GameplayUI.instance.SetMaxVelocity(6f);
@@ -110,11 +106,8 @@ public class PhysicsController : MonoBehaviour
             GetComponentInChildren<TrailRenderer>().enabled = false;
             GetComponent<CameraSelector>().enabled = false;
 
-            foreach (Transform child in orbitalModel.GetChild(0))
-            {
-                Debug.Log(child.name);
-                child.GetComponent<MeshRenderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
-            }
+            EnableShadows();
+            anim = orion.GetComponent<Animator>();
         }
 
         if (GetComponent<BoxCollider>() != null)
@@ -156,8 +149,22 @@ public class PhysicsController : MonoBehaviour
                 spinActive = true;
             }
 
-            if (rb.velocity.z < 5)
-                torqueActive = true;
+            if (Input.GetKeyDown(KeyCode.C))
+            {
+                if (!cushionActive && cushionReady)
+                {
+                    cushionActive = true;
+                    anim.SetTrigger("CushionDeploy");
+                }
+            }
+
+            /*if (rb.velocity.z < 5)
+                torqueActive = true;*/
+            if (Mathf.Abs(rb.velocity.y) < 15f && parachuteDeployed && Vector3.Angle(Vector3.up,orion.transform.up)<1f)
+            {
+                cushionReady = true;
+                torqueActive = false;
+            }
         }
 
         Time.timeScale = renderSpeeds[renderSpeedIndex];
@@ -177,13 +184,12 @@ public class PhysicsController : MonoBehaviour
         //if player is landing
         else if (SceneManager.GetActiveScene().name == sceneNames[1])
         {
-            Debug.Log("v=" + rb.velocity.magnitude.ToString());
-            Debug.Log("vz=" + rb.velocity.z.ToString());
+            Debug.Log("v=" + rb.velocity + "\tp=" + transform.position.y);
             LanderKinematicsLanding();
             GravityLanding();
             DragLanding();
             ParachuteLanding();
-            DecelerateLanding();
+            //DecelerateLanding();
             StopSpinning();
             ApplyStabilizingTorque();
         }
@@ -285,7 +291,7 @@ public class PhysicsController : MonoBehaviour
             rb.drag = dragCoef;
         }
     }
-
+    /*
     void DecelerateLanding()
     {
         if (Input.GetKey(KeyCode.Space))
@@ -293,20 +299,20 @@ public class PhysicsController : MonoBehaviour
             if (thrusterActive)
                 rb.AddForce(-thrustLanding * Time.fixedDeltaTime * rb.velocity.normalized, ForceMode.VelocityChange);
         }
-    }
+    }*/
 
     void DeployParachute()
     {
         parachuteDeployed = true;
         parachuteActive = true;
         parachuteReady = false;
-
+        anim.SetTrigger("ParachuteDeploy");
     }
 
     void ReleaseParachute()
     {
         parachuteActive = false;
-        thrusterActive = true;
+        //thrusterActive = true;
     }
 
     void StopSpinning()
@@ -321,6 +327,7 @@ public class PhysicsController : MonoBehaviour
             {
                 spd = 0;
                 spinActive = false;
+                torqueActive = true;
                 parachuteReady = true;
             }
 
@@ -334,27 +341,62 @@ public class PhysicsController : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.S))
             {
-                rb.AddRelativeTorque(torque * transform.right, ForceMode.Acceleration);
+                if (transform.eulerAngles.x < 74.9f)
+                    rb.AddRelativeTorque(torque * transform.right, ForceMode.Acceleration);
+                else
+                    transform.eulerAngles = new Vector3(75f, transform.eulerAngles.y, transform.eulerAngles.z);
             }
             else if (Input.GetKey(KeyCode.W))
             {
-                rb.AddRelativeTorque(-torque * transform.right, ForceMode.Acceleration);
+                if (transform.eulerAngles.x > 10.1f)
+                    rb.AddRelativeTorque(-torque * transform.right, ForceMode.Acceleration);
+                else
+                    transform.eulerAngles = new Vector3(10f, transform.eulerAngles.y, transform.eulerAngles.z);
             }
         }
     }
 
-    public void LockTimeScale()
+    public void LockTimeScale(int index)
     {
         timeScaleLocked = true;
-        fuelDisabled = false;
-        renderSpeedIndex = 0;
+        renderSpeedIndex = index;
     }
 
-    public void UnlockTimeScale()
+    public void UnlockTimeScale(int index)
     {
         timeScaleLocked = false;
-        fuelDisabled = true;
-        renderSpeedIndex = 1;
+        renderSpeedIndex = index;
     }
 
+    public void LockFuelBurn()
+    {
+        fuelDisabled = true;
+    }
+
+    public void UnlockFuelBurn()
+    {
+        fuelDisabled = false;
+    }
+
+    void DisableShadows()
+    {
+        foreach (Transform child in orion.transform)
+        {
+            if (child.GetComponent<MeshRenderer>() != null)
+                child.GetComponent<MeshRenderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+            if (child.GetComponent<SkinnedMeshRenderer>() != null)
+                child.GetComponent<SkinnedMeshRenderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+        }
+    }
+
+    void EnableShadows()
+    {
+        foreach (Transform child in orion.transform)
+        {
+            if (child.GetComponent<MeshRenderer>() != null)
+                child.GetComponent<MeshRenderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
+            if (child.GetComponent<SkinnedMeshRenderer>() != null)
+                child.GetComponent<SkinnedMeshRenderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
+        }
+    }
 }

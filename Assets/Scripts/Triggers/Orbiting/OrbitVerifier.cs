@@ -22,7 +22,7 @@ public class OrbitVerifier : MonoBehaviour
             speed = orion.GetComponent<Rigidbody>().velocity.magnitude;
             dist = orion.GetComponent<PhysicsController>().dist;
             momentum = speed * dist;
-            //Debug.Log("h= " + momentum.ToString());
+            Debug.Log("h= " + momentum.ToString());
 
             if (momentum > maxMomentum)
                 index = 2;
