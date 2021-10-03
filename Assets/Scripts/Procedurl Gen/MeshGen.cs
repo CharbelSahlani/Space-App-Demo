@@ -19,12 +19,30 @@ public class MeshGen : MonoBehaviour
     //defining the required variables to create a mesh
     private int[] triangles;
     private Vector3[] vertices;
+    [SerializeField] float noise_height = 3f;
+    [Header("Collision + X")]
+    [SerializeField] GameObject colX; //collision on + x 
+    [Header("Collision - X")]
+    [SerializeField] GameObject col_X; //collision on - x 
+    [Header("Collision + Z")]
+    [SerializeField] GameObject colZ; //collision on + z 
+    [Header("Collision + - Z")]
+    [SerializeField] GameObject col_Z; //collision on - z 
     void Start()
     {
         mesh = new Mesh();
         GetComponent<MeshFilter>().mesh = mesh;
         generate_mesh();
         update_mesh();
+        colX.transform.position = new Vector3(world_x, colX.transform.position.y, world_z/2);
+        col_X.transform.position = new Vector3(0f, col_X.transform.position.y, world_z/2);
+        colZ.transform.position = new Vector3(world_x/2, colZ.transform.position.y, world_z);
+        col_Z.transform.position = new Vector3(world_z/2, col_Z.transform.position.y, 0f);
+        col_Z.GetComponent<BoxCollider>().size = new Vector3(world_z, 100, 0.5f);
+        colZ.GetComponent<BoxCollider>().size = new Vector3(world_z, 100, 0.5f);
+        colX.GetComponent<BoxCollider>().size = new Vector3(world_x, 100, 0.5f);
+        col_X.GetComponent<BoxCollider>().size = new Vector3(world_x, 100, 0.5f);
+
     }
 
     // Update is called once per frame
@@ -41,7 +59,7 @@ public class MeshGen : MonoBehaviour
         {
             for(int x = 0; x<=world_x; x++)
             {
-                vertices[i] = new Vector3(x, 0, z);
+                vertices[i] = new Vector3(x, generate_noise(x,z,8f) * noise_height, z);
                 i++;
             }
         }
@@ -77,4 +95,12 @@ public class MeshGen : MonoBehaviour
         mesh.triangles = triangles;
         mesh.RecalculateNormals();
     }
+    //method to generate perlin noise 
+    private float generate_noise(int x, int z, float detail_scale)
+    {
+        float x_noise = (x + this.transform.position.x) / detail_scale;
+        float z_noise = (z + this.transform.position.y) / detail_scale;
+        return Mathf.PerlinNoise(x_noise, z_noise);
+    }
+
 }

@@ -21,6 +21,7 @@ public class FixedGenerator : MonoBehaviour
     [SerializeField] GameObject object_to_spawn; //object to spawn on the grid 
     private List<Vector3> block_positions = new List<Vector3>();
     [SerializeField] int num_of_obj_to_spawn = 20; //number of objects to spawn
+    [SerializeField] float detail_scale = 8f;
 
 
     private void Start()
@@ -30,7 +31,7 @@ public class FixedGenerator : MonoBehaviour
             for (int z = 1; z <= worldsize_z; z++)
             {
                 //getting pos and assigning it to x and z * offset then add it to the parent gameobject
-                Vector3 pos = new Vector3(x * grid_offset, generate_noise(x, z, 8f) * noise_height, z * grid_offset);
+                Vector3 pos = new Vector3(x * grid_offset, generate_noise(x, z, detail_scale) * noise_height, z * grid_offset);
                 GameObject block = Instantiate(block_tile, pos, Quaternion.identity) as GameObject;
                // block.AddComponent<MeshCollider>();
                 //block.GetComponent<MeshCollider>().sharedMesh = mesh;

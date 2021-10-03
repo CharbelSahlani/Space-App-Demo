@@ -18,6 +18,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Video;
 
 public class LevelLoader : MonoBehaviour
 {
@@ -25,10 +26,17 @@ public class LevelLoader : MonoBehaviour
     public Animator transition;
     //Time to wait while the animation is playing
     public float transitionTime = 1f;
+    [SerializeField] VideoPlayer video_player;
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
-
+        if (video_player)
+        {
+            if (!video_player.isPlaying)
+            {
+                LoadNextLevel();
+            }
+        }
     }
     /**
       * This function loads the next level 
