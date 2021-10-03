@@ -29,6 +29,7 @@ public class MissionGiver : MonoBehaviour
     public TextMeshProUGUI titleText;
     public TextMeshProUGUI descriptionText;
     public TextMeshProUGUI experienceText;
+    public TextMeshProUGUI xpValueText;
     //public TextMeshProUGUI goldText;
     public TextMeshProUGUI collectiblesText;
     GameObject orion;
@@ -53,6 +54,7 @@ public class MissionGiver : MonoBehaviour
         panelFade = missionWindow.GetComponent<Animator>();
         Time.timeScale = 0f;
         OpenMissionWindow();
+        xpValueText.text = player.XP.ToString();
     }
     void Update()
     {
