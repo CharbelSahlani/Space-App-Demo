@@ -5,11 +5,18 @@ TagManager:
   serializedVersion: 2
   tags:
   - Planet
+  - Checkpoint Controller
+  - Enemy
+  - Press Key Text
+  - CornerObj
+  - Orion
+  - Model
+  - FollowerCamera
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Ground
   - Water
   - UI
   - 

@@ -1,7 +1,8 @@
 /**
  *
  * @file		MissionGoal.cs
- * @brief		
+ * @brief		This script provides the mission goal type and returns 
+ *              the progress of the mission
  * @details
  * @author		Charbel Al Sahlani (charbel.alsahlani@gmail.com)
  * @date		Sep 11, 2021
@@ -25,7 +26,7 @@ public class MissionGoal
     //The required amout set by the mission objective
     public int requiredAmount;
     //The current amount
-    public int currentAmount;
+    public static int currentAmount = 0;
 
     /**
      * This function returns true if goal targed is reached and false otherwise

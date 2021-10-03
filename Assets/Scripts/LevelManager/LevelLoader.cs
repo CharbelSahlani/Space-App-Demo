@@ -1,8 +1,9 @@
 /**
  *
  * @file		LevelLoader.cs
- * @brief		
- * @details
+ * @brief		This script is responsible for loading the scenes 
+ *              in the desired manner
+ * @details     This script is attached to the LevelLoader component
  * @author		Charbel Al Sahlani (charbel.alsahlani@gmail.com)
  * @date		Sep 11, 2021
  * @note        
@@ -27,20 +28,57 @@ public class LevelLoader : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //This is just for testing and will be deleted later :)
-        if (Input.GetMouseButtonDown(0))
-        {
-            LoadNextLevel();
-        }
-    }
 
+    }
+    /**
+      * This function loads the next level 
+      */
     public void LoadNextLevel()
     {
         StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1));
     }
 
+    /**
+      * This function loads the next level 
+      */
+    public void LoadSameLevel()
+    {
+        StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex));
+    }
+
+    /**
+      * This function loads the main menu scene
+      */
+    public void LoadMainMenu()
+    {
+        StartCoroutine(LoadLevel(0));
+    }
+
+    /**
+      * This function loads the settings menu scene
+      */
+    public void LoadSettingsMenu()
+    {
+        StartCoroutine(LoadLevel(2));
+    }
+
+    /**
+      * This function quits the game
+      */
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
+
+    /**
+      * This function loads a scene at a specified index
+      * @param[in] leveIndex	represents the scene index.
+      */
     IEnumerator LoadLevel(int leveIndex)
     {
+        Time.timeScale = 1f;
+        AudioManager.instance.MusicMixer.SetFloat("MusicVolume",
+                PlayerPrefs.GetFloat("MusicVolume", 0f));
         //Play animation
         transition.SetTrigger("Start");
 
@@ -49,5 +87,13 @@ public class LevelLoader : MonoBehaviour
 
         //Load scene
         SceneManager.LoadScene(leveIndex);
+    }
+
+    /**
+     * This function plays the sound of a button press
+     */
+    public void PlayButtonSound()
+    {
+        AudioManager.instance.PlaySound("Button Press");
     }
 }

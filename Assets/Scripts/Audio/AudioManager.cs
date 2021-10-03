@@ -23,15 +23,15 @@ public class AudioManager : MonoBehaviour
     public static AudioManager instance;
     public AudioMixer MusicMixer;
     public AudioMixer SFXMixer;
-    private float music = 0.0f;
-    private float sfx = 0.0f;
+    private float musicVolume = 0.0f;
+    private float sfxVolume = 0.0f;
 
     //create an array of type Sound (sound is the script Sound)
     public Sound[] sounds;
 
     /**
- * This function runs once before the Start function
- */
+     * This function runs once before the Start function
+     */
     void Awake()
     {
         //set instance
@@ -63,8 +63,8 @@ public class AudioManager : MonoBehaviour
         }
 
         //Get the saved previously saved volume values
-        music = PlayerPrefs.GetFloat("MusicVolume", 0f);
-        sfx = PlayerPrefs.GetFloat("SFXVolume", 0f);
+        musicVolume = PlayerPrefs.GetFloat("MusicVolume", 0f);
+        sfxVolume = PlayerPrefs.GetFloat("SFXVolume", 0f);
      
       
     }
@@ -75,8 +75,8 @@ public class AudioManager : MonoBehaviour
      */
     void Start()
     {
-        SetMusicVolume(music);
-        SetSFXVolume(sfx);
+        SetMusicVolume(musicVolume);
+        SetSFXVolume(sfxVolume);
         PlaySound("Main Theme");
     }
 
@@ -135,7 +135,6 @@ public class AudioManager : MonoBehaviour
     {
         SFXMixer.SetFloat("SFXVolume", volume);
         PlayerPrefs.SetFloat("SFXVolume", volume);
-     
         //Save changes
         PlayerPrefs.Save();
     }

@@ -1,7 +1,7 @@
 ﻿/**
  *
  * @file		Sound.cs
- * @brief		
+ * @brief		This script provides the detailed options of each sound
  * @details
  * @author		Charbel Al Sahlani (charbel.alsahlani@gmail.com)
  * @date		Sep 11, 2021
