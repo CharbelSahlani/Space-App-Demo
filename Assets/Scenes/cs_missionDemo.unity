@@ -394,7 +394,6 @@ GameObject:
   - component: {fileID: 105670423}
   - component: {fileID: 105670422}
   - component: {fileID: 105670421}
-  - component: {fileID: 105670420}
   m_Layer: 3
   m_Name: MeshGenerator
   m_TagString: Untagged
@@ -416,20 +415,6 @@ Transform:
   m_Father: {fileID: 1240248301}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!64 &105670420
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 105670418}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &105670421
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -594,7 +579,7 @@ Transform:
   - {fileID: 1798583246}
   - {fileID: 1102296561}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &149397015
 MonoBehaviour:
@@ -786,7 +771,7 @@ BoxCollider:
   m_GameObject: {fileID: 191071202}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 10, y: 100, z: 0.5}
   m_Center: {x: 0, y: 0, z: 0}
@@ -1362,7 +1347,7 @@ BoxCollider:
   m_GameObject: {fileID: 313690599}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 10, y: 100, z: 0.5}
   m_Center: {x: 0, y: 0, z: 0}
@@ -1915,6 +1900,143 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 429012382}
   m_CullTransparentMesh: 1
+--- !u!1001 &429700016
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 72577292511559950, guid: 72e6b9842a3e53e4abba16fd54503900, type: 3}
+      propertyPath: cornerAsteroidObj
+      value: 
+      objectReference: {fileID: 1381869232}
+    - target: {fileID: 727471314003937889, guid: 72e6b9842a3e53e4abba16fd54503900, type: 3}
+      propertyPath: cornerAsteroidObj
+      value: 
+      objectReference: {fileID: 1381869232}
+    - target: {fileID: 1145143567418065070, guid: 72e6b9842a3e53e4abba16fd54503900, type: 3}
+      propertyPath: cornerAsteroidObj
+      value: 
+      objectReference: {fileID: 1381869232}
+    - target: {fileID: 1501040633686835612, guid: 72e6b9842a3e53e4abba16fd54503900, type: 3}
+      propertyPath: cornerAsteroidObj
+      value: 
+      objectReference: {fileID: 1381869232}
+    - target: {fileID: 1858173862302818716, guid: 72e6b9842a3e53e4abba16fd54503900, type: 3}
+      propertyPath: cornerAsteroidObj
+      value: 
+      objectReference: {fileID: 1381869232}
+    - target: {fileID: 3048259428261807560, guid: 72e6b9842a3e53e4abba16fd54503900, type: 3}
+      propertyPath: cornerAsteroidObj
+      value: 
+      objectReference: {fileID: 1381869232}
+    - target: {fileID: 3091767715667165742, guid: 72e6b9842a3e53e4abba16fd54503900, type: 3}
+      propertyPath: cornerAsteroidObj
+      value: 
+      objectReference: {fileID: 1381869232}
+    - target: {fileID: 3360094541424618395, guid: 72e6b9842a3e53e4abba16fd54503900, type: 3}
+      propertyPath: cornerAsteroidObj
+      value: 
+      objectReference: {fileID: 1381869232}
+    - target: {fileID: 3738164198997390722, guid: 72e6b9842a3e53e4abba16fd54503900, type: 3}
+      propertyPath: m_Name
+      value: Collectibles (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3738164198997390725, guid: 72e6b9842a3e53e4abba16fd54503900, type: 3}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3738164198997390725, guid: 72e6b9842a3e53e4abba16fd54503900, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3738164198997390725, guid: 72e6b9842a3e53e4abba16fd54503900, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3738164198997390725, guid: 72e6b9842a3e53e4abba16fd54503900, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3738164198997390725, guid: 72e6b9842a3e53e4abba16fd54503900, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3738164198997390725, guid: 72e6b9842a3e53e4abba16fd54503900, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3738164198997390725, guid: 72e6b9842a3e53e4abba16fd54503900, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3738164198997390725, guid: 72e6b9842a3e53e4abba16fd54503900, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3738164198997390725, guid: 72e6b9842a3e53e4abba16fd54503900, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3738164198997390725, guid: 72e6b9842a3e53e4abba16fd54503900, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3738164198997390725, guid: 72e6b9842a3e53e4abba16fd54503900, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3738164200067091934, guid: 72e6b9842a3e53e4abba16fd54503900, type: 3}
+      propertyPath: cornerAsteroidObj
+      value: 
+      objectReference: {fileID: 1381869232}
+    - target: {fileID: 4385264159558134578, guid: 72e6b9842a3e53e4abba16fd54503900, type: 3}
+      propertyPath: cornerAsteroidObj
+      value: 
+      objectReference: {fileID: 1381869232}
+    - target: {fileID: 5096450166744179121, guid: 72e6b9842a3e53e4abba16fd54503900, type: 3}
+      propertyPath: cornerAsteroidObj
+      value: 
+      objectReference: {fileID: 1381869232}
+    - target: {fileID: 5689674231296274101, guid: 72e6b9842a3e53e4abba16fd54503900, type: 3}
+      propertyPath: cornerAsteroidObj
+      value: 
+      objectReference: {fileID: 1381869232}
+    - target: {fileID: 6072169754938363768, guid: 72e6b9842a3e53e4abba16fd54503900, type: 3}
+      propertyPath: cornerAsteroidObj
+      value: 
+      objectReference: {fileID: 1381869232}
+    - target: {fileID: 6240247385585737856, guid: 72e6b9842a3e53e4abba16fd54503900, type: 3}
+      propertyPath: cornerAsteroidObj
+      value: 
+      objectReference: {fileID: 1381869232}
+    - target: {fileID: 6254884795275896155, guid: 72e6b9842a3e53e4abba16fd54503900, type: 3}
+      propertyPath: cornerAsteroidObj
+      value: 
+      objectReference: {fileID: 1381869232}
+    - target: {fileID: 6662811420046124282, guid: 72e6b9842a3e53e4abba16fd54503900, type: 3}
+      propertyPath: cornerAsteroidObj
+      value: 
+      objectReference: {fileID: 1381869232}
+    - target: {fileID: 6972840886171935200, guid: 72e6b9842a3e53e4abba16fd54503900, type: 3}
+      propertyPath: cornerAsteroidObj
+      value: 
+      objectReference: {fileID: 1381869232}
+    - target: {fileID: 7603717488190703114, guid: 72e6b9842a3e53e4abba16fd54503900, type: 3}
+      propertyPath: cornerAsteroidObj
+      value: 
+      objectReference: {fileID: 1381869232}
+    - target: {fileID: 7986601570066856675, guid: 72e6b9842a3e53e4abba16fd54503900, type: 3}
+      propertyPath: cornerAsteroidObj
+      value: 
+      objectReference: {fileID: 1381869232}
+    - target: {fileID: 8414814125261376912, guid: 72e6b9842a3e53e4abba16fd54503900, type: 3}
+      propertyPath: cornerAsteroidObj
+      value: 
+      objectReference: {fileID: 1381869232}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 72e6b9842a3e53e4abba16fd54503900, type: 3}
 --- !u!1 &487394961
 GameObject:
   m_ObjectHideFlags: 0
@@ -2314,7 +2436,7 @@ BoxCollider:
   m_GameObject: {fileID: 566453479}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 10, y: 100, z: 0.5}
   m_Center: {x: 0, y: 0, z: 0}
@@ -4320,7 +4442,7 @@ BoxCollider:
   m_GameObject: {fileID: 1309791395}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 10, y: 100, z: 0.5}
   m_Center: {x: 0, y: 0, z: 0}
@@ -5839,7 +5961,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1695682108
 Transform:
   m_ObjectHideFlags: 0
