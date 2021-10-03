@@ -29,6 +29,7 @@ public class MeshGen : MonoBehaviour
     [Header("Collision + - Z")]
     [SerializeField] GameObject col_Z; //collision on - z 
     private float collider_offset = 10f;
+    MeshCollider[] meshColliders;
     void Start()
     {
         mesh = new Mesh();
@@ -49,14 +50,14 @@ public class MeshGen : MonoBehaviour
         colZ.GetComponent<BoxCollider>().size = new Vector3(world_z, 100, 0.5f);
         colX.GetComponent<BoxCollider>().size = new Vector3(world_x, 100, 0.5f);
         col_X.GetComponent<BoxCollider>().size = new Vector3(world_x, 100, 0.5f);
-
+        meshColliders = GetComponents<MeshCollider>();
+        EnableConvexMesh(true);
     }
 
     // Update is called once per frame
     void Update()
     {
-        GetComponent<MeshCollider>().convex = true;
-        Debug.Log(GetComponent<MeshCollider>().convex);
+
     }
 
     void generate_mesh()
@@ -114,4 +115,11 @@ public class MeshGen : MonoBehaviour
         return Mathf.PerlinNoise(x_noise, z_noise);
     }
 
+    void EnableConvexMesh (bool enable)
+    {
+        foreach (MeshCollider mesh in meshColliders)
+        {
+            mesh.convex = true;
+        }
+    }
 }

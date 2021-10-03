@@ -12,11 +12,14 @@ EditorBuildSettings:
     path: Assets/Scenes/nb_first.unity
     guid: f6e1fda082539bc438b53a3f96c67b25
   - enabled: 1
+    path: Assets/Scenes/cs_landingDemo.unity
+    guid: a2d8b253589a3894a8202774803f8d41
+  - enabled: 1
     path: Assets/Scenes/cs_missionDemo.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
-    path: Assets/Scenes/cs_landingDemo.unity
-    guid: a2d8b253589a3894a8202774803f8d41
+    path: Assets/Scenes/cs_freeNavigation.unity
+    guid: 8952289711c89044781723b11b1b998d
   - enabled: 1
     path: Assets/Scenes/cs_settingsMenu.unity
     guid: 626b883d765ca2b4c8476c596d823ab2

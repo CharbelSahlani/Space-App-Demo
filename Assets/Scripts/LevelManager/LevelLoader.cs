@@ -70,7 +70,7 @@ public class LevelLoader : MonoBehaviour
       */
     public void LoadSettingsMenu()
     {
-        StartCoroutine(LoadLevel(2));
+        StartCoroutine(LoadLevel(5));
     }
 
     /**
@@ -78,7 +78,7 @@ public class LevelLoader : MonoBehaviour
       */
     public void LoadFreeNavigationScene()
     {
-        StartCoroutine(LoadLevel(3));
+        StartCoroutine(LoadLevel(4));
     }
     /**
       * This function quits the game
