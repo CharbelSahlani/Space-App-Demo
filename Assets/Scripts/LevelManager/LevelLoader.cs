@@ -28,7 +28,15 @@ public class LevelLoader : MonoBehaviour
     //Time to wait while the animation is playing
     public float transitionTime = 1f;
     [SerializeField] VideoPlayer video_player;
-
+    private int savedLevelIndex = 0;
+    private void Start()
+    {
+        savedLevelIndex = PlayerPrefs.GetInt("SavedLevel", 0);
+        if (savedLevelIndex == 0)
+        {
+            savedLevelIndex = 1;
+        }
+    }
     // Update is called once per frame
     private void Update()
     {
@@ -113,5 +121,10 @@ public class LevelLoader : MonoBehaviour
     public void PlayButtonSound()
     {
         AudioManager.instance.PlaySound("Button Press");
+    }
+
+    public void LoadSavedLevel()
+    {
+        StartCoroutine(LoadLevel(savedLevelIndex));
     }
 }
