@@ -52,17 +52,17 @@ public class HandleRegex : MonoBehaviour
         textTyper = FindObjectOfType<TextTyper>();
         /*Usind dictionaries that hold a bag of words as key value pair */
         regex_exp.Add("greetings", new string[] { "hello", "hi", "greetings", "hey" });
-        regex_exp.Add("assistant", new string[] { "assistant", "guide" ,"companion" });
-        regex_exp.Add("essVerbs", new string[] { "guiding you", "assisting you"});
-        regex_exp.Add("adventure", new string[] {"adventure", "journey"});
+        regex_exp.Add("assistant", new string[] { "assistant", "guide", "companion" });
+        regex_exp.Add("essVerbs", new string[] { "guiding you", "assisting you" });
+        regex_exp.Add("adventure", new string[] { "adventure", "journey" });
+
         //planets
         //sun
         regex_exp.Add("sun", new string[] { "The Sun is a yellow dwarf star, a hot ball of glowing gases at the heart of our solar system. Its gravity holds everything from the biggest planets to tiny debris in its orbit.",
                                             "Electric currents in the Sun generate a magnetic field that is carried out through the solar system by the solar wind. A stream of electrically charged gas blowing outward from the Sun in all directions.",
                                             "The Sun is the largest object in our solar system, comprising 99.8% of the system’s mass. Though it seems huge to us, the Sun isn't as large as other types of stars.",
-                                            "Earth orbits the Sun from a distance of about 93 million miles. The connection and interactions between the Sun and Earth drive our planet's seasons, ocean currents, weather, climate, radiation belts, and aurorae.", 
-                                            " Though it is special to us, there are billions of stars like our Sun scattered across the Milky Way galaxy."                                
-        
+                                            "Earth orbits the Sun from a distance of about 93 million miles. The connection and interactions between the Sun and Earth drive our planet's seasons, ocean currents, weather, climate, radiation belts, and aurorae. Though it is special to us, there are billions of stars like our Sun scattered across the Milky Way galaxy."
+
         });
         //mercury
         regex_exp.Add("mercury", new string[] {"The smallest planet in our solar system and closest to the Sun. Itis only slightly larger than Earth's Moon. Mercury is the fastest planet, zipping around the Sun every 88 Earth days.",
@@ -105,7 +105,7 @@ public class HandleRegex : MonoBehaviour
                                                 "It was two years later that the object was universally accepted as a new planet, in part because of observations by astronomer Johann Elert Bode."});
 
         //nepturne
-        regex_exp.Add("neptune", new string[] { "The eighth and most distant major planet orbiting our Sun, it is dark, cold and whipped by supersonic winds. It was the first planet located through mathematical calculations, rather than by telescope.",
+        regex_exp.Add("nepturne", new string[] { "The eighth and most distant major planet orbiting our Sun, it is dark, cold and whipped by supersonic winds. It was the first planet located through mathematical calculations, rather than by telescope.",
                                                  "More than 30 times as far from the Sun as Earth, Neptune is the only planet in our solar system not visible to the naked eye and the first predicted by mathematics before its discovery."});
 
         //pluto
@@ -119,14 +119,74 @@ public class HandleRegex : MonoBehaviour
                                                     "Our solar system extends much farther than the eight planets that orbit the Sun. The solar system also includes the Kuiper Belt that lies past Neptune's orbit. This is a sparsely occupied ring of icy bodies, almost all smaller than the most popular Kuiper Belt Object – dwarf planet Pluto.",
                                                     "The order and arrangement of the planets and other bodies in our solar system is due to the way the solar system formed. Nearest to the Sun, only rocky material could withstand the heat when the solar system was young. For this reason, the first four planets – Mercury, Venus, Earth, and Mars – are terrestrial planets. They are all small with solid, rocky surfaces."});
 
-        //slow down
-        regex_exp.Add("lock", new string[] { "Time has slowed down for you to focus.\nWhen the altitude reaches 210 km, slow down to 15400 km/h."});
+        //welcome
+        regex_exp.Add("welcome", new string[] {
+            "Welcome to Mars Adventure.",
+            "Safe journey.\n(Time control is on)",
+            "Keep your eye on the velocity.\nYou will later need the value at which it turns green."});
 
-        //watch orbiting
-        regex_exp.Add("unlock", new string[] { "Time control is back on.\nSpeed up to see the orbit." });
+        //introduce the Ai
+        regex_exp.Add("intro", new string[] {
+            "My Name is AJ.",
+            "I am AJ."});
+
+        //introduce the job
+        regex_exp.Add("job", new string[] {
+            "I will be your assistant along the journey.",
+            "I am going to guide you to reach Mars."});
+
+
+
+        //time control
+        regex_exp.Add("time_lock", new string[] {
+            "Time has slowed down for you to focus.\nWhen the altitude reaches 210 km, slow down until the velocity is in the green.",
+            "Time control is back on.\nSpeed up to see the orbit."});
 
         //orbit verifier
-        regex_exp.Add("orbit_verifier", new string[] { "Well done! You achieved the correct trajectory", "You slowed down more than you need.\nYou will crash.","You did not slow down enough.\nYou will miss the planet." });
+        regex_exp.Add("orbit_verifier", new string[] { "Well done! You achieved the correct trajectory.\nIt will take several orbits before landing.",
+            "You slowed down more than you need.\nYou will crash.",
+            "You did not slow down enough.\nYou will miss the planet." });
+
+        //orbit verifier
+        regex_exp.Add("landing", new string[] { "Congratulations!\nYou are now ready for the landing phase on the martian surface." });
+
+        //button mapping
+        regex_exp.Add("button_mapping", new string[] {
+            "I will teach you about the buttons you will use.",
+            "Press and hold \"Space\" for fuel burn to slow down." ,
+            "Press \"V\" to switch between top view and third person cameras.",
+            "Press \"-\" to slow down time.\nPress \"=\" to speed up time.",
+            "Press \"S\" to stop spinning.\nPress \"H\" to expand the heat shield.",
+            "Press \"P\" to deploy the parachute.\nPress \"C\" to deploy the cushion.",
+            "Press the corresponding keys as soon as the actions on the bottom of the screen turns to READY.",
+            "Safe landing.\n(Press \"S\" as soon this message goes away)"});
+
+        //orbit
+        regex_exp.Add("orbiting", new string[] {
+            "You are now in orbit around Mars.\nThe capture (first) orbit will take almost 7 hours in realtime",
+            "You are now orbit Mars.\nThe capture (first) orbit will take almost 7 hours in realtime"});
+
+        //aerobraking
+        regex_exp.Add("aero_braking", new string[] {
+            "Notice that every time you complete one orbit, the apoapsis (farthest point from Mars) is getting lower.",
+            "Have a look at your altitude.\nEvery time you orbit Mars, you get closer"});
+
+        //aerobraking cause
+        regex_exp.Add("aero_braking_cause", new string[] {
+            "You are slowing down beacuse of aerobraking.\n(Passing by Mars's atmosphere to use air friction)",
+            "Aerobraking is using the atmosphere to slow down.\nThat is what you are doing at the periapsis (lowest point) in orbit."});
+
+        //aerobraking cause
+        regex_exp.Add("start_landing", new string[] {
+            "Now you are are going to land on the surface of Mars.",
+            "Now the hardest phase starts."});
+
+        //landing_end
+        regex_exp.Add("end_landing", new string[] {
+            "Congratulations! You are the first human on Mars.\nNow make your small step so we can have our giant leap."});
+
+
+
 
         foreach (KeyValuePair<string, string[]> kvp in regex_exp)
         {
@@ -137,11 +197,11 @@ public class HandleRegex : MonoBehaviour
         }
         //testing in the UI
         string lbl_text = "hello I am AJ your AI assistant ";
-        string ans = replace_word(lbl_text, random_word(regex_exp["greetings"]),@"hi\s|hey\s|hello\s|greetings\s");
+        string ans = replace_word(lbl_text, random_word(regex_exp["greetings"]), @"hi\s|hey\s|hello\s|greetings\s");
         //label_text.text = ans;
         ans = replace_word(ans, random_word(regex_exp["assistant"]), create_pattern(regex_exp["assistant"]));
         Debug.Log(create_pattern(regex_exp["assistant"]));
-        //textTyper.UpdateText(ans);
+        textTyper.UpdateText(ans);
 
         //END TEST
         //testing
@@ -175,10 +235,10 @@ public class HandleRegex : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
-    public IDictionary<string, string[]>  get_regex_array()
+    public IDictionary<string, string[]> get_regex_array()
     {
         return regex_exp;
     }

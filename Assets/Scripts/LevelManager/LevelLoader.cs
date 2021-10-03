@@ -29,6 +29,11 @@ public class LevelLoader : MonoBehaviour
     public float transitionTime = 1f;
     [SerializeField] VideoPlayer video_player;
     private int savedLevelIndex = 0;
+
+    private void Awake()
+    {
+        Application.targetFrameRate = 60;
+    }
     private void Start()
     {
         savedLevelIndex = PlayerPrefs.GetInt("SavedLevel", 0);
@@ -78,7 +83,7 @@ public class LevelLoader : MonoBehaviour
       */
     public void LoadSettingsMenu()
     {
-        StartCoroutine(LoadLevel(5));
+        StartCoroutine(LoadLevel(6));
     }
 
     /**
@@ -86,7 +91,7 @@ public class LevelLoader : MonoBehaviour
       */
     public void LoadFreeNavigationScene()
     {
-        StartCoroutine(LoadLevel(4));
+        StartCoroutine(LoadLevel(5));
     }
     /**
       * This function quits the game

@@ -5,10 +5,8 @@ using UnityEngine;
 public class CameraSelector : MonoBehaviour
 {
     private Camera[] cams = new Camera[2];
-
     private int index;
     private int arrayLength;
-
     private Transform planet;
 
     // Start is called before the first frame update
@@ -19,7 +17,7 @@ public class CameraSelector : MonoBehaviour
 
         if (GetComponent<PhysicsController>().planet != null)
         {
-            index = 0;
+            index = 1;
             arrayLength = cams.Length;
             CycleCameras();
         }
@@ -33,7 +31,7 @@ public class CameraSelector : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.C))
+        if (Input.GetKeyDown(KeyCode.V))
         {
             index = (index == arrayLength - 1) ? 0 : index + 1;
             CycleCameras();
