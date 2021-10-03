@@ -34,6 +34,7 @@ public class MeshGen : MonoBehaviour
         GetComponent<MeshFilter>().mesh = mesh;
         generate_mesh();
         update_mesh();
+
         colX.transform.position = new Vector3(world_x, colX.transform.position.y, world_z/2);
         col_X.transform.position = new Vector3(0f, col_X.transform.position.y, world_z/2);
         colZ.transform.position = new Vector3(world_x/2, colZ.transform.position.y, world_z);
@@ -54,12 +55,12 @@ public class MeshGen : MonoBehaviour
     void generate_mesh()
     {
         triangles = new int[world_x * world_z * 6]; //6 bcz we are defining a full quad 
-        vertices = new Vector3[(world_x + 1) * (world_z +1) ]; //+1 bcz vertices are 1 more than the quads
-        for(int i=0, z = 0; z <= world_z; z++)
+        vertices = new Vector3[(world_x + 1) * (world_z + 1)]; //+1 bcz vertices are 1 more than the quads
+        for (int i = 0, z = 0; z <= world_z; z++)
         {
-            for(int x = 0; x<=world_x; x++)
+            for (int x = 0; x <= world_x; x++)
             {
-                vertices[i] = new Vector3(x, generate_noise(x,z,8f) * noise_height, z);
+                vertices[i] = new Vector3(x, generate_noise(x, z, 8f) * noise_height, z);
                 i++;
             }
         }
@@ -85,15 +86,18 @@ public class MeshGen : MonoBehaviour
                 verts++;
             }
             verts++;
+            
+
         }
     }
-
     void update_mesh()
     {
         mesh.Clear();
         mesh.vertices = vertices;
         mesh.triangles = triangles;
         mesh.RecalculateNormals();
+        MeshCollider mc = this.gameObject.AddComponent(typeof(MeshCollider)) as MeshCollider;
+
     }
     //method to generate perlin noise 
     private float generate_noise(int x, int z, float detail_scale)

@@ -33,6 +33,7 @@ public class FixedGenerator : MonoBehaviour
                 //getting pos and assigning it to x and z * offset then add it to the parent gameobject
                 Vector3 pos = new Vector3(x * grid_offset, generate_noise(x, z, detail_scale) * noise_height, z * grid_offset);
                 GameObject block = Instantiate(block_tile, pos, Quaternion.identity) as GameObject;
+                //block.transform.Rotate(new Vector3(90, 0, 0));
                // block.AddComponent<MeshCollider>();
                 //block.GetComponent<MeshCollider>().sharedMesh = mesh;
                 block_positions.Add(block.transform.position); //add the block position to the list
