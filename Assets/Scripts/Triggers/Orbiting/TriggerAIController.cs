@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class TriggerAIController : MonoBehaviour
 {
@@ -62,24 +63,38 @@ public class TriggerAIController : MonoBehaviour
                     index = ((int)rnd.Next()) % kvp.Value.Length;
                 }
 
-                //ai_panel.SetActive(true);
                 Debug.Log(kvp.Value[index]);
                 ai_panel.SetActive(true);
                 ai_text.text = kvp.Value[index];
                 textWaitTime = 2.0f + Mathf.Sqrt(ai_text.text.Length) / 4.0f;
+                /*if (index == 9 || index == 10)
+                {
+                    if (autoClear)
+                    {
+                        StartCoroutine(AIDisable(textWaitTime,index));
+                        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+                    }
+                    else
+                    {
+                        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+                        Destroy(gameObject);
+                    }
+                }*/
             }
         }
         if (autoClear)
-            StartCoroutine(AIDisable(textWaitTime));
+            StartCoroutine(AIDisable(textWaitTime, index));
         else
             Destroy(gameObject);
     }
 
-    IEnumerator AIDisable(float secondsToWait)
+    IEnumerator AIDisable(float secondsToWait, float i)
     {
         Debug.LogWarning("Start");
         Debug.LogWarning(secondsToWait);
         yield return new WaitForSecondsRealtime(secondsToWait);
+        if (i == 9 || i == 10)
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         Debug.LogWarning("End");
         ai_panel.SetActive(false);
         Destroy(gameObject);

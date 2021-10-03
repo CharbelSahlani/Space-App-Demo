@@ -143,7 +143,7 @@ public class HandleRegex : MonoBehaviour
             "Time control is back on.\nSpeed up to see the orbit."});
 
         //orbit verifier
-        regex_exp.Add("orbit_verifier", new string[] { "Well done! You achieved the correct trajectory.\nIt will take several orbits before landing.",
+        regex_exp.Add("orbit_verifier", new string[] { "Well done! You achieved the correct trajectory.\nIt will take several orbits before landing.", "", "", "", "", "", "", "", "",
             "You slowed down more than you need.\nYou will crash.",
             "You did not slow down enough.\nYou will miss the planet." });
 

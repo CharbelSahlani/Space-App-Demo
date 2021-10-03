@@ -25,14 +25,21 @@ public class OrbitVerifier : MonoBehaviour
             Debug.Log("h= " + momentum.ToString());
 
             if (momentum > maxMomentum)
-                index = 2;
+            {
+                index = 10;
+
+            }
             else if (momentum < minMomentum)
-                index = 1;
+            {
+                index = 9;
+            }
             else
                 index = 0;
         }
 
-        GetComponent<TriggerAIController>().UpdateAIText(index);
-        Destroy(gameObject);
+        GetComponent<TriggerAIController>().UpdateAIText(index, false);
+        //Destroy(gameObject);
     }
+
+    
 }

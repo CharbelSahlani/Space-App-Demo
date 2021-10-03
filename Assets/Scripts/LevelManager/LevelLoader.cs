@@ -59,7 +59,7 @@ public class LevelLoader : MonoBehaviour
       */
     public void LoadSettingsMenu()
     {
-        StartCoroutine(LoadLevel(2));
+        StartCoroutine(LoadLevel(4));
     }
 
     /**

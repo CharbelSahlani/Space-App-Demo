@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LandingSceneLoader : MonoBehaviour
 {
@@ -20,6 +21,6 @@ public class LandingSceneLoader : MonoBehaviour
 
     void LoadLandingScene()
     {
-        GetComponent<TriggerAIController>().UpdateAIText(index);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }
