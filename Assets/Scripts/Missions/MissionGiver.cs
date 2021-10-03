@@ -17,7 +17,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using TMPro;
 public class MissionGiver : MonoBehaviour
 {
     //Create class objects
@@ -26,21 +26,57 @@ public class MissionGiver : MonoBehaviour
     //Mission Window 
     public GameObject missionWindow;
 
-    public Text titleText;
-    public Text descriptionText;
-    public Text experienceText;
-    public Text goldText;
+    public TextMeshProUGUI titleText;
+    public TextMeshProUGUI descriptionText;
+    public TextMeshProUGUI experienceText;
+    public TextMeshProUGUI xpValueText;
+    //public TextMeshProUGUI goldText;
+    public TextMeshProUGUI collectiblesText;
+    GameObject orion;
+    //Reference to the PanelFade animator
+    Animator panelFade;
 
+    public static MissionGiver instance;
+    public static bool missionWindowIsOpen = false;
+    private void Awake()
+    {
+        instance = this;
+        orion = GameObject.FindGameObjectWithTag("Orion");
+        if (orion != null)
+        {
+            orion.GetComponent<PhysicsController>().enabled = false;
+        }
+    }
+    // Start is called on the first frame
+    private void Start()
+    {
+        // Assign panelFade to the corresponding animator
+        panelFade = missionWindow.GetComponent<Animator>();
+        Time.timeScale = 0f;
+        OpenMissionWindow();
+        if (xpValueText != null)
+        {
+            xpValueText.text = player.XP.ToString();
+        }
+    }
+    void Update()
+    {
+        if (mission.isActive && mission.goal.goalType == GoalType.SamplesGathering)
+        {
+            collectiblesText.text = MissionGoal.currentAmount.ToString() + "/" + mission.goal.requiredAmount.ToString();
+        }
+    }
     /**
      * This function opens the missions window and shows the details of the mission.
      */
     public void OpenMissionWindow()
     {
         missionWindow.SetActive(true);
+        missionWindowIsOpen = true;
         titleText.text = mission.title;
-        descriptionText.text = mission.description;
-        experienceText.text = mission.xpReward.ToString();
-        goldText.text = mission.goldReward.ToString();
+        descriptionText.text = "DESCRIPTION: " + mission.description;
+        experienceText.text = "XP REWARD: " + mission.xpReward.ToString();
+        //goldText.text = mission.goldReward.ToString();
     }
 
     /**
@@ -48,9 +84,28 @@ public class MissionGiver : MonoBehaviour
      */
     public void AcceptMission()
     {
-        missionWindow.SetActive(false);
+        StartCoroutine(AcceptMissionRoutine());
+    }
+
+    /**
+     * This function is called by the accept mission function
+     */
+    public IEnumerator AcceptMissionRoutine()
+    {
         mission.isActive = true;
         player.mission = mission;
+        Cursor.lockState = CursorLockMode.Locked;
+        panelFade.SetTrigger("PanelFadeOut");
+        yield return new WaitForSecondsRealtime(1f);
+        Time.timeScale = 1f;
+        if (orion != null)
+        {
+            orion.GetComponent<PhysicsController>().enabled = true;
+            //orion.GetComponent<UIController>().ResetUI();
+        }
+        missionWindow.SetActive(false);
+        missionWindowIsOpen = false;
+
     }
 
 }

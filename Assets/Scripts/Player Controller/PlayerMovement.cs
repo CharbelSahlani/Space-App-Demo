@@ -17,6 +17,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -29,12 +30,24 @@ public class PlayerMovement : MonoBehaviour
     public float jumpHeight = 3f;
     public Transform groundCheck;
     //This is the radius of the sphere that we are using for ground check
-    public float groundDistance = 0.4f;
+    public float groundDistance = 0.0002f; /* Sensible default */
     //To control what objects the sphere should check for
     public LayerMask groundMask;
 
+    //To enable/disable the checkpoint option
+    public bool enableCheckpoint = true;
+
     Vector3 velocity = new Vector3 (0f, 0f, 0f);
     bool isGrounded = true;
+    private CheckpointController CC;
+     void Start()
+    {
+        if (enableCheckpoint)
+        {
+            CC = GameObject.FindGameObjectWithTag("Checkpoint Controller").GetComponent<CheckpointController>();
+            transform.position = CC.lastCheckpointPos;
+        }
+    }
     // Update is called once per frame
     void Update()
     {
