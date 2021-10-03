@@ -54,7 +54,10 @@ public class MissionGiver : MonoBehaviour
         panelFade = missionWindow.GetComponent<Animator>();
         Time.timeScale = 0f;
         OpenMissionWindow();
-        xpValueText.text = player.XP.ToString();
+        if (xpValueText != null)
+        {
+            xpValueText.text = player.XP.ToString();
+        }
     }
     void Update()
     {
