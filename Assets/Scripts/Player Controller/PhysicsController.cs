@@ -19,7 +19,8 @@ public class PhysicsController : MonoBehaviour
     public bool sudChange;
     private Vector3 centerOfMass;
     private bool timeScaleLocked = false;
-    private Transform orbitalModel;
+    private bool fuelDisabled = true;
+    [SerializeField] private Transform orbitalModel;
 
 
     //Planet parameters
@@ -41,6 +42,10 @@ public class PhysicsController : MonoBehaviour
     public float thrustLanding;
     public float torque;
 
+    //HUD parameters
+    public float totalFuel;
+    public float fuelUsage;
+
 
     private Vector3 pos;
     private Vector3 dir;
@@ -60,7 +65,7 @@ public class PhysicsController : MonoBehaviour
 
 
     //Forces
-    [HideInInspector] public Vector3 gravity;
+    /*[HideInInspector]*/ public Vector3 gravity;
     [HideInInspector] public Vector3 drag;
     [HideInInspector] public Vector3 velChange;
 
@@ -83,7 +88,6 @@ public class PhysicsController : MonoBehaviour
             Vector3 initDir = transform.forward * initSpeedOrbiting;
             rb.velocity = initDir;
             GetComponentInChildren<TrailRenderer>().enabled = true;
-            GetComponent<UIController>().enabled = true;
             GetComponent<CameraSelector>().enabled = true;
 
             foreach (Transform child in orbitalModel.GetChild(0))
@@ -92,6 +96,9 @@ public class PhysicsController : MonoBehaviour
             }
 
             orbitalModel.LookAt(planet);
+            GameplayUI.instance.SetMaxFuelVolume(totalFuel);
+            GameplayUI.instance.SetMaxAltitude(150f);
+            GameplayUI.instance.SetMaxVelocity(6f);
         }
 
         //if player is landing
@@ -101,13 +108,13 @@ public class PhysicsController : MonoBehaviour
             rb.velocity = initDir;
 
             GetComponentInChildren<TrailRenderer>().enabled = false;
-            GetComponent<UIController>().enabled = false;
             GetComponent<CameraSelector>().enabled = false;
-        }
 
-        foreach (Transform child in orbitalModel.GetChild(0))
-        {
-            child.GetComponent<MeshRenderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
+            foreach (Transform child in orbitalModel.GetChild(0))
+            {
+                Debug.Log(child.name);
+                child.GetComponent<MeshRenderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
+            }
         }
 
         if (GetComponent<BoxCollider>() != null)
@@ -192,6 +199,8 @@ public class PhysicsController : MonoBehaviour
         dist = pos.magnitude;
         dir = pos.normalized;
         velDir = rb.velocity.normalized;
+
+        GameplayUI.instance.SetVelocity(rb.velocity.magnitude);
     }
 
     void GravityOrbit()
@@ -205,6 +214,8 @@ public class PhysicsController : MonoBehaviour
     void DragOrbit()
     {
         height = dist - radius;
+        GameplayUI.instance.SetAltitude(height);
+
         drag = -d1 * Mathf.Exp(-d2 * height * height) * velDir * rb.velocity.sqrMagnitude;
         if (enableDrag)
             rb.AddForce(drag, ForceMode.Acceleration);
@@ -213,7 +224,14 @@ public class PhysicsController : MonoBehaviour
     void DecelerateOrbit()
     {
         if (Input.GetKey(KeyCode.Space))
-            rb.AddForce(-thrustOrbiting * Time.fixedDeltaTime * rb.velocity.normalized, ForceMode.VelocityChange);
+        {
+            if (!fuelDisabled)
+            {
+                rb.AddForce(-thrustOrbiting * Time.fixedDeltaTime * rb.velocity.normalized, ForceMode.VelocityChange);
+                totalFuel -= fuelUsage * Time.fixedDeltaTime;
+                GameplayUI.instance.SetFuelVolume(totalFuel);
+            }
+        }
     }
 
 
@@ -328,12 +346,14 @@ public class PhysicsController : MonoBehaviour
     public void LockTimeScale()
     {
         timeScaleLocked = true;
+        fuelDisabled = false;
         renderSpeedIndex = 0;
     }
 
     public void UnlockTimeScale()
     {
         timeScaleLocked = false;
+        fuelDisabled = true;
         renderSpeedIndex = 1;
     }
 

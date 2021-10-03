@@ -10,13 +10,24 @@ public class TimeScaleLock : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         orion = GameObject.FindGameObjectWithTag("Orion");
+        GetComponent<TriggerAIController>().UpdateAIText();
+
         if (orion != null)
         {
             if (lockScale)
-                orion.GetComponent<PhysicsController>().LockTimeScale();
+                LockScale();
             else
-                orion.GetComponent<PhysicsController>().UnlockTimeScale();
+                UnlockScale();
         }
         Destroy(gameObject);
+    }
+
+    void LockScale()
+    {
+        orion.GetComponent<PhysicsController>().LockTimeScale();
+    }
+    void UnlockScale()
+    {
+        orion.GetComponent<PhysicsController>().UnlockTimeScale();
     }
 }

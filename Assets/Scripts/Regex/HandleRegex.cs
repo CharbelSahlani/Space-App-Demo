@@ -118,6 +118,15 @@ public class HandleRegex : MonoBehaviour
                                                     "Our solar system extends much farther than the eight planets that orbit the Sun. The solar system also includes the Kuiper Belt that lies past Neptune's orbit. This is a sparsely occupied ring of icy bodies, almost all smaller than the most popular Kuiper Belt Object – dwarf planet Pluto.",
                                                     "The order and arrangement of the planets and other bodies in our solar system is due to the way the solar system formed. Nearest to the Sun, only rocky material could withstand the heat when the solar system was young. For this reason, the first four planets – Mercury, Venus, Earth, and Mars – are terrestrial planets. They are all small with solid, rocky surfaces."});
 
+        //slow down
+        regex_exp.Add("lock", new string[] { "Time has slowed down for you to focus.\nWhen the altitude reaches 210 km, slow down to 15400 km/h."});
+
+        //watch orbiting
+        regex_exp.Add("unlock", new string[] { "Time control is back on.\nSpeed up to see the orbit." });
+
+        //orbit verifier
+        regex_exp.Add("orbit_verifier", new string[] { "Well done! You achieved the correct trajectory", "You slowed down more than you need.\nYou will crash.","You did not slow down enough.\nYou will miss the planet." });
+
         foreach (KeyValuePair<string, string[]> kvp in regex_exp)
         {
             foreach (string str in kvp.Value)

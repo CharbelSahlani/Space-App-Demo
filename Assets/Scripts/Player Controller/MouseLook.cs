@@ -38,9 +38,8 @@ public class MouseLook : MonoBehaviour
 
     void Start()
     {
-       regex_script = FindObjectOfType<HandleRegex>();
+        regex_script = FindObjectOfType<HandleRegex>();
         regex_arr = regex_script.get_regex_array();
-        
     }
 
     // Update is called once per frame
@@ -57,7 +56,7 @@ public class MouseLook : MonoBehaviour
         //Rotate the entire player body left and right
         playerBody.Rotate(Vector3.up * mouseX);
 
-        
+
         //raycast 
         // Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
@@ -69,25 +68,25 @@ public class MouseLook : MonoBehaviour
             //Debug.Log(objectHit + "name " + objectHit.name);
 
             //check the planets
-            
+
             foreach (KeyValuePair<string, string[]> kvp in regex_arr)
             {
-                 
-                    //Debug.Log(kvp.Key + str);
-                    if (objectHit.name == kvp.Key && last_planet_name != kvp.Key)
-                    {
+
+                //Debug.Log(kvp.Key + str);
+                if (objectHit.name == kvp.Key && last_planet_name != kvp.Key)
+                {
                     ai_panel.SetActive(true);
                     last_planet_name = kvp.Key;
                     System.Random rnd = new System.Random();
                     rdx = rnd.Next() % regex_arr[kvp.Key].Length;
-                    while(rdx == last_random)
+                    while (rdx == last_random)
                     {
                         rdx = rnd.Next() % regex_arr[kvp.Key].Length;
                     }
                     Debug.Log(kvp.Value[rdx]);
                     ai_text.text = kvp.Value[rdx];
-                    }
-                
+                }
+
             }
 
         }
@@ -98,10 +97,8 @@ public class MouseLook : MonoBehaviour
             ai_panel.SetActive(false);
             last_random = rdx;
         }
-
-     
     }
-       
+
 }
 
 
