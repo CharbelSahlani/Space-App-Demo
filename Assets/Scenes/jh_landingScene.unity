@@ -292,6 +292,7 @@ MonoBehaviour:
   d2: 0
   gSurf: 0
   dSurf: 0
+  shieldDrag: 0
   parachuteDrag: 10
   dist: 0
   radius: 0
@@ -302,6 +303,10 @@ MonoBehaviour:
   torque: 0
   totalFuel: 0
   fuelUsage: 0
+  shieldKeyPressed: 0
+  shieldReady: 0
+  shieldDeployed: 0
+  shieldActive: 0
   parachuteKeyPressed: 0
   parachuteReady: 0
   parachuteDeployed: 0

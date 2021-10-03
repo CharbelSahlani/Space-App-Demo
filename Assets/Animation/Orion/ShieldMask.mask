@@ -6,7 +6,7 @@ AvatarMask:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: CushionMask
+  m_Name: ShieldMask
   m_Mask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
   m_Elements:
   - m_Path: 
@@ -160,19 +160,19 @@ AvatarMask:
   - m_Path: Armature parachute2/Bone.017 1/Bone.017_end 1
     m_Weight: 0
   - m_Path: coushin
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: cushian cover
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: heat shield
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: heat shield plug1
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: heat shield plug2
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: heat shield plug3
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: heat shield plug4
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: orion
     m_Weight: 0
   - m_Path: orion_plug

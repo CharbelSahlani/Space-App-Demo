@@ -11,143 +11,11 @@ AvatarMask:
   m_Elements:
   - m_Path: 
     m_Weight: 1
-  - m_Path: Armature
-    m_Weight: 0
-  - m_Path: Armature/Bone
-    m_Weight: 1
-  - m_Path: Armature/Bone/Bone.001 2
-    m_Weight: 1
-  - m_Path: Armature/Bone/Bone.001 2/Bone.001_end 2
-    m_Weight: 1
-  - m_Path: Armature/Bone/Bone.002 2
-    m_Weight: 1
-  - m_Path: Armature/Bone/Bone.002 2/Bone.002_end 2
-    m_Weight: 1
-  - m_Path: Armature/Bone/Bone.003 2
-    m_Weight: 1
-  - m_Path: Armature/Bone/Bone.003 2/Bone.003_end 2
-    m_Weight: 1
-  - m_Path: Armature/Bone/Bone.004 2
-    m_Weight: 1
-  - m_Path: Armature/Bone/Bone.004 2/Bone.004_end 2
-    m_Weight: 1
-  - m_Path: Armature/Bone/Bone.005 2
-    m_Weight: 1
-  - m_Path: Armature/Bone/Bone.005 2/Bone.005_end 2
-    m_Weight: 1
-  - m_Path: Armature/Bone/Bone.006 2
-    m_Weight: 1
-  - m_Path: Armature/Bone/Bone.006 2/Bone.006_end 2
-    m_Weight: 1
-  - m_Path: Armature/Bone/Bone.007 2
-    m_Weight: 1
-  - m_Path: Armature/Bone/Bone.007 2/Bone.007_end 2
-    m_Weight: 1
-  - m_Path: Armature/Bone/Bone.008 2
-    m_Weight: 1
-  - m_Path: Armature/Bone/Bone.008 2/Bone.008_end 2
-    m_Weight: 1
-  - m_Path: Armature/Bone/Bone.009 2
-    m_Weight: 1
-  - m_Path: Armature/Bone/Bone.009 2/Bone.009_end 2
-    m_Weight: 1
-  - m_Path: Armature/Bone/Bone.010 2
-    m_Weight: 1
-  - m_Path: Armature/Bone/Bone.010 2/Bone.010_end 2
-    m_Weight: 1
-  - m_Path: Armature/Bone/Bone.011 2
-    m_Weight: 1
-  - m_Path: Armature/Bone/Bone.011 2/Bone.011_end 2
-    m_Weight: 1
-  - m_Path: Armature/Bone/Bone.012 2
-    m_Weight: 1
-  - m_Path: Armature/Bone/Bone.012 2/Bone.012_end 2
-    m_Weight: 1
-  - m_Path: Armature/Bone/Bone.013 2
-    m_Weight: 1
-  - m_Path: Armature/Bone/Bone.013 2/Bone.013_end 2
-    m_Weight: 1
-  - m_Path: Armature/Bone/Bone.014 2
-    m_Weight: 1
-  - m_Path: Armature/Bone/Bone.014 2/Bone.014_end 2
-    m_Weight: 1
-  - m_Path: Armature/Bone/Bone.015 2
-    m_Weight: 1
-  - m_Path: Armature/Bone/Bone.015 2/Bone.015_end 2
-    m_Weight: 1
-  - m_Path: Armature/Bone/Bone.016 2
-    m_Weight: 1
-  - m_Path: Armature/Bone/Bone.016 2/Bone.016_end 2
-    m_Weight: 1
-  - m_Path: Armature/Bone/Bone.017 2
-    m_Weight: 1
-  - m_Path: Armature/Bone/Bone.017 2/Bone.017_end 2
-    m_Weight: 1
-  - m_Path: Armature/Bone/Bone.018
-    m_Weight: 1
-  - m_Path: Armature/Bone/Bone.018/Bone.018_end
-    m_Weight: 1
-  - m_Path: Armature/Bone/Bone.019
-    m_Weight: 1
-  - m_Path: Armature/Bone/Bone.019/Bone.019_end
-    m_Weight: 1
-  - m_Path: Armature/Bone/Bone.020
-    m_Weight: 1
-  - m_Path: Armature/Bone/Bone.020/Bone.020_end
-    m_Weight: 1
-  - m_Path: Armature/Bone/Bone.021
-    m_Weight: 1
-  - m_Path: Armature/Bone/Bone.021/Bone.021_end
-    m_Weight: 1
-  - m_Path: Armature/Bone/Bone.022
-    m_Weight: 1
-  - m_Path: Armature/Bone/Bone.022/Bone.022_end
-    m_Weight: 1
-  - m_Path: Armature/Bone/Bone.023
-    m_Weight: 1
-  - m_Path: Armature/Bone/Bone.023/Bone.023_end
-    m_Weight: 1
-  - m_Path: Armature/Bone/Bone.024
-    m_Weight: 1
-  - m_Path: Armature/Bone/Bone.024/Bone.024_end
-    m_Weight: 1
-  - m_Path: Armature/Bone/Bone.025
-    m_Weight: 1
-  - m_Path: Armature/Bone/Bone.025/Bone.025_end
-    m_Weight: 1
-  - m_Path: Armature/Bone/Bone.026
-    m_Weight: 1
-  - m_Path: Armature/Bone/Bone.026/Bone.026_end
-    m_Weight: 1
-  - m_Path: Armature/Bone/Bone.027
-    m_Weight: 1
-  - m_Path: Armature/Bone/Bone.027/Bone.027_end
-    m_Weight: 1
-  - m_Path: Armature/Bone/Bone.028
-    m_Weight: 1
-  - m_Path: Armature/Bone/Bone.028/Bone.028_end
-    m_Weight: 1
-  - m_Path: Armature/Bone/Bone.029
-    m_Weight: 1
-  - m_Path: Armature/Bone/Bone.029/Bone.029_end
-    m_Weight: 1
-  - m_Path: Armature/Bone/Bone.030
-    m_Weight: 1
-  - m_Path: Armature/Bone/Bone.030/Bone.030_end
-    m_Weight: 1
-  - m_Path: Armature/Bone/Bone.031
-    m_Weight: 1
-  - m_Path: Armature/Bone/Bone.031/Bone.031_end
-    m_Weight: 1
-  - m_Path: Armature/Bone/Bone.032
-    m_Weight: 1
-  - m_Path: Armature/Bone/Bone.032/Bone.032_end
-    m_Weight: 1
   - m_Path: Armature parachute1
     m_Weight: 1
-  - m_Path: Armature parachute1/Bone 1
+  - m_Path: Armature parachute1/Bone
     m_Weight: 1
-  - m_Path: Armature parachute1/Bone 1/Bone_end
+  - m_Path: Armature parachute1/Bone/Bone_end
     m_Weight: 1
   - m_Path: Armature parachute1/Bone.001
     m_Weight: 1
@@ -219,9 +87,9 @@ AvatarMask:
     m_Weight: 1
   - m_Path: Armature parachute2
     m_Weight: 1
-  - m_Path: Armature parachute2/Bone 2
+  - m_Path: Armature parachute2/Bone 1
     m_Weight: 1
-  - m_Path: Armature parachute2/Bone 2/Bone_end 1
+  - m_Path: Armature parachute2/Bone 1/Bone_end 1
     m_Weight: 1
   - m_Path: Armature parachute2/Bone.001 1
     m_Weight: 1
@@ -291,9 +159,9 @@ AvatarMask:
     m_Weight: 1
   - m_Path: Armature parachute2/Bone.017 1/Bone.017_end 1
     m_Weight: 1
-  - m_Path: coushian cover
-    m_Weight: 0
   - m_Path: coushin
+    m_Weight: 0
+  - m_Path: cushian cover
     m_Weight: 0
   - m_Path: heat shield
     m_Weight: 0

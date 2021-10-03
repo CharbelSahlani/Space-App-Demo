@@ -7,6 +7,7 @@ public class CameraController : MonoBehaviour
     public Vector3 orbitOffset;
     public Vector3 landingOffset;
     public Transform orion;
+    [HideInInspector] public float multiplier;
     private Transform planet;
     private Camera cam;
 
@@ -35,7 +36,7 @@ public class CameraController : MonoBehaviour
         }
         else
         {
-            cam.transform.position = orion.position + landingOffset * (1 + 5.0f * orion.position.y / 1000.0f);
+            cam.transform.position = orion.position + landingOffset * (1 + multiplier);
             cam.transform.LookAt(orion.position);
         }
     }
