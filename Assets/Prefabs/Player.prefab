@@ -32,7 +32,6 @@ GameObject:
   - component: {fileID: 4178378370143308665}
   - component: {fileID: 8424013804910224350}
   - component: {fileID: 2253211233476675410}
-  - component: {fileID: 2253211233476675411}
   - component: {fileID: 2253211233476675437}
   - component: {fileID: 2635974002284300590}
   m_Layer: 0
@@ -187,25 +186,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 422da5fa4bff82b4faf31161009b3944, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2253211233476675411
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2253211233476675432}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6680f6756a12262499c27afdae8b750f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  distText: {fileID: 0}
-  minDistText: {fileID: 0}
-  maxDistText: {fileID: 0}
-  speedText: {fileID: 0}
-  gravText: {fileID: 0}
-  dragText: {fileID: 0}
-  resetting: 0
 --- !u!114 &2253211233476675437
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -232,6 +212,7 @@ MonoBehaviour:
   enableGravity: 1
   enableDrag: 1
   sudChange: 0
+  orbitalModel: {fileID: 0}
   planetMass: 64.2
   G: 6.67
   d1: 0.03
@@ -246,6 +227,8 @@ MonoBehaviour:
   thrustOrbiting: 1
   thrustLanding: 1
   torque: 5
+  totalFuel: 100
+  fuelUsage: 60
   parachuteKeyPressed: 0
   parachuteReady: 0
   parachuteDeployed: 0
@@ -426,7 +409,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4733979218312161534}
-  m_Layer: 1
+  m_Layer: 3
   m_Name: GameObject
   m_TagString: Model
   m_Icon: {fileID: 0}
@@ -501,15 +484,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -4805409366189646615, guid: 7116f47aadfea6c439f57fd55abf45fd, type: 3}
       propertyPath: m_Layer
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: -4518896115344503495, guid: 7116f47aadfea6c439f57fd55abf45fd, type: 3}
       propertyPath: m_Layer
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: -4452823654699456707, guid: 7116f47aadfea6c439f57fd55abf45fd, type: 3}
       propertyPath: m_Layer
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 7116f47aadfea6c439f57fd55abf45fd, type: 3}
       propertyPath: m_Name
@@ -517,19 +500,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 7116f47aadfea6c439f57fd55abf45fd, type: 3}
       propertyPath: m_Layer
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1134407825510134046, guid: 7116f47aadfea6c439f57fd55abf45fd, type: 3}
       propertyPath: m_Layer
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5897241791616626406, guid: 7116f47aadfea6c439f57fd55abf45fd, type: 3}
       propertyPath: m_Layer
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8654019882737509844, guid: 7116f47aadfea6c439f57fd55abf45fd, type: 3}
       propertyPath: m_Layer
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7116f47aadfea6c439f57fd55abf45fd, type: 3}

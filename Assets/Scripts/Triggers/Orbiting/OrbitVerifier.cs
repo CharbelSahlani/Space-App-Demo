@@ -11,32 +11,28 @@ public class OrbitVerifier : MonoBehaviour
     private float speed;
     private float dist;
     private float momentum;
+    private int index;
 
     void OnTriggerEnter(Collider other)
     {
         orion = GameObject.FindGameObjectWithTag("Orion");
+
         if (orion != null)
         {
             speed = orion.GetComponent<Rigidbody>().velocity.magnitude;
             dist = orion.GetComponent<PhysicsController>().dist;
             momentum = speed * dist;
-            Debug.Log("h= " + momentum.ToString());
+            //Debug.Log("h= " + momentum.ToString());
 
             if (momentum > maxMomentum)
-                TooFast();
+                index = 2;
             else if (momentum < minMomentum)
-                TooSlow();
+                index = 1;
+            else
+                index = 0;
         }
+
+        GetComponent<TriggerAIController>().UpdateAIText(index);
         Destroy(gameObject);
-    }
-
-    void TooFast()
-    {
-        Debug.Log("Too Fast");
-    }
-
-    void TooSlow()
-    {
-        Debug.Log("Too Slow");
     }
 }
