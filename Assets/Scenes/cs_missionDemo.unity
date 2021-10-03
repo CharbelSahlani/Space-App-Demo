@@ -1926,22 +1926,62 @@ PrefabInstance:
       propertyPath: cornerAsteroidObj
       value: 
       objectReference: {fileID: 1381869232}
+    - target: {fileID: 128727612484812627, guid: 72e6b9842a3e53e4abba16fd54503900, type: 3}
+      propertyPath: m_Size.y
+      value: 18.12
+      objectReference: {fileID: 0}
+    - target: {fileID: 682928880446883095, guid: 72e6b9842a3e53e4abba16fd54503900, type: 3}
+      propertyPath: m_Size.y
+      value: 18.12
+      objectReference: {fileID: 0}
     - target: {fileID: 727471314003937889, guid: 72e6b9842a3e53e4abba16fd54503900, type: 3}
       propertyPath: cornerAsteroidObj
       value: 
       objectReference: {fileID: 1381869232}
+    - target: {fileID: 956960609493136494, guid: 72e6b9842a3e53e4abba16fd54503900, type: 3}
+      propertyPath: m_Size.y
+      value: 18.12
+      objectReference: {fileID: 0}
     - target: {fileID: 1145143567418065070, guid: 72e6b9842a3e53e4abba16fd54503900, type: 3}
       propertyPath: cornerAsteroidObj
       value: 
       objectReference: {fileID: 1381869232}
+    - target: {fileID: 1496474752783755065, guid: 72e6b9842a3e53e4abba16fd54503900, type: 3}
+      propertyPath: m_Size.y
+      value: 18.12
+      objectReference: {fileID: 0}
     - target: {fileID: 1501040633686835612, guid: 72e6b9842a3e53e4abba16fd54503900, type: 3}
       propertyPath: cornerAsteroidObj
       value: 
       objectReference: {fileID: 1381869232}
+    - target: {fileID: 1525385994910786298, guid: 72e6b9842a3e53e4abba16fd54503900, type: 3}
+      propertyPath: m_Size.y
+      value: 18.12
+      objectReference: {fileID: 0}
     - target: {fileID: 1858173862302818716, guid: 72e6b9842a3e53e4abba16fd54503900, type: 3}
       propertyPath: cornerAsteroidObj
       value: 
       objectReference: {fileID: 1381869232}
+    - target: {fileID: 2181480781504899450, guid: 72e6b9842a3e53e4abba16fd54503900, type: 3}
+      propertyPath: m_Size.y
+      value: 18.12
+      objectReference: {fileID: 0}
+    - target: {fileID: 2199253940018288228, guid: 72e6b9842a3e53e4abba16fd54503900, type: 3}
+      propertyPath: m_Size.y
+      value: 18.12
+      objectReference: {fileID: 0}
+    - target: {fileID: 2237764002509665451, guid: 72e6b9842a3e53e4abba16fd54503900, type: 3}
+      propertyPath: m_Size.y
+      value: 18.12
+      objectReference: {fileID: 0}
+    - target: {fileID: 2354493158693865215, guid: 72e6b9842a3e53e4abba16fd54503900, type: 3}
+      propertyPath: m_Size.y
+      value: 18.12
+      objectReference: {fileID: 0}
+    - target: {fileID: 2931959714192184089, guid: 72e6b9842a3e53e4abba16fd54503900, type: 3}
+      propertyPath: m_Size.y
+      value: 18.12
+      objectReference: {fileID: 0}
     - target: {fileID: 3048259428261807560, guid: 72e6b9842a3e53e4abba16fd54503900, type: 3}
       propertyPath: cornerAsteroidObj
       value: 
@@ -2006,14 +2046,46 @@ PrefabInstance:
       propertyPath: cornerAsteroidObj
       value: 
       objectReference: {fileID: 1381869232}
+    - target: {fileID: 3738164200067091935, guid: 72e6b9842a3e53e4abba16fd54503900, type: 3}
+      propertyPath: m_Size.y
+      value: 18.12
+      objectReference: {fileID: 0}
+    - target: {fileID: 3811244927862535408, guid: 72e6b9842a3e53e4abba16fd54503900, type: 3}
+      propertyPath: m_Size.y
+      value: 18.12
+      objectReference: {fileID: 0}
     - target: {fileID: 4385264159558134578, guid: 72e6b9842a3e53e4abba16fd54503900, type: 3}
       propertyPath: cornerAsteroidObj
       value: 
       objectReference: {fileID: 1381869232}
+    - target: {fileID: 4910234263115030633, guid: 72e6b9842a3e53e4abba16fd54503900, type: 3}
+      propertyPath: m_Size.y
+      value: 18.12
+      objectReference: {fileID: 0}
+    - target: {fileID: 4910234263115030633, guid: 72e6b9842a3e53e4abba16fd54503900, type: 3}
+      propertyPath: m_Center.y
+      value: 7.567012
+      objectReference: {fileID: 0}
+    - target: {fileID: 4954604045063546315, guid: 72e6b9842a3e53e4abba16fd54503900, type: 3}
+      propertyPath: m_Size.y
+      value: 18.12
+      objectReference: {fileID: 0}
     - target: {fileID: 5096450166744179121, guid: 72e6b9842a3e53e4abba16fd54503900, type: 3}
       propertyPath: cornerAsteroidObj
       value: 
       objectReference: {fileID: 1381869232}
+    - target: {fileID: 5226257341255519024, guid: 72e6b9842a3e53e4abba16fd54503900, type: 3}
+      propertyPath: m_Size.y
+      value: 18.12
+      objectReference: {fileID: 0}
+    - target: {fileID: 5411097155136132863, guid: 72e6b9842a3e53e4abba16fd54503900, type: 3}
+      propertyPath: m_Size.y
+      value: 18.12
+      objectReference: {fileID: 0}
+    - target: {fileID: 5430540245443403748, guid: 72e6b9842a3e53e4abba16fd54503900, type: 3}
+      propertyPath: m_Size.y
+      value: 18.12
+      objectReference: {fileID: 0}
     - target: {fileID: 5689674231296274101, guid: 72e6b9842a3e53e4abba16fd54503900, type: 3}
       propertyPath: cornerAsteroidObj
       value: 
@@ -2022,6 +2094,10 @@ PrefabInstance:
       propertyPath: cornerAsteroidObj
       value: 
       objectReference: {fileID: 1381869232}
+    - target: {fileID: 6114628057005222628, guid: 72e6b9842a3e53e4abba16fd54503900, type: 3}
+      propertyPath: m_Size.y
+      value: 18.12
+      objectReference: {fileID: 0}
     - target: {fileID: 6240247385585737856, guid: 72e6b9842a3e53e4abba16fd54503900, type: 3}
       propertyPath: cornerAsteroidObj
       value: 
@@ -2030,6 +2106,10 @@ PrefabInstance:
       propertyPath: cornerAsteroidObj
       value: 
       objectReference: {fileID: 1381869232}
+    - target: {fileID: 6292706239373131928, guid: 72e6b9842a3e53e4abba16fd54503900, type: 3}
+      propertyPath: m_Size.y
+      value: 18.12
+      objectReference: {fileID: 0}
     - target: {fileID: 6662811420046124282, guid: 72e6b9842a3e53e4abba16fd54503900, type: 3}
       propertyPath: cornerAsteroidObj
       value: 
@@ -2050,6 +2130,10 @@ PrefabInstance:
       propertyPath: cornerAsteroidObj
       value: 
       objectReference: {fileID: 1381869232}
+    - target: {fileID: 8491385280940179286, guid: 72e6b9842a3e53e4abba16fd54503900, type: 3}
+      propertyPath: m_Size.y
+      value: 18.12
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 72e6b9842a3e53e4abba16fd54503900, type: 3}
 --- !u!1 &487394961

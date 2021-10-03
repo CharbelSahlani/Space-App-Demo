@@ -44,7 +44,7 @@ public class MeshGen : MonoBehaviour
         */
         colX.transform.position = new Vector3(world_x, colX.transform.position.y, world_z / 2);
         col_X.transform.position = new Vector3(0f, col_X.transform.position.y, world_z / 2);
-        colZ.transform.position = new Vector3(world_x / 2, colZ.transform.position.y, world_z);
+        colZ.transform.position = new Vector3(world_x / 2, colZ.transform.position.y, world_z/2);
         col_Z.transform.position = new Vector3(world_z / 2, col_Z.transform.position.y, 0f);
         col_Z.GetComponent<BoxCollider>().size = new Vector3(world_z, 100, 0.5f);
         colZ.GetComponent<BoxCollider>().size = new Vector3(world_z, 100, 0.5f);
