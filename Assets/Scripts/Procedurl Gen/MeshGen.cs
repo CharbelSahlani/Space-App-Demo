@@ -29,28 +29,35 @@ public class MeshGen : MonoBehaviour
     [Header("Collision + - Z")]
     [SerializeField] GameObject col_Z; //collision on - z 
     private float collider_offset = 10f;
+    MeshCollider[] meshColliders;
     void Start()
     {
         mesh = new Mesh();
         GetComponent<MeshFilter>().mesh = mesh;
         generate_mesh();
         update_mesh();
-
+        /*
         colX.transform.position = new Vector3(world_x - collider_offset, colX.transform.position.y, world_z/2);
         col_X.transform.position = new Vector3(collider_offset, col_X.transform.position.y, world_z/2);
         colZ.transform.position = new Vector3(world_x/2, colZ.transform.position.y, world_z - collider_offset);
         col_Z.transform.position = new Vector3(world_z/2, col_Z.transform.position.y, collider_offset);
+        */
+        colX.transform.position = new Vector3(world_x, colX.transform.position.y, world_z / 2);
+        col_X.transform.position = new Vector3(0f, col_X.transform.position.y, world_z / 2);
+        colZ.transform.position = new Vector3(world_x / 2, colZ.transform.position.y, world_z/2);
+        col_Z.transform.position = new Vector3(world_z / 2, col_Z.transform.position.y, 0f);
         col_Z.GetComponent<BoxCollider>().size = new Vector3(world_z, 100, 0.5f);
         colZ.GetComponent<BoxCollider>().size = new Vector3(world_z, 100, 0.5f);
         colX.GetComponent<BoxCollider>().size = new Vector3(world_x, 100, 0.5f);
         col_X.GetComponent<BoxCollider>().size = new Vector3(world_x, 100, 0.5f);
-
+        meshColliders = GetComponents<MeshCollider>();
+        EnableConvexMesh(true);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     void generate_mesh()
@@ -69,7 +76,7 @@ public class MeshGen : MonoBehaviour
         int tris = 0;
         int verts = 0;
 
-        for (int i = 0, z = 0; z < world_z; z++)
+        for (int z = 0; z < world_z; z++)
         {
             for (int x = 0; x < world_x; x++)
             {
@@ -108,4 +115,11 @@ public class MeshGen : MonoBehaviour
         return Mathf.PerlinNoise(x_noise, z_noise);
     }
 
+    void EnableConvexMesh (bool enable)
+    {
+        foreach (MeshCollider mesh in meshColliders)
+        {
+            mesh.convex = true;
+        }
+    }
 }

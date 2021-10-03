@@ -28,7 +28,15 @@ public class LevelLoader : MonoBehaviour
     //Time to wait while the animation is playing
     public float transitionTime = 1f;
     [SerializeField] VideoPlayer video_player;
-
+    private int savedLevelIndex = 0;
+    private void Start()
+    {
+        savedLevelIndex = PlayerPrefs.GetInt("SavedLevel", 0);
+        if (savedLevelIndex == 0)
+        {
+            savedLevelIndex = 1;
+        }
+    }
     // Update is called once per frame
     private void Update()
     {
@@ -70,7 +78,7 @@ public class LevelLoader : MonoBehaviour
       */
     public void LoadSettingsMenu()
     {
-        StartCoroutine(LoadLevel(2));
+        StartCoroutine(LoadLevel(5));
     }
 
     /**
@@ -78,7 +86,7 @@ public class LevelLoader : MonoBehaviour
       */
     public void LoadFreeNavigationScene()
     {
-        StartCoroutine(LoadLevel(3));
+        StartCoroutine(LoadLevel(4));
     }
     /**
       * This function quits the game
@@ -113,5 +121,10 @@ public class LevelLoader : MonoBehaviour
     public void PlayButtonSound()
     {
         AudioManager.instance.PlaySound("Button Press");
+    }
+
+    public void LoadSavedLevel()
+    {
+        StartCoroutine(LoadLevel(savedLevelIndex));
     }
 }

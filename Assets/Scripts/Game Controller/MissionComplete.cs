@@ -17,6 +17,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
+
 public class MissionComplete : MonoBehaviour
 {
     public static MissionComplete instance;
@@ -57,6 +59,7 @@ public class MissionComplete : MonoBehaviour
         totalXPInt = player.mission.xpReward + player.XP;
         CountdownTimer.countdownIsActive = false;
         StartCoroutine(TotalXPCount());
+        PlayerPrefs.SetInt("SavedLevel", SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     /**
