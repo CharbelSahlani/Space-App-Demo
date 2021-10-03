@@ -60,7 +60,8 @@ public class HandleRegex : MonoBehaviour
         regex_exp.Add("sun", new string[] { "The Sun is a yellow dwarf star, a hot ball of glowing gases at the heart of our solar system. Its gravity holds everything from the biggest planets to tiny debris in its orbit.",
                                             "Electric currents in the Sun generate a magnetic field that is carried out through the solar system by the solar wind. A stream of electrically charged gas blowing outward from the Sun in all directions.",
                                             "The Sun is the largest object in our solar system, comprising 99.8% of the system’s mass. Though it seems huge to us, the Sun isn't as large as other types of stars.",
-                                            "Earth orbits the Sun from a distance of about 93 million miles. The connection and interactions between the Sun and Earth drive our planet's seasons, ocean currents, weather, climate, radiation belts, and aurorae. Though it is special to us, there are billions of stars like our Sun scattered across the Milky Way galaxy."                                
+                                            "Earth orbits the Sun from a distance of about 93 million miles. The connection and interactions between the Sun and Earth drive our planet's seasons, ocean currents, weather, climate, radiation belts, and aurorae.", 
+                                            " Though it is special to us, there are billions of stars like our Sun scattered across the Milky Way galaxy."                                
         
         });
         //mercury
@@ -104,7 +105,7 @@ public class HandleRegex : MonoBehaviour
                                                 "It was two years later that the object was universally accepted as a new planet, in part because of observations by astronomer Johann Elert Bode."});
 
         //nepturne
-        regex_exp.Add("nepturne", new string[] { "The eighth and most distant major planet orbiting our Sun, it is dark, cold and whipped by supersonic winds. It was the first planet located through mathematical calculations, rather than by telescope.",
+        regex_exp.Add("neptune", new string[] { "The eighth and most distant major planet orbiting our Sun, it is dark, cold and whipped by supersonic winds. It was the first planet located through mathematical calculations, rather than by telescope.",
                                                  "More than 30 times as far from the Sun as Earth, Neptune is the only planet in our solar system not visible to the naked eye and the first predicted by mathematics before its discovery."});
 
         //pluto
@@ -140,7 +141,7 @@ public class HandleRegex : MonoBehaviour
         //label_text.text = ans;
         ans = replace_word(ans, random_word(regex_exp["assistant"]), create_pattern(regex_exp["assistant"]));
         Debug.Log(create_pattern(regex_exp["assistant"]));
-        textTyper.UpdateText(ans);
+        //textTyper.UpdateText(ans);
 
         //END TEST
         //testing

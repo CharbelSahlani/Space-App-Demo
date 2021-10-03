@@ -42,6 +42,7 @@ public class MouseLook : MonoBehaviour
         /* check if we're in the free navigation scene and setup regex */
         if (freeNavigation)
         {
+            Cursor.lockState = CursorLockMode.Locked;
             regex_script = FindObjectOfType<HandleRegex>();
             regex_arr = regex_script.get_regex_array();
         }
