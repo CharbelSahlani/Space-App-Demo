@@ -167,17 +167,17 @@ public class GameplayUI : MonoBehaviour
 
     public void UpdateSpinAndShieldText(bool status)
     {
-        spinText.text = "Spin: OFF";
+        spinText.text = "(S) Spin: OFF";
         spinText.color = Color.green;
 
         if (!status)
         {
-            heatShieldText.text = "Heat Shield: READY";
+            heatShieldText.text = "(H) Heat Shield: READY";
             heatShieldText.color = Color.yellow;
         }
         else
         {
-            heatShieldText.text = "Heat Shield: DEPLOYED";
+            heatShieldText.text = "(H) Heat Shield: DEPLOYED";
             heatShieldText.color = Color.green;
         }
     }
@@ -186,12 +186,12 @@ public class GameplayUI : MonoBehaviour
     {
         if (!status)
         {
-            parachuteText.text = "Parachute: READY";
+            parachuteText.text = "(P) Parachute: READY";
             parachuteText.color = Color.yellow;
         }
         else
         {
-            parachuteText.text = "Parachute: DEPLOYED";
+            parachuteText.text = "(P) Parachute: DEPLOYED";
             parachuteText.color = Color.green;
         }
     }
@@ -200,12 +200,12 @@ public class GameplayUI : MonoBehaviour
     {
         if (!status)
         {
-            cushionText.text = "Cushion: READY";
+            cushionText.text = "(C) Cushion: READY";
             cushionText.color = Color.yellow;
         }
         else
         {
-            cushionText.text = "Cushion: DEPLOYS";
+            cushionText.text = "(C) Cushion: DEPLOYS";
             cushionText.color = Color.green;
         }
 

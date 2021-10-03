@@ -48,7 +48,7 @@ public class TriggerAIController : MonoBehaviour
 
     public void UpdateAIText(int index, bool randomize)
     {
-        ai_panel.SetActive(true);
+        //ai_panel.SetActive(true);
 
         foreach (KeyValuePair<string, string[]> kvp in regex_arr)
         {
@@ -64,8 +64,9 @@ public class TriggerAIController : MonoBehaviour
 
                 //ai_panel.SetActive(true);
                 Debug.Log(kvp.Value[index]);
+                ai_panel.SetActive(true);
                 ai_text.text = kvp.Value[index];
-                textWaitTime = 2.0f + Mathf.Sqrt(ai_text.text.Length) / 7.0f;
+                textWaitTime = 2.0f + Mathf.Sqrt(ai_text.text.Length) / 4.0f;
             }
         }
         if (autoClear)

@@ -120,7 +120,7 @@ public class PhysicsController : MonoBehaviour
             EnableShadows();
             anim = orion.GetComponent<Animator>();
 
-            GameplayUI.instance.SetMaxAltitude(1000f);
+            GameplayUI.instance.SetMaxAltitude(1200f);
             GameplayUI.instance.SetMaxVelocity(80f);
             GameplayUI.instance.SetMaxVelocityZ(80f);
         }
@@ -148,6 +148,7 @@ public class PhysicsController : MonoBehaviour
                 }
             }
 
+            Time.timeScale = renderSpeeds[renderSpeedIndex];
             orbitalModel.LookAt(planet);
         }
 
@@ -159,7 +160,7 @@ public class PhysicsController : MonoBehaviour
                 if (parachuteReady || parachuteDeployed)
                     parachuteKeyPressed = true;
             }
-            if (Input.GetKeyDown(KeyCode.Backspace))
+            if (Input.GetKeyDown(KeyCode.S))
             {
                 if (!(shieldReady || shieldDeployed))
                     spinActive = true;
@@ -187,7 +188,7 @@ public class PhysicsController : MonoBehaviour
                 GameplayUI.instance.UpdateParachuteText(false);
             }
 
-            if (height < 20f && parachuteDeployed && Vector3.Angle(Vector3.up, orion.transform.up) < 1f && !cushionActive)
+            if (height < 10f && parachuteDeployed && Vector3.Angle(Vector3.up, orion.transform.up) < 1f && !cushionActive)
             {
                 cushionReady = true;
                 torqueActive = false;
@@ -196,8 +197,6 @@ public class PhysicsController : MonoBehaviour
 
             CameraUpdate();
         }
-
-        Time.timeScale = renderSpeeds[renderSpeedIndex];
     }
 
     void FixedUpdate()

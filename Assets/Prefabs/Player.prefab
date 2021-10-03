@@ -139,6 +139,7 @@ MonoBehaviour:
   d1: 0.03
   d2: 1
   gSurf: 1
+  maxDrag: 3
   dSurf: 0.2
   shieldDrag: 5
   parachuteDrag: 5

@@ -120,10 +120,20 @@ public class HandleRegex : MonoBehaviour
                                                     "The order and arrangement of the planets and other bodies in our solar system is due to the way the solar system formed. Nearest to the Sun, only rocky material could withstand the heat when the solar system was young. For this reason, the first four planets – Mercury, Venus, Earth, and Mars – are terrestrial planets. They are all small with solid, rocky surfaces."});
 
         //welcome
-        regex_exp.Add("welcome", new string[] {"Welcome to Journey To Mars."});
+        regex_exp.Add("welcome", new string[] {
+            "Welcome to Mars Adventure.",
+            "Safe journey.\n(Time control is on)",
+            "Keep your eye on the velocity.\nYou will later need the value at which it turns green."});
 
         //introduce the Ai
-        regex_exp.Add("intro", new string[] { "Welcome to Journey To Mars." });
+        regex_exp.Add("intro", new string[] {
+            "My Name is AJ.",
+            "I am AJ."});
+
+        //introduce the job
+        regex_exp.Add("job", new string[] {
+            "I will be your assistant along the journey.",
+            "I am going to guide you to reach Mars."});
 
 
 
@@ -133,24 +143,47 @@ public class HandleRegex : MonoBehaviour
             "Time control is back on.\nSpeed up to see the orbit."});
 
         //orbit verifier
-        regex_exp.Add("orbit_verifier", new string[] { "Well done! You achieved the correct trajectory", "You slowed down more than you need.\nYou will crash.", "You did not slow down enough.\nYou will miss the planet." });
+        regex_exp.Add("orbit_verifier", new string[] { "Well done! You achieved the correct trajectory.\nIt will take several orbits before landing.",
+            "You slowed down more than you need.\nYou will crash.",
+            "You did not slow down enough.\nYou will miss the planet." });
 
-        /*
-         * tutorial
-         */
-        regex_exp.Add("tutorial", new string[] { "Press and hold \"Space\" for fuel burn." });
-
-
-
+        //orbit verifier
+        regex_exp.Add("landing", new string[] { "Congratulations!\nYou are now ready for the landing phase on the martian surface." });
 
         //button mapping
         regex_exp.Add("button_mapping", new string[] {
             "I will teach you about the buttons you will use.",
-            "Press and hold \"Space\" for fuel burn." ,
+            "Press and hold \"Space\" for fuel burn to slow down." ,
             "Press \"V\" to switch between top view and third person cameras.",
-            "Press \"-\" to slow down time.\nPress \"=\" to speed up time."});
+            "Press \"-\" to slow down time.\nPress \"=\" to speed up time.",
+            "Press \"S\" to stop spinning.\nPress \"H\" to expand the heat shield.",
+            "Press \"P\" to deploy the parachute.\nPress \"C\" to deploy the cushion.",
+            "Press the corresponding keys as soon as the actions on the bottom of the screen turns to READY.",
+            "Safe landing.\n(Press \"S\" as soon this message goes away)"});
 
+        //orbit
+        regex_exp.Add("orbiting", new string[] {
+            "You are now in orbit around Mars.\nThe capture (first) orbit will take almost 7 hours in realtime",
+            "You are now orbit Mars.\nThe capture (first) orbit will take almost 7 hours in realtime"});
 
+        //aerobraking
+        regex_exp.Add("aero_braking", new string[] {
+            "Notice that every time you complete one orbit, the apoapsis (farthest point from Mars) is getting lower.",
+            "Have a look at your altitude.\nEvery time you orbit Mars, you get closer"});
+
+        //aerobraking cause
+        regex_exp.Add("aero_braking_cause", new string[] {
+            "You are slowing down beacuse of aerobraking.\n(Passing by Mars's atmosphere to use air friction)",
+            "Aerobraking is using the atmosphere to slow down.\nThat is what you are doing at the periapsis (lowest point) in orbit."});
+
+        //aerobraking cause
+        regex_exp.Add("start_landing", new string[] {
+            "Now you are are going to land on the surface of Mars.",
+            "Now the hardest phase starts."});
+
+        //landing_end
+        regex_exp.Add("end_landing", new string[] {
+            "Congratulations! You are the first human on Mars.\nNow make your small step so we can have our giant leap."});
 
 
 
