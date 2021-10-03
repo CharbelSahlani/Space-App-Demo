@@ -5,7 +5,7 @@ using UnityEngine;
 public class LandingSceneLoader : MonoBehaviour
 {
     private GameObject orion;
-    public bool lockScale;
+    public int index;
 
     void OnTriggerEnter(Collider other)
     {
@@ -20,6 +20,6 @@ public class LandingSceneLoader : MonoBehaviour
 
     void LoadLandingScene()
     {
-        GameOver.instance.GameOverSequence();
+        GetComponent<TriggerAIController>().UpdateAIText(index);
     }
 }
