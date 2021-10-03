@@ -23,12 +23,13 @@ public class PauseMenu : MonoBehaviour
     //Reference to the PanelFade animator
     Animator panelFade;
     private bool togglePause = false;
-
+    GameObject orion;
     // Start is called before the first frame update
     private void Start()
     {
         // Assign panelFade to the corresponding animator
         panelFade = pauseMenuPanel.GetComponent<Animator>();
+        orion = GameObject.FindGameObjectWithTag("Orion");
     }
     // Update is called once per frame
     void Update()
@@ -56,6 +57,10 @@ public class PauseMenu : MonoBehaviour
      */
     public void PauseGame()
     {
+        if (orion != null)
+        {
+            orion.GetComponent<PhysicsController>().enabled = false;
+        }
         Time.timeScale = 0f;
         Cursor.lockState = CursorLockMode.None;
         pauseMenuPanel.SetActive(true);
@@ -78,6 +83,10 @@ public class PauseMenu : MonoBehaviour
         panelFade.SetTrigger("PanelFadeOut");
         yield return new WaitForSecondsRealtime(1f);
         Time.timeScale = 1f;
+        if (orion != null)
+        {
+            orion.GetComponent<PhysicsController>().enabled = true;
+        }
         Cursor.lockState = CursorLockMode.Locked;
         pauseMenuPanel.SetActive(false);
     }

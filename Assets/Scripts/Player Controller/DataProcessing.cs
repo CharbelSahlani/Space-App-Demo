@@ -25,7 +25,7 @@ public class DataProcessing : MonoBehaviour
     {
         phy = GetComponent<PhysicsController>();
         mu = phy.G * phy.planetMass;
-        initSpeed = phy.initSpeed;
+        initSpeed = phy.initSpeedOrbiting;
 
         semMajAxis = Mathf.Pow(orbitalPeriod * Mathf.Sqrt(mu) / (2f * Mathf.PI), 2f / 3f);
         planetRad = phy.radius;

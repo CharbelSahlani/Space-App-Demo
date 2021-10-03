@@ -20,12 +20,28 @@ using UnityEngine.UI;
 
 public class GameplayUI : MonoBehaviour
 {
+    public static GameplayUI instance;
+
     public Slider fuelSlider;
     public Image fuelFill;
     public Gradient fuelGradient;
+
     public Slider altitudeSlider;
     public Image altitudeFill;
     public Gradient altitudeGradient;
+    public Text altitudeText;
+
+    public Slider velocitySlider;
+    public Image velocityFill;
+    public Gradient velocityGradient;
+    public Text velocityText;
+
+    void Awake()
+    {
+        instance = this;
+    }
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -68,6 +84,13 @@ public class GameplayUI : MonoBehaviour
     {
         altitudeSlider.value = altitude;
         altitudeFill.color = altitudeGradient.Evaluate(altitudeSlider.normalizedValue);
+        if (altitude > altitudeSlider.maxValue)
+            altitudeText.text = "MAX";
+        else
+        {
+            float temp = altitude * 100;
+            altitudeText.text = temp.ToString("0") + "\nkm";
+        }
     }
 
     /**
@@ -80,5 +103,30 @@ public class GameplayUI : MonoBehaviour
         altitudeSlider.value = maxAltitude;
         // We set the value t 1 to indicate that the bar is full
         altitudeFill.color = altitudeGradient.Evaluate(1f);
+    }
+
+    /**
+     * This function updates the velocity 
+     * param[in] velocity  represents the updated velocity
+     */
+    public void SetVelocity(float velocity)
+    {
+        velocitySlider.value = velocity;
+        velocityFill.color = velocityGradient.Evaluate(velocitySlider.normalizedValue);
+
+        float temp = velocity * 3600;
+        velocityText.text = temp.ToString("0") + "\nkm/h";
+    }
+
+    /**
+     * This function sets the maximum velocity
+     * param[in] maxVelocity represents the max velocity
+     */
+    public void SetMaxVelocity(float maxVelocity)
+    {
+        velocitySlider.maxValue = maxVelocity;
+        velocitySlider.value = maxVelocity;
+        // We set the value t 1 to indicate that the bar is full
+        velocityFill.color = velocityGradient.Evaluate(1f);
     }
 }
