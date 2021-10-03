@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class CameraSelector : MonoBehaviour
 {
-    public Camera[] cams;
-    public Canvas canvas;
+    private Camera[] cams = new Camera[2];
 
     private int index;
     private int arrayLength;
@@ -15,6 +14,9 @@ public class CameraSelector : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        cams[0] = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+        cams[1] = GameObject.FindGameObjectWithTag("FollowerCamera").GetComponent<Camera>();
+
         if (GetComponent<PhysicsController>().planet != null)
         {
             index = 0;
@@ -23,6 +25,7 @@ public class CameraSelector : MonoBehaviour
         }
         else
         {
+            cams[0].gameObject.SetActive(false);
             this.enabled = false;
         }
     }

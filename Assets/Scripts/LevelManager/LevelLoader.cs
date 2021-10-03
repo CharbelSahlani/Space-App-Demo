@@ -71,6 +71,13 @@ public class LevelLoader : MonoBehaviour
     }
 
     /**
+      * This function loads the free navigation scene
+      */
+    public void LoadFreeNavigationScene()
+    {
+        StartCoroutine(LoadLevel(3));
+    }
+    /**
       * This function quits the game
       */
     public void QuitGame()

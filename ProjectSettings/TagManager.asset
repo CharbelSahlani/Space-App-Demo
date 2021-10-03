@@ -11,6 +11,7 @@ TagManager:
   - CornerObj
   - Orion
   - Model
+  - FollowerCamera
   layers:
   - Default
   - TransparentFX
